@@ -1,0 +1,52 @@
+<div class="container">
+    <div class="row">
+    	<div class="col-md-6">
+    		<label>Add Question</label>
+            <form id="addQuestion" (ngSubmit)="addQuestion()">
+                <div class="form-group">
+                    <label for="question">Question</label>
+                    <input type="textbox" class="form-control" name="question" [(ngModel)]="addQuestionModel.questionDesc" #question="ngModel" />
+                </div>
+                <div class="col-md-6 options" *ngFor="let option of addOptionModel;let i = index">
+                    <label for="option">Option{{i+1}}</label>
+                    <div class="option">
+                        <span>
+                            <label class="" for="{{option.id}}"></label>
+                                <input type="checkbox" name="option" 
+                                [(ngModel)]="option.answer"
+
+                                />
+                                {{option.optionDesc}}
+                            <button id="remove' + (i) + '" class="btn btn-danger remove-me" 
+                            (click)="removeOptoin(i)">-</button>
+                        </span>
+                    </div>
+                </div>
+                <div id="field">
+                    <input autocomplete="off" class="input"  type="text" 
+                    placeholder="Option Descriptoin" data-items="8"
+                    name="optiondisplay"
+                    #question="ngModel"
+                    [(ngModel)]="option"/>
+                    <button id="b1" class="btn add-more" type="button"
+                    (click)="addOption()">+</button></div>
+
+                <div class="form-group">
+                    <button class="btn btn-primary btn-xs" >Add Question</button>
+                </div>
+            </form>
+            
+    	</div>
+    	<div class="col-md-6">
+    		<label>Display Questions</label>
+    		<div *ngFor="let question of questions" class="question">
+    			<h4><span>{{question.questionDesc}}</span></h4>
+    			<div class="col-md-6 options" *ngFor="let option of question.options">
+                    <div class="option">
+    				    <span>{{option.optionDesc}}</span>
+                    </div>
+    			</div>
+    			
+    		</div>
+    	</div>
+</div>

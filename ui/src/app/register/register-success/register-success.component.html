@@ -1,0 +1,42 @@
+<div>
+	<label>Your Registration ID is {{registrationId}}</label>
+    <br/>
+	<label>We will send details to your Registered Email {{email}}</label>
+	<form id="register-form" (ngSubmit)="signup()" >
+                    <div class="form-group">
+                        <input type="text" name="username" id="username" tabindex="1" 
+                        required
+                        class="form-control" placeholder="Username" 
+                        [(ngModel)]="signupUser.username" readonly="true">
+                    </div>
+                    <!-- <div [hidden]="registerModel.username.valid"
+                         class="alert alert-danger">
+                      Username is required
+                    </div> -->
+                    <div class="form-group">
+                        <input type="password" name="password" id="password" tabindex="3" class="form-control" placeholder="Password" 
+                        required
+                        [(ngModel)]="signupUser.password"
+                        >
+                    </div>
+                    <div class="form-group">
+                        <input type="password" name="confirm-password" 
+                        id="confirm-password" tabindex="4" class="form-control" placeholder="Confirm Password" 
+                        [(ngModel)]="confirm_password" required>
+                    </div>
+                    <div *ngIf="signupUser.password != confirm_password"
+                         class="alert alert-danger">
+                      Confirm Password should be same as Password
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-6 col-sm-offset-3">
+                                
+                                <input type="submit" name="register-submit" id="register-submit" tabindex="5" class="form-control btn btn-primary" value="Online Signup">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+
+</div>

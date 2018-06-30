@@ -1,0 +1,43 @@
+<div>
+  <ul class="nav nav-tabs nav-justified">
+  	<li class="nav-item" role="presentation"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{exact: true}">
+      <a class="nav-link" routerLink="/">Home</a>
+    </li>
+    <li class="nav-item" role="presentation"
+        routerLinkActive="active" *ngIf="!app.isUserLoggedIn()">
+      <a class="nav-link" [routerLink]="['register']">Register</a>
+    </li>
+    <li class="nav-item" role="presentation"
+        routerLinkActive="active">
+      <a class="nav-link" [routerLink]="['admin']">Admin</a>
+    </li>
+    <li class="nav-item" role="presentation"
+        routerLinkActive="active">
+      <a class="nav-link" routerLink="exam">Exam</a>
+    </li>
+    <li class="nav-item" role="presentation"
+        routerLinkActive="active">
+      <div class="dropdown" *ngIf="(app.localStorageItem('currentUser') != '')">
+        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          {{app.localStorageItem("currentUser")}}
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <button class="dropdown-item" (click)="logout()">Logout</button>
+          
+        </div>
+      </div>
+    </li>
+    <ul class="nav navbar-nav navbar-right ml-auto" *ngIf="(app.localStorageItem('currentUser') == '')">
+    <li role="presentation"  routerLinkActive="active">
+          <a class="nav-link" routerLink="login">Login</a>
+    </li>
+
+	</ul>
+    
+  </ul>
+  <!-- <ul class="nav navbar-nav navbar-right ml-auto">
+  	
+  </ul> -->
+</div>

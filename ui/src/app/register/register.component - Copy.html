@@ -1,0 +1,115 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+        	<div class="col-lg-12">
+        		<form id="register-form" (ngSubmit)="register()">
+        			<div class="form-group">
+        				<div class="row">
+        					<div><label>First Name</label></div>
+        				</div>
+        			</div>
+        			<div class="form-group">
+        				<div class="row">
+        					<div><label>Last Name</label></div>
+        				</div>
+        			</div>
+        			<div class="form-group">
+        				<div class="row">
+        					<div><label>Father Name</label></div>
+        					
+        				</div>
+        			</div>
+        			<div class="form-group">
+        				<div class="row">
+        					<div><label>Gender</label></div>
+        					
+        				</div>
+        			</div>
+        			<div class="form-group">
+        				<div class="row">
+        					<div><label>DOB</label></div>        					
+        				</div>
+        			</div>
+        			<div class="form-group">
+        				<div class="row">
+        					<div><label>Residential Address</label></div>        					
+        				</div>
+        			</div>
+        			<div class="form-group">
+        				<div class="row">
+        					<div><label>Permanent Address</label></div>        					
+        				</div>
+        			</div>
+        			<div class="form-group">
+        				<div class="row">
+        					<div><label>Phone</label></div>        					
+        				</div>
+        			</div>
+        			<div class="form-group">
+        				<div class="row">
+        					<div><label>Email Id</label></div>        					
+        				</div>
+        			</div>
+        			<div class="form-group">
+        				<div class="row">
+        					<div><label>Education Qualification</label></div>        					
+        				</div>
+        			</div>
+        			
+        			
+        			<div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-6 col-sm-offset-3">
+                                <input type="submit" name="register-submit" class="form-control btn btn-primary" value="Register Now">
+                            </div>
+                        </div>
+                    </div>
+        		</form>
+                <!-- <form id="register-form" (ngSubmit)="register()">
+                    <div class="form-group">
+                        <input type="text" name="username" id="username" tabindex="1" 
+                        required
+                        class="form-control" placeholder="Username" 
+                        [(ngModel)]="registerModel.username">
+                    </div>
+                    <div [hidden]="registerModel.username.valid"
+                         class="alert alert-danger">
+                      Username is required
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="email" id="email" tabindex="2" class="form-control" placeholder="Email Address" 
+                        required 
+                        [(ngModel)]="registerModel.email">
+                    </div>
+                    <div [hidden]="email.valid || email.pristine"
+                         class="alert alert-danger">
+                      Email is required
+                    </div>
+                    <div class="form-group">
+                        <input type="password" name="password" id="password" tabindex="3" class="form-control" placeholder="Password" 
+                        required
+                        [(ngModel)]="registerModel.password"
+                        >
+                    </div>
+                    <div class="form-group">
+                        <input type="password" name="confirm-password" 
+                        id="confirm-password" tabindex="4" class="form-control" placeholder="Confirm Password" 
+                        [(ngModel)]="registerModel.confirm_password" required>
+                    </div>
+                    <div *ngIf="registerModel.password != registerModel.confirm_password"
+                         class="alert alert-danger">
+                      Confirm Password should be same as Password
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-6 col-sm-offset-3">
+                                
+                                <input type="submit" name="register-submit" id="register-submit" tabindex="5" class="form-control btn btn-primary" value="Register Now">
+                            </div>
+                        </div>
+                    </div>
+                </form> -->
+            </div>
+        </div>
+    </div>
+</div>

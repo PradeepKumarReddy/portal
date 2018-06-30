@@ -1,0 +1,20 @@
+npm install -g @angular/cli
+
+ng new nia-ui
+
+cd nia-ui
+
+ng serve
+
+npm install --save bootstrap@3
+
+install pagination 
+
+//https://ciphertrick.com/2017/08/01/search-sort-pagination-in-angular/
+npm install ngx-pagination --save
+
+//timer
+npm install ng2-simple-timer
+
+//
+ng serve --host=0.0.0.0 --disable-host-check
