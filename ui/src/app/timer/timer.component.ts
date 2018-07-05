@@ -11,11 +11,11 @@ import { SimpleTimer } from 'ng2-simple-timer';
 })
 export class TimerComponent implements OnInit {
 
-   counter=300;
+   counter = 300;
    timerId: string;
    timerbutton = 'Subscribe';
 
-   constructor(private st : SimpleTimer, private router: Router) { }
+   constructor(private st: SimpleTimer, private router: Router) { }
 
    ngOnInit() {
       this.st.newTimer('1sec', 1);
@@ -40,7 +40,7 @@ export class TimerComponent implements OnInit {
 
   timercallback(): void {
     this.counter--;
-    if(this.counter <=0 ) {
+    if (this.counter <= 0 ) {
       this.st.unsubscribe(this.timerId);
       this.router.navigate(['/']);
     }

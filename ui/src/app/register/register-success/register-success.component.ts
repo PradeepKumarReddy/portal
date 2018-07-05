@@ -6,7 +6,7 @@ import { RegisterService } from '../../_services/index';
 
 const httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json; charset=utf-8',
-    'Access-Control-Allow-Headers':'*' })
+    'Access-Control-Allow-Headers': '*' })
 };
 
 @Component({
@@ -17,23 +17,22 @@ const httpOptions = {
 
 export class RegisterSuccessComponent implements OnInit {
 
-  registrationId : string;
-  email : string;
+  registrationId: string;
+  email: string;
   signupUser: User;
   confirm_password: string;
 
-  constructor(private router: Router, private route: ActivatedRoute, private registerService: RegisterService) { 
-  	
+  constructor(private router: Router, private route: ActivatedRoute, private registerService: RegisterService) {
   }
 
   ngOnInit() {
     this.signupUser = new User();
   	this.route.params.subscribe(
-  		(params: Params) => {
-  			this.registrationId = params['registrationId'];
-        this.email = params['email'];
-        this.signupUser.username = this.registrationId;
-  		}
+ 		(params: Params) => {
+		this.registrationId = params['registrationId'];
+    this.email = params['email'];
+    this.signupUser.username = this.registrationId;
+		}
   	);
   }
 

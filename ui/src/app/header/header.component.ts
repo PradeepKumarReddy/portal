@@ -8,17 +8,11 @@ import { GlobalService, AuthService } from '../_services/index';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-
-  constructor(private router: Router, private route: ActivatedRoute, 
-  			  public app: GlobalService, public authService: AuthService) { }
-
-  ngOnInit() {
-  }
-
-  logout() {
+constructor(private router: Router, private route: ActivatedRoute, public app: GlobalService, public authService: AuthService) { }
+ngOnInit() {}
+logout() {
     //console.log("logout");
   	this.authService.logout();
   	this.router.navigate(['/']);
-  }
-
+ }
 }

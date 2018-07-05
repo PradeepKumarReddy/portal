@@ -9,22 +9,17 @@ import { AuthenticationService, AuthService } from '../_services/index';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
     model: any = {};
-    registerModel : any = {};
+    registerModel: any = {};
     loading = false;
     error = '';
-    
- 
     constructor(
         private router: Router,
         private authenticationService: AuthService) { }
- 
     ngOnInit() {
         // reset login status
         this.authenticationService.logout();
     }
- 
     login() {
         this.loading = true;
         this.authenticationService.login(this.model.username, this.model.password)
@@ -39,11 +34,7 @@ export class LoginComponent implements OnInit {
                 }
             });
     }
-
-    
-
     gotoRegister() {
         this.router.navigate(['register']);
     }
-    
 }

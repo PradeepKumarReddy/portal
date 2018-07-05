@@ -7,7 +7,7 @@ import { ExamService } from '../../_services/index';
 
 const httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json; charset=utf-8',
-    'Access-Control-Allow-Headers':'*' })
+    'Access-Control-Allow-Headers': '*' })
   };
 
 @Component({
@@ -17,18 +17,18 @@ const httpOptions = {
 })
 export class ViewExamComponent implements OnInit {
 
-  p : number = 1;
-  exam : Exam ;
-  examId : number;
-  questions : Question[] = [];
-  userExam : UserExam;
-  userResponse? : UserResponse;
-  examSubmit : boolean = false;
-  resultExam : Exam;
-  resultQuestions : Question[] = [];
+  p: number = 1;
+  exam: Exam ;
+  examId: number;
+  questions: Question[] = [];
+  userExam: UserExam;
+  userResponse?: UserResponse;
+  examSubmit: false;
+  resultExam: Exam;
+  resultQuestions: Question[] = [];
 
   constructor(private router: Router, private route: ActivatedRoute, 
-  								private examService : ExamService) { }
+  								private examService: ExamService) { }
 
   ngOnInit() {
   	//this.examId = this.route.snapshot.params['examId'];
@@ -45,7 +45,7 @@ export class ViewExamComponent implements OnInit {
   onSelect(question , option) {
     question.isAnswered = false;
     question.options.forEach (function(element, index, array) {
-      if(element.id != option.id) {
+      if(element.id !== option.id) {
         element.selected = false;
       }
     });
@@ -67,7 +67,6 @@ export class ViewExamComponent implements OnInit {
        console.log(exam.questions);
        this.exam = exam;
        this.questions = [...exam.questions]
-       
        },
       err => console.error(err),
       () => console.log('loaded Exam successful')
