@@ -27,16 +27,15 @@ export class RegisterComponent implements OnInit {
   constructor (private router: Router, private route: ActivatedRoute, private registerService: RegisterService) {
     this.route.params.subscribe( params => console.log(params) );
   }
-
   ngOnInit() {
-    this.registerModel = new UserRegister();
-    this.signupUser = new User();
+  this.registerModel = new UserRegister();
+  this.signupUser = new User();
   }
 
   register() {
-    console.log(this.registerModel);
-    this.loading = true;
-    this.registerService.createRegisterUser(this.registerModel).subscribe(
+  console.log(this.registerModel);
+  this.loading = true;
+  this.registerService.createRegisterUser(this.registerModel).subscribe(
       (userRegister: UserRegister) => {
        console.log(userRegister);
        this.registerModel = userRegister;
@@ -44,8 +43,6 @@ export class RegisterComponent implements OnInit {
       err => console.error(err),
       () => console.log('registeration successful')
     );
-
-
     setTimeout( () => {
     this.registerService.getRegisterUser(this.registerModel.id).subscribe(
      (userRegister: UserRegister) => {

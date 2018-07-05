@@ -18,13 +18,13 @@ const appRoutes: Routes = [
   { path: 'admin', component: AdminComponent },
   { path: 'exam', component: ExamComponent,
      children : [
-        {path: 'view-exam/:examId', component: ViewExamComponent}, 
+        {path: 'view-exam/:examId', component: ViewExamComponent},
         {path: 'result-exam/:examId', component: ResultExamComponent}
      ]
   },
   { path: 'register', component: RegisterComponent,
     children : [
-        {path: 'register-success/:registrationId/:email', component: RegisterSuccessComponent}, 
+        {path: 'register-success/:registrationId/:email', component: RegisterSuccessComponent},
         {path: 'register-failure', component: RegisterFailureComponent}
      ]
   },

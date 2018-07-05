@@ -9,50 +9,39 @@ import { AddQuestionService } from '../_services/index';
   styleUrls: ['./admin.component.css']
 })
 export class AdminComponent implements OnInit {
-
-  questions : Question[] = [];
-
-  addQuestionModel : Question;
-  addOptionModel : QuestionOption[] = [];
-  option : string = "";
-
-  constructor(private questionService : AddQuestionService) { }
-
-  ngOnInit() {
-  	this.questions = [{
-  		"id": 1,
-  		"questionDesc": "Who is PM ?",
-  		options: [
-  			{"id":1, "optionDesc": "Modi"},
-  			{"id":2, "optionDesc": "Rahul"},
-  			{"id":3, "optionDesc": "Kohli"},
-  			{"id":4, "optionDesc": "Dhoni"}
-  		]
-  	}
-  	];
-    this.addQuestionModel = new Question();
-    
-  }
-
+  questions: Question[] = [];
+  addQuestionModel: Question;
+  addOptionModel: QuestionOption[] = [];
+  option = '';
+  constructor(private questionService: AddQuestionService) { }
+ngOnInit() {
+this.questions = [{'id': 1,
+'questionDesc': 'Who is PM ?',
+options: [{'id': 1, 'optionDesc': 'Modi'},
+{'id': 2, 'optionDesc': 'Rahul'},
+{'id': 3, 'optionDesc': 'Kohli'},
+{'id': 4, 'optionDesc': 'Dhoni'}
+]}];
+this.addQuestionModel = new Question();
+}
   addQuestion() {
-    console.log("add question called");
+    console.log('add question called');
     this.addQuestionModel.options.push(...this.addOptionModel);
     this.questions.push(this.addQuestionModel);
     this.questionService.addQuestion(this.addQuestionModel).subscribe(
-      (question : Question) => {
+      (question: Question) => {
        console.log(question);
        },
       err => console.error(err),
       () => console.log('Question added successful')
     );
-    
-    this.addQuestionModel = new Question();
-    this.addOptionModel = [];
+  this.addQuestionModel = new Question();
+  this.addOptionModel = [];
   }
 
   addOption() {
-    this.addOptionModel.push({"optionDesc" : this.option});
-    this.option = "";
+    this.addOptionModel.push({'optionDesc': this.option});
+    this.option = '';
   }
 
   removeOptoin(index) {

@@ -11,8 +11,8 @@ export class HeaderComponent implements OnInit {
 constructor(private router: Router, private route: ActivatedRoute, public app: GlobalService, public authService: AuthService) { }
 ngOnInit() {}
 logout() {
-    //console.log("logout");
-  	this.authService.logout();
-  	this.router.navigate(['/']);
- }
+// console.log("logout");
+this.authService.logout();
+this.router.navigate(['/']);
+}
 }

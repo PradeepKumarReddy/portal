@@ -1,4 +1,4 @@
 export class UserResponse {
-	questionId? : number;
-	optionId? : number;
+questionId?: number;
+optionId?: number;
 }

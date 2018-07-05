@@ -26,16 +26,11 @@ export class RegisterSuccessComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.signupUser = new User();
-  	this.route.params.subscribe(
- 		(params: Params) => {
-		this.registrationId = params['registrationId'];
-    this.email = params['email'];
-    this.signupUser.username = this.registrationId;
-		}
-  	);
+  this.signupUser = new User();
+  this.route.params.subscribe((params: Params) => {	this.registrationId = params['registrationId'];
+  this.email = params['email'];
+  this.signupUser.username = this.registrationId; });
   }
-
   signup() {
     this.signupUser.username = this.registrationId;
     this.registerService.signup(this.signupUser)
@@ -50,6 +45,4 @@ export class RegisterSuccessComponent implements OnInit {
       }
     );
   }
-
-
 }

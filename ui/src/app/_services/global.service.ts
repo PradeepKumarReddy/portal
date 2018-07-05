@@ -1,42 +1,40 @@
 import { Injectable } from '@angular/core';
-
 @Injectable({
   providedIn: 'root'
 })
 export class GlobalService {
-
   constructor() { }
-
   public localStorageItem(id: string): string {
-    if (id == "currentUser") {
-    	var obj = JSON.parse(localStorage.getItem(id));
-      if (obj != null)
-    	   return obj.username;
-      else
-         return "";
-    } else {
-    	return localStorage.getItem(id);
-    }
-    
+  if (id === 'currentUser') {
+  const obj = JSON.parse(localStorage.getItem(id));
+  if (obj !== null) {
+  return obj.username;
+  } else {
+    return '';
+  }
+  } else {
+    return localStorage.getItem(id);
+  }
   }
 
-  public isUserLoggedIn() : boolean  {
-      console.log("isUserLoggedIn");
-      var obj = JSON.parse(localStorage.getItem("currentUser"));
-      if (obj != null)
-         return true;
-      else
-         return false;
-    
+  public isUserLoggedIn(): boolean  {
+  console.log('isUserLoggedIn');
+  const obj = JSON.parse(localStorage.getItem('currentUser'));
+  if (obj !== null) {
+   return true;
+  } else {
+   return false;
+  }
   }
 
-  public isRoleAdmin(id: string) : boolean {
-    if (id == "currentUser") {
-      var obj = JSON.parse(localStorage.getItem(id));
-      if (obj != null)
+  public isRoleAdmin(id: string): boolean {
+  if (id === 'currentUser') {
+      const obj = JSON.parse(localStorage.getItem(id));
+      if (obj != null) {
          return obj.username;
-      else
+      } else {
          return false;
+      }
     } else {
       return false;
     }

@@ -2,7 +2,7 @@ export class QuestionOption {
 id?: number;
 optionDesc?: string;
 answer?: boolean;
-selected: boolean = false;
+selected = false;
 userSelect?: boolean;
 /*
 	Option(id : number,	name : string, isAnswer : boolean,	selected : boolean) {
