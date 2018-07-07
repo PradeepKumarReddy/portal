@@ -17,10 +17,11 @@ export class AdminComponent implements OnInit {
 ngOnInit() {
 this.questions = [{'id': 1,
 'questionDesc': 'Who is PM ?',
-options: [{'id': 1, 'optionDesc': 'Modi'},
-{'id': 2, 'optionDesc': 'Rahul'},
-{'id': 3, 'optionDesc': 'Kohli'},
-{'id': 4, 'optionDesc': 'Dhoni'}
+'isAnswered': false,
+options: [{'id': 1, 'optionDesc': 'Modi', 'selected': false},
+{'id': 2, 'optionDesc': 'Rahul', 'selected': false},
+{'id': 3, 'optionDesc': 'Kohli', 'selected': false},
+{'id': 4, 'optionDesc': 'Dhoni', 'selected': false}
 ]}];
 this.addQuestionModel = new Question();
 }
@@ -40,7 +41,7 @@ this.addQuestionModel = new Question();
   }
 
   addOption() {
-    this.addOptionModel.push({'optionDesc': this.option});
+    this.addOptionModel.push({'optionDesc': this.option, 'selected': false});
     this.option = '';
   }
 

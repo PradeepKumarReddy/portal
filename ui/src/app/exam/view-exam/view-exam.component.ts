@@ -23,13 +23,14 @@ export class ViewExamComponent implements OnInit {
   questions: Question[] = [];
   userExam: UserExam;
   userResponse?: UserResponse;
-  examSubmit: false;
+  examSubmit: boolean;
   resultExam: Exam;
   resultQuestions: Question[] = [];
 
   constructor(private router: Router, private route: ActivatedRoute, private examService: ExamService) { }
   ngOnInit() {
   // this.examId = this.route.snapshot.params['examId'];
+  this.examSubmit = false;
   this.route.params.subscribe((params: Params) => {
   this.examId = params['examId'];
   this.loadExam(this.examId);
