@@ -1,0 +1,133 @@
+ 256  20/07/18 13:58:47 cd var/myapp
+  257  20/07/18 13:58:48 ls
+  258  20/07/18 13:58:51 ls -l
+  259  20/07/18 13:58:53 clear
+  260  20/07/18 13:59:59 sudo ln -s /var/myapp/nia-protal.jar /etc/init.d/myapp
+  261  20/07/18 14:00:13 service myapp status
+  262  20/07/18 14:01:24 service myapp start
+  263  20/07/18 14:02:44 cd /
+  264  20/07/18 14:02:45 ls
+  265  20/07/18 14:02:48 cd etc
+  266  20/07/18 14:02:49 ls
+  267  20/07/18 14:03:01 ls | grep sys
+  268  20/07/18 14:03:07 cd systemd
+  269  20/07/18 14:03:08 ls
+  270  20/07/18 14:03:20 cd system/
+  271  20/07/18 14:03:21 ls
+  272  20/07/18 14:03:31 clear
+  273  20/07/18 14:03:33 ls -l
+  274  20/07/18 14:03:57 service myapp status
+  275  20/07/18 14:04:54 cat myapp.service
+  276  20/07/18 14:05:45 cat > myapp.service
+  277  20/07/18 14:07:11 ls -l
+  278  20/07/18 14:07:17 less myapp.service
+  279  20/07/18 14:08:36 systemctl daemon-reload
+  280  20/07/18 14:08:55 systemctl enable myapp.service
+  281  20/07/18 14:09:26 systemctl start myapp
+  282  20/07/18 14:10:11 systemctl status myapp
+
+
+
+
+
+[Unit]
+Description=MyApp Java Service
+
+[Service]
+User=nobody
+# The configuration file application.properties should be here:
+WorkingDirectory=/data 
+ExecStart=/usr/bin/java -Xmx256m -jar nia-portal.jar
+SuccessExitStatus=143
+TimeoutStopSec=10
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
+
+
+total 8
+drwxr-xr-x. 2 root root   57 Jul 11 15:38 basic.target.wants
+lrwxrwxrwx. 1 root root   46 Jul 10 13:14 dbus-org.freedesktop.NetworkManager.service -> /usr/lib/systemd/system/NetworkManager.service
+lrwxrwxrwx. 1 root root   57 Jul 10 13:14 dbus-org.freedesktop.nm-dispatcher.service -> /usr/lib/systemd/system/NetworkManager-dispatcher.service
+lrwxrwxrwx. 1 root root   37 Jul 10 13:17 default.target -> /lib/systemd/system/multi-user.target
+drwxr-xr-x. 2 root root   87 Jul 10 13:14 default.target.wants
+lrwxrwxrwx. 1 root root    9 Jul 11 16:00 firewalld.service -> /dev/null
+drwxr-xr-x. 2 root root   32 Jul 10 13:14 getty.target.wants
+drwxr-xr-x. 2 root root   35 Jul 11 15:38 local-fs.target.wants
+drwxr-xr-x. 2 root root 4096 Jul 14 22:17 multi-user.target.wants
+-rw-r--r--  1 root root  312 Jul 20 14:07 myapp.service
+drwxr-xr-x. 2 root root   48 Jul 11 15:37 network-online.target.wants
+drwxr-xr-x. 2 root root    6 Apr 25 13:36 php-fpm.service.d
+drwxr-xr-x. 2 root root   29 Jul 10 13:14 sockets.target.wants
+drwxr-xr-x. 2 root root  254 Jul 11 15:38 sysinit.target.wants
+drwxr-xr-x. 2 root root   44 Jul 10 13:14 system-update.target.wants
+[root@vps system]# less myapp.service
+[root@vps system]#
+[root@vps system]#
+[root@vps system]# systemctl daemon-reload
+[root@vps system]# systemctl enable myapp.service
+Created symlink from /etc/systemd/system/multi-user.target.wants/myapp.service to /etc/systemd/system/myapp.service.
+[root@vps system]# systemctl start myapp
+[root@vps system]# systemctl status myapp
+● myapp.service - MyApp Java Service
+   Loaded: loaded (/etc/systemd/system/myapp.service; enabled; vendor preset: disabled)
+   Active: activating (auto-restart) (Result: exit-code) since Fri 2018-07-20 14:10:08 IST; 2s ago
+  Process: 1887 ExecStart=/usr/bin/java -Xmx256m -jar nia-portal.jar (code=exited, status=200/CHDIR)
+ Main PID: 1887 (code=exited, status=200/CHDIR)
+
+Jul 20 14:10:08 vps.nakshatraacademy.in systemd[1]: myapp.service: main process exited, code=exited, status=200/CHDIR
+Jul 20 14:10:08 vps.nakshatraacademy.in systemd[1]: Unit myapp.service entered failed state.
+Jul 20 14:10:08 vps.nakshatraacademy.in systemd[1]: myapp.service failed.
+[root@vps system]#
+
+
+[root@vps system]# pwd
+/etc/systemd/system
+[root@vps system]#
+
+
+
+  229  20/07/18 12:37:18 netstat -ntpl | grep 8080
+  230  20/07/18 12:37:30 netstat -ntpl
+  231  20/07/18 12:37:57 kill 24154
+  232  20/07/18 12:38:03 java -jar nia-portal.jar
+
+
+
+
+
+
+
+  206  20/07/18 10:24:25 sudo netstat -lpn |grep :8080
+  207  20/07/18 10:24:43 kill 2812
+  208  20/07/18 10:24:47 sudo netstat -lpn |grep :8080
+  209  20/07/18 10:25:02 kill 2966
+  210  20/07/18 10:25:11 java -jar nia-portal.jar
+  211  20/07/18 14:26:20 ps -ef | grep java
+  212  20/07/18 14:26:38 ps -ef | grep tomcat
+  213  20/07/18 14:26:46 cd tmp
+  214  20/07/18 14:26:49 cd /
+  215  20/07/18 14:26:51 clear
+  216  20/07/18 14:26:52 cd tmp
+  217  20/07/18 14:26:54 ls
+  218  20/07/18 14:27:02 java -jar nia-portal.jar
+  219  20/07/18 14:27:33 ps -ef | grep java
+  220  20/07/18 14:27:41 kill 3488
+  221  20/07/18 14:27:45 ps -ef | grep java
+  222  20/07/18 14:28:25 ps -A
+  223  20/07/18 14:28:42 ps -A | grep httpd
+  224  20/07/18 14:31:21 apchectl stop
+  225  20/07/18 14:31:36 apachectl stop
+  226  20/07/18 14:31:44 ps -A | grep httpd
+  227  20/07/18 14:32:09 java -jar nia-portal.jar
+  228  20/07/18 14:32:43 ps -A | grep httpd
+  229  20/07/18 14:32:48 java -jar nia-portal.jar
+  230  20/07/18 14:33:47 service myapp start
+  231  20/07/18 14:34:05 ps -A | grep httpd
+  232  20/07/18 14:34:23 service myapp status
+  233  20/07/18 14:37:03 journalctl -u myapp.service
+  234  20/07/18 14:37:52 date
+  235  20/07/18 14:38:33 ps -A | grep httpd
+  236  20/07/18 14:51:38 history
