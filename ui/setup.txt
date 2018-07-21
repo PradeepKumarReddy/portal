@@ -18,3 +18,20 @@ npm install ng2-simple-timer
 
 //
 ng serve --host=0.0.0.0 --disable-host-check
+
+
+
+
+FOR UBUNTU 1- Find what application/process is using the pro, type:
+
+sudo netstat -lpn |grep :8080
+and press Enter.
+
+You will get an output similar to this one
+
+tcp6       0      0 :::8080                 :::*                    LISTEN      6782/java
+2- I have got the process Id, which is 6782, now this is the process that is using port 8080.
+
+3- Kill the process, type:kill 6782
+
+kill 6782

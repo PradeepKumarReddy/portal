@@ -7,13 +7,15 @@
 --  PRIMARY KEY (`id`)
 --) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
-CREATE SCHEMA `niadb` DEFAULT CHARACTER SET utf8 ;
+--CREATE SCHEMA `nakshatra_niadb` DEFAULT CHARACTER SET utf8 ;
 
-USE `niadb`;
+USE `nakshatra_niadb`;
 
 CREATE TABLE `hibernate_sequence` (
   `next_val` bigint(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+INSERT INTO hibernate_sequence(next_val) VALUES (0);
 
 CREATE TABLE `user_register` (
   `id` int(11) NOT NULL AUTO_INCREMENT,

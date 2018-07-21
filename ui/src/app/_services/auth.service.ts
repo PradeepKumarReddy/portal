@@ -2,11 +2,11 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { User } from '../_models/index';
-
+import { environment } from '../../environments/environment';
+const API_URL = environment.apiUrl;
 @Injectable()
 export class AuthService {
   public token: string;
-
   constructor(private http: HttpClient) {
   // set token if saved in local storage
   const currentUser = JSON.parse(localStorage.getItem('currentUser'));
@@ -15,7 +15,7 @@ export class AuthService {
 
   login(username: string, password: string): Observable<boolean> {
         console.log('login called');
-        return this.http.post('http://localhost:8080/login', JSON.stringify({ username: username, password: password }),
+        return this.http.post(API_URL + '/login', JSON.stringify({ username: username, password: password }),
         { headers: new HttpHeaders({ 'Content-Type': 'application/json; charset=utf-8',
         'Accept': 'application/json', 'Access-Control-Allow-Headers': 'Authorization, X-Auth-Token, X-Custom-Header, Content-Type',
         'Access-Control-Expose-Headers': 'Authorization'})
