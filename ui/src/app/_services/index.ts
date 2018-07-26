@@ -5,3 +5,4 @@ export * from './register.service';
 export * from './add-question.service';
 export * from './exam.service';
 export * from './global.service';
+export * from './add-exam.service';

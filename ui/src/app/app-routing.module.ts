@@ -10,12 +10,14 @@ import { RegisterSuccessComponent } from './register/register-success/register-s
 import { RegisterFailureComponent } from './register/register-failure/register-failure.component';
 import { ViewExamComponent } from './exam/view-exam/view-exam.component';
 import { ResultExamComponent } from './exam/result-exam/result-exam.component';
+import { AddexamComponent } from './exam/addexam/addexam.component';
 
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'admin', component: AdminComponent },
+  { path: 'addexam', component: AddexamComponent },
   { path: 'exam', component: ExamComponent,
      children : [
         {path: 'view-exam/:examId', component: ViewExamComponent},

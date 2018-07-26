@@ -20,6 +20,7 @@ public class ExamController {
 	
 	@PostMapping("/exam/add")
 	public Exam addQuestion(@RequestBody Exam exam) {
+		System.out.println(exam);
 		/*		
 		Question question2 = new Question();
 		question2.setQuestionDesc(question.getQuestionDesc());

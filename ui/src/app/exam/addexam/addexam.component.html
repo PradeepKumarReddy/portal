@@ -1,0 +1,40 @@
+<form name="form" (submit)="createExam()"  novalidate>
+	
+	<div class="form-row">
+		<label>Exam Description </label>   
+	  	<input type="text" class="form-control"
+	  	[(ngModel)]="exam.examDescription" #examDescription="ngModel"
+	  	name="examDescription" > 
+	  	
+	</div>
+	<div class="form-row">
+		<label>Exam Name</label>
+	  	<input type="text" class="form-control" placeholder=""
+	  	[(ngModel)]="exam.examName" #examName="ngModel"
+	  	name="examName" >
+	</div>
+	
+	<button class="btn btn-primary" (click)="createExam()">Create Exam</button>
+
+                                      
+</form>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Question Description</th>
+    </tr>
+  </thead>
+  <tbody>
+  	<div *ngFor="let question of questions; let i = index ">
+	<tr>
+      <th scope="row">
+      <input type="checkbox" name="rownum" (change)="addQestion(question,$event)">	
+      </th>
+      <td>{{question.questionDesc}}</td>
+    </tr>
+	</div>
+   
+  </tbody>
+</table>

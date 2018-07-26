@@ -1,5 +1,8 @@
 package com.nia.services.repository;
 
+import java.util.List;
+
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +41,10 @@ public class QuestionRepositoryTest {
 		//question.getOptions().add(option4);
 	
 		questionRepository.save(question);
+		
+		List<Question> ls = questionRepository.getAllQuestionsNotMappedToExam();
+		
+		Assert.assertNotNull(ls);
 	}
 	
 }

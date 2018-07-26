@@ -16,7 +16,7 @@ import { LoginComponent } from './login/login.component';
 import { AdminComponent } from './admin/admin.component';
 import { AuthGuard } from './_guards/index';
 import { AuthenticationService, UserService, AuthService, RegisterService,
-    AddQuestionService, ExamService, GlobalService } from './_services/index';
+    AddQuestionService, ExamService, GlobalService, AddExamService } from './_services/index';
 import { HomeComponent } from './home/index';
 import { ExamComponent } from './exam/exam.component';
 import { TimerComponent } from './timer/timer.component';
@@ -28,6 +28,7 @@ import { ViewExamComponent } from './exam/view-exam/view-exam.component';
 import { ResultExamComponent } from './exam/result-exam/result-exam.component';
 import { RegisterSuccessComponent } from './register/register-success/register-success.component';
 import { RegisterFailureComponent } from './register/register-failure/register-failure.component';
+import { AddexamComponent } from './exam/addexam/addexam.component';
 
 
 
@@ -49,7 +50,8 @@ import { RegisterFailureComponent } from './register/register-failure/register-f
     ViewExamComponent,
     ResultExamComponent,
     RegisterSuccessComponent,
-    RegisterFailureComponent
+    RegisterFailureComponent,
+    AddexamComponent
   ],
   imports: [
     BrowserModule,
@@ -68,6 +70,7 @@ import { RegisterFailureComponent } from './register/register-failure/register-f
     AddQuestionService,
     ExamService,
     GlobalService,
+    AddExamService,
     // providers used to create fake backend
     fakeBackendProvider,
     MockBackend,
