@@ -97,8 +97,7 @@
 	<modules>
 		<module>ui</module>
 		<module>services</module>
-    	<module>lifecycle-mapping</module>
-  </modules>
+    </modules>
 
 	<build>
 		<pluginManagement>
