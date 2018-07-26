@@ -13,7 +13,7 @@ const API_URL = environment.apiUrl;
 export class AddExamService {
   questions: Question[] = [];
   constructor(private http: HttpClient) {}
-  addExam(exam: Exam) {
+  addExam(exam: Exam): Observable<Exam>  {
   console.log('exam created');
   console.log(exam);
   return this.http.post(API_URL + '/api/exam/add', exam, httpOptions);

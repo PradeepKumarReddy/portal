@@ -21,3 +21,10 @@ mvn install
 ../mvnw ui:install-node-and-yarn ui:yarn
 
 https://github.com/mfriedenhagen/dummy-lifecycle-mapping-plugin
+
+===========
+clean eclise .classpath
+mvn eclipse:clean
+
+reinstall
+mvn eclipse:eclipse

@@ -42,7 +42,6 @@ public class Exam {
 	
 	@OneToMany(
 			cascade = CascadeType.ALL, 
-			orphanRemoval = true,
 			mappedBy="exam"
     )
 	@JsonManagedReference
@@ -95,5 +94,6 @@ public class Exam {
 	public void setQuestions(Set<Question> questions) {
 		this.questions = questions;
 	}
+
 	
 }

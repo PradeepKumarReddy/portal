@@ -1,5 +1,6 @@
 package com.nia.services.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -10,12 +11,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.nia.services.entity.UserRegister;
 import com.nia.services.repository.UserRegisterRepository;
+import com.nia.services.service.EmailServiceImpl;
 
 @RestController
 @RequestMapping("/api/user")
 public class UserRegisterController {
 	
 	private UserRegisterRepository registerRepository;
+	
+	@Autowired
+	EmailServiceImpl emailServiceImpl; 
 
     public UserRegisterController(UserRegisterRepository registerRepository) {
         this.registerRepository = registerRepository;
@@ -28,6 +33,7 @@ public class UserRegisterController {
     	savedUser = registerRepository.getOne(savedUser.getId());
     	System.out.println(savedUser.toString());
     	//System.out.println(registerRepository.getOne(savedUser.getId()).getRegistrationId());
+    	emailServiceImpl.sendSimpleMessage(savedUser.getEmail(), "Registration Successfully with Nakshatra Academy", "Hi , Your registration with Nakshatra Academy is completed");
     	return registerRepository.getOne(savedUser.getId());
     }
     

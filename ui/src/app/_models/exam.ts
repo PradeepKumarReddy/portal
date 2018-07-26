@@ -4,6 +4,6 @@ id?: number;
 examName?: string;
 examDescription?: string;
 examDate?: Date;
-isActive?: boolean;
+active?: boolean;
 questions?: Question[];
 }

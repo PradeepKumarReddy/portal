@@ -31,7 +31,14 @@ export class AddexamComponent implements OnInit {
   // {"id" : 2, "questionDesc": "Test2", 'isAnswered': false}];
   }
   createExam() {
-  this.addExamService.addExam(this.exam);
+  this.addExamService.addExam(this.exam).subscribe(
+      (res: Exam) => {
+       console.log(res);
+       // this.questions = [...res];
+       },
+      err => console.error(err),
+      () => console.log('loaded exam successful')
+    );
   }
   addQestion(ques: Question, e) {
   if (e.target.checked) {

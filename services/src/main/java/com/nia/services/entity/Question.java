@@ -44,7 +44,8 @@ public class Question {
 	@Column(name="is_active")
 	private boolean isActive;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY,
+			cascade = CascadeType.ALL)
     @JoinColumn(name = "exam_id")
 	@JsonBackReference
     private Exam exam;
