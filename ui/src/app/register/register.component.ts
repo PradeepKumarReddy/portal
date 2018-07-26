@@ -46,22 +46,15 @@ export class RegisterComponent implements OnInit {
     setTimeout( () => {
     this.registerService.getRegisterUser(this.registerModel.id).subscribe(
      (userRegister: UserRegister) => {
-       // this.registerModel = userRegister;
-       // this.signupUser.username = this.registerModel.registrationId;
-       // console.log("2" + this.registrationId);
        this.registerSuccess = true;
        this.registerModel = new UserRegister();
-       // console.log("3" +this.registerModel.registrationId);
-       // var paramRegId = this.registerModel.registrationId;
-       // console.log("TEST" + paramRegId);
-       // var paramEmail = this.registerModel.email;
        this.router.navigate(['register-success', userRegister.registrationId, userRegister.email],  {relativeTo : this.route}); },
        err => {
         console.error(err);
         this.router.navigate(['register-failure'], {relativeTo : this.route});
       },
       () => console.log('getRegisterUser successful')
-    ); }, 500);
+    ); }, 300);
 
     console.log(this.registerSuccess);
     }

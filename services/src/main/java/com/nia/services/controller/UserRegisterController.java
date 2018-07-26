@@ -1,17 +1,21 @@
 package com.nia.services.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.ApplicationArguments;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.nia.services.entity.UserRegister;
+import com.nia.services.mail.EmailServiceImpl;
+import com.nia.services.mail.Mail;
 import com.nia.services.repository.UserRegisterRepository;
-import com.nia.services.service.EmailServiceImpl;
 
 @RestController
 @RequestMapping("/api/user")
@@ -28,23 +32,39 @@ public class UserRegisterController {
 
     @PostMapping("/register")
     public UserRegister register(@RequestBody UserRegister userRegister) {
-    	UserRegister savedUser = registerRepository.save(userRegister);
-    	System.out.println(savedUser.toString());
+    	UserRegister savedUser = registerRepository.saveAndFlush(userRegister);
     	savedUser = registerRepository.getOne(savedUser.getId());
-    	System.out.println(savedUser.toString());
-    	//System.out.println(registerRepository.getOne(savedUser.getId()).getRegistrationId());
-    	emailServiceImpl.sendSimpleMessage(savedUser.getEmail(), "Registration Successfully with Nakshatra Academy", "Hi , Your registration with Nakshatra Academy is completed");
-    	return registerRepository.getOne(savedUser.getId());
+    	return savedUser;
     }
     
     @GetMapping("/get/{id}")
     public UserRegister register(@PathVariable("id") Long id) {
-    	//UserRegister savedUser = registerRepository.save(userRegister);
-    	//System.out.println(savedUser.toString());
     	UserRegister savedUser = registerRepository.getOne(id);
-    	System.out.println(savedUser.toString());
-    	//System.out.println(registerRepository.getOne(savedUser.getId()).getRegistrationId());
+    	try {
+			sendSimpleMessage(savedUser);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     	return registerRepository.getOne(savedUser.getId());
+    }
+    
+    
+    public void sendSimpleMessage(UserRegister savedUser) throws Exception {
+        //log.info("Sending Email with Thymeleaf HTML Template Example");
+
+        Mail mail = new Mail();
+        mail.setFrom("narreddyp@gmail.com");
+        mail.setTo(savedUser.getEmail());
+        mail.setSubject("Registration Successfully with Nakshatra Academy");
+
+        Map<String, String> model = new HashMap<>();
+        model.put("regId", "savedUser.getId()");
+       // model.put("location", "Belgium");
+       // model.put("signature", "https://memorynotfound.com");
+        mail.setModel(model);
+
+        emailServiceImpl.sendSimpleMessage(mail);
     }
 
 }

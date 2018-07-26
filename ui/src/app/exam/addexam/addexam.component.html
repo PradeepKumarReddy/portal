@@ -13,19 +13,19 @@
 	  	[(ngModel)]="exam.examName" #examName="ngModel"
 	  	name="examName" >
 	</div>
-	<div class="form-group">
+	<div class="form-row">
 	 <label >Exam Date</label>
 	 <input type="date" name="examdate" max="2010-12-31" 
 	        min="1970-01-01" class="form-control"
 	        [(ngModel)]="exam.examDate"
 			name="examdate" #examdate="ngModel">
 	</div>
-	<div class="form-group">
-	 <label >Active Exam</label>
+	<div class="form-row">
 	 <input type="checkbox" name="activeExam" class="form-control"
 	        [(ngModel)]="exam.active"
 			name="activeExam" #enableExam="ngModel">
-	</div>
+	 <label >Active Exam</label>
+	 </div>
 	
 	<button class="btn btn-primary">Create Exam</button>
 

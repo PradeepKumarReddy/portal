@@ -79,14 +79,6 @@ CREATE TABLE `question_option` (
   CONSTRAINT `FKmmdv54rmm5hkgxbn1008ix87n` FOREIGN KEY (`question_id`) REFERENCES `question` (`question_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
-
-CREATE TABLE `question_option` (
-  `option_id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `option_desc` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`option_id`),
-  CONSTRAINT `FKdo9ikkb6cfaft2eic8ry6bc5` FOREIGN KEY (`option_id`) REFERENCES `question` (`question_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
-
 CREATE TABLE `user_exam` (
   `user_exam_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `exam_id` bigint(20) DEFAULT NULL,
