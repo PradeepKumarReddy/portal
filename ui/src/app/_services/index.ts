@@ -6,3 +6,4 @@ export * from './add-question.service';
 export * from './exam.service';
 export * from './global.service';
 export * from './add-exam.service';
+export * from './user-managment.service';

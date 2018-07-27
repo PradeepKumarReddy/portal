@@ -60,7 +60,7 @@ CREATE TABLE `exam` (
   `exam_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `exam_date` datetime DEFAULT NULL,
   `exam_description` varchar(255) DEFAULT NULL,
-  `exam_name` datetime DEFAULT NULL,
+  `exam_name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`exam_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
@@ -128,7 +128,17 @@ CREATE TABLE `users_roles` (
   CONSTRAINT `FKt4v0rrweyk393bdgt107vdx0x` FOREIGN KEY (`role_id`) REFERENCES `role` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+-- insert statements
 
+insert into privilege (name, id) values ('READ_PRIVILEGE', 0);
+insert into privilege (name, id) values ('WRITE_PRIVILEGE', 1);
+
+insert into role (name, id) values ('ROLE_ADMIN', 1);
+insert into roles_privileges (role_id, privilege_id) values (1, 0);
+insert into roles_privileges (role_id, privilege_id) values (1, 1);
+
+insert into role (name, id) values ('ROLE_USER', 2);
+insert into roles_privileges (role_id, privilege_id) values (2, 0);
 
 --SET SQL_SAFE_UPDATES = 0;
 

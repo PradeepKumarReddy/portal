@@ -19,4 +19,5 @@ export class UserService {
     // get users from api
     return this.http.get(API_URL + '/api/users', options).pipe(map((response: Response) => response.json()));
     }
+
 }

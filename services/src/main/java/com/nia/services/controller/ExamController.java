@@ -1,6 +1,7 @@
 package com.nia.services.controller;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,6 +49,11 @@ public class ExamController {
 		}*/
 		
 		return repo.save(exam);
+	}
+	
+	@GetMapping("/get/activeExams/{registrationId}")
+	public List<Exam> getActiveExams(@PathVariable String registrationId) {
+		return repo.getActiveExams(registrationId);
 	}
 	
 	@GetMapping("/exam/get/{id}")

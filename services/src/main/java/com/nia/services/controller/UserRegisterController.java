@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.ApplicationArguments;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -57,9 +56,9 @@ public class UserRegisterController {
         mail.setFrom("narreddyp@gmail.com");
         mail.setTo(savedUser.getEmail());
         mail.setSubject("Registration Successfully with Nakshatra Academy");
-
-        Map<String, String> model = new HashMap<>();
-        model.put("regId", "savedUser.getId()");
+        System.out.println("sendSimpleMessage " + savedUser.getRegistrationId());
+        Map<String, Object> model = new HashMap<>();
+        model.put("regId", savedUser.getRegistrationId());
        // model.put("location", "Belgium");
        // model.put("signature", "https://memorynotfound.com");
         mail.setModel(model);

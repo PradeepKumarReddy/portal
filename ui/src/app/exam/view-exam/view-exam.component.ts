@@ -3,7 +3,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import { Exam, Question, UserExam, UserResponse, QuestionOption } from '../../_models/index';
-import { ExamService } from '../../_services/index';
+import { ExamService, GlobalService } from '../../_services/index';
 
 const httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json; charset=utf-8',
@@ -27,7 +27,7 @@ export class ViewExamComponent implements OnInit {
   resultExam: Exam;
   resultQuestions: Question[] = [];
 
-  constructor(private router: Router, private route: ActivatedRoute, private examService: ExamService) { }
+  constructor(private router: Router, private route: ActivatedRoute, private examService: ExamService, public app: GlobalService) { }
   ngOnInit() {
   // this.examId = this.route.snapshot.params['examId'];
   this.examSubmit = false;

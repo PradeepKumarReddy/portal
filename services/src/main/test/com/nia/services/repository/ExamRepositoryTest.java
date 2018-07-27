@@ -20,7 +20,8 @@ public class ExamRepositoryTest {
 	@Test
 	public void testSave() {
 		Exam exam = new Exam();
-		exam.setExamName("Welcome Exam");
+		exam.setExamName("Welcome Exam1");
+		exam.setActive(true);
 		
 		Question question = new Question();
 		question.setQuestionDesc("TEST");
@@ -48,6 +49,11 @@ public class ExamRepositoryTest {
 		exam.getQuestions().add(question);
 		
 		repo.save(exam);
+	}
+	
+	@Test
+	public void testGetActiveExams() {
+		repo.getActiveExams("NA0002");
 	}
 
 }

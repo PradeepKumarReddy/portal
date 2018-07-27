@@ -21,4 +21,8 @@ export class AddExamService {
   getAllQuestions(): Observable<Question[]> {
   return this.http.get<Question[]>(API_URL + '/api/allQuestions', httpOptions);
   }
+
+  getActiveExams(registrationId: string): Observable<Exam[]>  {
+  return this.http.get<Exam[]>(API_URL + '/api/get/activeExams/' + registrationId, httpOptions);
+  }
 }

@@ -41,7 +41,7 @@ public class EmailServiceImpl {
         //helper.addAttachment("logo.png", new ClassPathResource("memorynotfound-logo.png"));
 
         Context context = new Context();
-        //context.setVariables(mail.getModel());
+        context.setVariables(mail.getModel());
         String html = templateEngine.process("welcome", context);
 
         helper.setTo(mail.getTo());

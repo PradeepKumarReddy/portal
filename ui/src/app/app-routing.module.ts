@@ -11,18 +11,21 @@ import { RegisterFailureComponent } from './register/register-failure/register-f
 import { ViewExamComponent } from './exam/view-exam/view-exam.component';
 import { ResultExamComponent } from './exam/result-exam/result-exam.component';
 import { AddexamComponent } from './exam/addexam/addexam.component';
+import { UserManagementComponent } from './admin/user-management/user-management.component';
+import { AuthGuard } from './_guards/index';
 
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'admin', component: AdminComponent },
+  { path: 'admin', component: AdminComponent, canActivate: [AuthGuard] },
   { path: 'addexam', component: AddexamComponent },
-  { path: 'exam', component: ExamComponent,
+  { path: 'user-managment', component: UserManagementComponent, canActivate: [AuthGuard] },
+  { path: 'exam', component: ExamComponent, canActivate: [AuthGuard],
      children : [
-        {path: 'view-exam/:examId', component: ViewExamComponent},
-        {path: 'result-exam/:examId', component: ResultExamComponent}
-     ]
+        {path: 'view-exam/:examId', component: ViewExamComponent, canActivateChild: [ AuthGuard ]},
+        {path: 'result-exam/:examId', component: ResultExamComponent, canActivateChild: [ AuthGuard ]}
+      ]
   },
   { path: 'register', component: RegisterComponent,
     children : [

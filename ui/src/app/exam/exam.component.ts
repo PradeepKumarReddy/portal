@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Question, QuestionOption } from '../_models/index';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { ExamService } from '../_services/index';
+import { ExamService, GlobalService, AddExamService } from '../_services/index';
 import { Exam } from '../_models/index';
 
 import { TimerComponent } from '../timer/timer.component';
@@ -14,11 +14,24 @@ import { TimerComponent } from '../timer/timer.component';
 export class ExamComponent implements OnInit {
 
 examStarted = false;
-  constructor(private router: Router, private route: ActivatedRoute, private examService: ExamService) {
+exams: Exam[];
+registrationId: string;
+  constructor(private router: Router, private route: ActivatedRoute,
+  private examService: ExamService, private globalService: GlobalService,
+  private addExamService: AddExamService) {
   this.route.params.subscribe( params => console.log(params) );
   }
 
   ngOnInit() {
+  this.registrationId = this.globalService.localStorageItem('currentUser');
+  this.addExamService.getActiveExams(this.registrationId).subscribe(
+    (res: Exam[]) => {
+       console.log(res);
+       this.exams = [...res];
+       },
+      err => console.error(err),
+      () => console.log('loaded Exams successful')
+  );
   }
 
   startExam(examId: number, username: string) {

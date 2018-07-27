@@ -9,7 +9,7 @@ public class Mail {
     private String to;
     private String subject;
     private String content;
-    private  Map<String, String> model = new HashMap<>();
+    private  Map<String, Object> model = new HashMap<>();
 
     public Mail() {
     }
@@ -53,11 +53,11 @@ public class Mail {
         this.content = content;
     }
 
-	public Map<String, String> getModel() {
+	public Map<String, Object> getModel() {
 		return model;
 	}
 
-	public void setModel(Map<String, String> model) {
+	public void setModel(Map<String, Object> model) {
 		this.model = model;
 	}
 

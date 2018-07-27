@@ -42,9 +42,9 @@ public class UserController {
     public ApplicationUser signUp(@RequestBody ApplicationUser user) {
     	UserRegister userRegister = registerRepository.findByRegistrationId(user.getUsername());
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        Role adminRole = roleRepository.findByName("ROLE_ADMIN");
+        Role adminRole = roleRepository.findByName("ROLE_USER");
         user.setRoles(Arrays.asList(adminRole));
-        user.setEnabled(true);
+        user.setEnabled(false);
         user.setUserRegister(userRegister);
         user = applicationUserRepository.save(user);
         return user;
