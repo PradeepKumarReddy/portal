@@ -9,27 +9,26 @@
                 </div>
                 <div class="col-md-6 options" *ngFor="let option of addOptionModel;let i = index">
                     <label for="option">Option{{i+1}}</label>
-                    <div class="option">
+                    <div>
                         <span>
-                            <label class="" for="{{option.id}}"></label>
-                                <input type="checkbox" name="option" 
-                                [(ngModel)]="option.answer"
-
-                                />
-                                {{option.optionDesc}}
-                            <button id="remove' + (i) + '" class="btn btn-danger remove-me" 
+                            <label for="{{option.id}}"></label>
+                            <input class="col-md-1" type="checkbox" name="option" 
+                                [(ngModel)]="option.answer"/>
+                            <label>{{option.optionDesc}}</label>
+                            <button id="remove' + (i) + '" class="col-md-1 btn btn-sm btn-danger" 
                             (click)="removeOptoin(i)">-</button>
                         </span>
                     </div>
                 </div>
                 <div id="field">
-                    <input autocomplete="off" class="input"  type="text" 
-                    placeholder="Option Descriptoin" data-items="8"
+                    <input class="form-control"  type="textbox" 
+                    placeholder="Option Description" data-items="8"
                     name="optiondisplay"
                     #question="ngModel"
                     [(ngModel)]="option"/>
-                    <button id="b1" class="btn add-more" type="button"
-                    (click)="addOption()">+</button></div>
+                    <button id="b1" class="btn btn-sm" type="button"
+                    (click)="addOption()">+</button>
+                </div>
 
                 <div class="form-group">
                     <button class="btn btn-primary btn-xs" >Add Question</button>
