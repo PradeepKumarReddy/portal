@@ -13,11 +13,13 @@ import { ResultExamComponent } from './exam/result-exam/result-exam.component';
 import { AddexamComponent } from './exam/addexam/addexam.component';
 import { UserManagementComponent } from './admin/user-management/user-management.component';
 import { AuthGuard } from './_guards/index';
-
+import { ResetPasswordComponent } from './login/reset-password/reset-password.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'resetPassword', component: ResetPasswordComponent },
+  { path: 'reset', component: ResetPasswordComponent },
   { path: 'admin', component: AdminComponent, canActivate: [AuthGuard] },
   { path: 'addexam', component: AddexamComponent },
   { path: 'user-managment', component: UserManagementComponent, canActivate: [AuthGuard] },

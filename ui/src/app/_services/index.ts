@@ -7,3 +7,4 @@ export * from './exam.service';
 export * from './global.service';
 export * from './add-exam.service';
 export * from './user-managment.service';
+export * from './reset-password.service';

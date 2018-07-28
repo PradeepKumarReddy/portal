@@ -17,7 +17,7 @@ import { AdminComponent } from './admin/admin.component';
 import { AuthGuard } from './_guards/index';
 import { AuthenticationService, UserService, AuthService, RegisterService,
     AddQuestionService, ExamService, GlobalService, AddExamService,
-    UserManagmentService } from './_services/index';
+    UserManagmentService, ResetPasswordService } from './_services/index';
 import { HomeComponent } from './home/index';
 import { ExamComponent } from './exam/exam.component';
 import { TimerComponent } from './timer/timer.component';
@@ -31,6 +31,7 @@ import { RegisterSuccessComponent } from './register/register-success/register-s
 import { RegisterFailureComponent } from './register/register-failure/register-failure.component';
 import { AddexamComponent } from './exam/addexam/addexam.component';
 import { UserManagementComponent } from './admin/user-management/user-management.component';
+import { ResetPasswordComponent } from './login/reset-password/reset-password.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { UserManagementComponent } from './admin/user-management/user-management
     RegisterSuccessComponent,
     RegisterFailureComponent,
     AddexamComponent,
-    UserManagementComponent
+    UserManagementComponent,
+    ResetPasswordComponent
   ],
   imports: [
     BrowserModule,
@@ -70,6 +72,7 @@ import { UserManagementComponent } from './admin/user-management/user-management
     GlobalService,
     AddExamService,
     UserManagmentService,
+    ResetPasswordService,
     // providers used to create fake backend
     fakeBackendProvider,
     MockBackend,

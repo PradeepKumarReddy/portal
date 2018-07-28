@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/catch';
 import { User } from '../_models/index';
 import { environment } from '../../environments/environment';
 const API_URL = environment.apiUrl;
@@ -25,6 +26,7 @@ export class AuthService {
         // console.log(response.headers.keys());
         // console.log('authorization', response.headers.get('authorization'));
         // login successful if there's a jwt token in the response
+        console.log(response);
         const token = response.headers.get('authorization');
         if (token) {
             // set token property
@@ -39,6 +41,9 @@ export class AuthService {
             // return false to indicate failed login
             return false;
         }
+        })
+        .catch((err: HttpErrorResponse) => {
+            return Observable.throw(err.statusText);
         });
     }
 
