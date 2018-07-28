@@ -140,6 +140,10 @@ insert into roles_privileges (role_id, privilege_id) values (1, 1);
 insert into role (name, id) values ('ROLE_USER', 2);
 insert into roles_privileges (role_id, privilege_id) values (2, 0);
 
+
+ALTER TABLE application_user
+ADD reset_token varchar(255) DEFAULT NULL;
+
 --SET SQL_SAFE_UPDATES = 0;
 
 --Delete script

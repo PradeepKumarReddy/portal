@@ -37,6 +37,12 @@ public class ApplicationUser {
 	/*@OneToOne(mappedBy="applicationUser")
     private UserRegister userRegister;*/
 	
+	@Column(name = "reset_token")
+	private String resetToken;
+	
+	@Column(name = "email", nullable = false, unique = true)
+	private String email;
+	
 	@OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="USER_REGISTER_ID")
     private UserRegister userRegister;
@@ -98,6 +104,21 @@ public class ApplicationUser {
 	public void setRoles(Collection<Role> roles) {
 		this.roles = roles;
 	}
+
+	public String getResetToken() {
+		return resetToken;
+	}
+
+	public void setResetToken(String resetToken) {
+		this.resetToken = resetToken;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
 	
-    
 }
