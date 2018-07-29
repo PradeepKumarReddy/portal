@@ -15,7 +15,7 @@ export class ResetPasswordService {
   constructor(private http: HttpClient) { }
 
   resetPasswordEmail(registrationId: string): Observable<boolean> {
-    console.log(" regId "+ registrationId);
+    console.log(' regId ' + registrationId);
     return this.http.post<boolean>(API_URL + '/api/resetPasswordEmail/' + registrationId, httpOptions);
   }
 
@@ -24,6 +24,6 @@ export class ResetPasswordService {
   }
 
   updateUserPassword(user: User): Observable<User> {
-  	return this.http.post<User>(API_URL + '/api/updatePassword', user, httpOptions);
+  return this.http.post<User>(API_URL + '/api/updatePassword', user, httpOptions);
   }
 }

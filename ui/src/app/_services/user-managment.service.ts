@@ -18,11 +18,11 @@ export class UserManagmentService {
   return this.http.get<User[]>(API_URL + '/api/get/allUsers', httpOptions);
   }
   disableUser(regId: string): Observable<User> {
-  console.log(" regId "+ regId);
+  console.log(' regId ' + regId);
   return this.http.post<User>(API_URL + '/api/disableUser/' + regId, httpOptions);
   }
   enableUser(regId: string): Observable<User> {
-  console.log(" regId "+ regId);
+  console.log(' regId ' + regId);
   return this.http.post<User>(API_URL + '/api/enableUser/' + regId, httpOptions);
   }
 }

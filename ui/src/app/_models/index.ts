@@ -7,3 +7,4 @@ export * from './userExam';
 export * from './userResponse';
 export * from './role';
 export * from './privilege';
+export * from './alert';

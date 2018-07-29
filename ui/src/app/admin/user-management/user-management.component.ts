@@ -39,7 +39,7 @@ users: User[];
 
   enableUser(regId: string, index: number) {
   this.userManagmentService.enableUser(regId).subscribe(
-  	(res: User) => {
+  (res: User) => {
        console.log(res);
        this.users[index] = res;
        },

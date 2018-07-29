@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { AuthenticationService, AuthService, ResetPasswordService } from '../_services/index';
+import { AuthenticationService, AuthService, ResetPasswordService,
+AlertService } from '../_services/index';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,8 @@ export class LoginComponent implements OnInit {
     constructor(
         private router: Router,
         private authenticationService: AuthService,
-        private resetPasswordService: ResetPasswordService) { }
+        private resetPasswordService: ResetPasswordService,
+        private alertService: AlertService) { }
     ngOnInit() {
         // reset login status
         this.authenticationService.logout();
@@ -32,7 +34,8 @@ export class LoginComponent implements OnInit {
                     this.router.navigate(['/']);
                 } else {
                     // login failed
-                    this.error = 'Username or password is incorrect';
+                    // this.error = 'Username or password is incorrect';
+                    this.alertService.error('Username or password is incorrect');
                     this.loading = false;
                 }
             });
@@ -42,43 +45,42 @@ export class LoginComponent implements OnInit {
         this.loading = true;
         this.authenticationService.login(this.model.username, this.model.password)
             .subscribe(
-            (result : boolean) => {
+            (result: boolean) => {
                  if (result === true) {
                     // login successful
                     this.router.navigate(['/']);
                 } else {
                     // login failed
-                    this.error = 'Username or password is incorrect';
+                    // this.error = 'Username or password is incorrect';
+                    this.alertService.error('Username or password is incorrect');
                     this.loading = false;
                 }
             },
             (err) => {
                 console.error(err);
-                this.error = 'Username or password is incorrect';
-                    this.loading = false;
+                this.alertService.error('Username or password is incorrect.              If first time login, Please goto Register');
+                // this.error = 'Username or password is incorrect';
+                this.loading = false;
             },
             () => console.log('getResetUser successful')
             );
     }
-    
     gotoRegister() {
         this.router.navigate(['register']);
     }
     resetPass(username: string) {
-    
-    if(username === undefined || username === null) {
+    if (username === undefined || username === null) {
         // write validation
         this.resetFailed = true;
     } else {
         this.resetPasswordService.resetPasswordEmail(username)
             .subscribe(result => {
-                if (result === true) {
-                    console.log(result);
-                    this.showModel = true;
-                    this.resetFailed = false;
-                } else {
-                    
-                }
+            if (result === true) {
+                this.alertService.success('We have sent password reset email, Please check your email');
+                this.resetFailed = false;
+            } else {
+                this.alertService.error('RegistarationId doesn`t exist (or) Some thing went wrong, try again');
+            }
         });
     }
     }

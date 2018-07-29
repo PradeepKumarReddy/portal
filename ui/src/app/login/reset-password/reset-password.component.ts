@@ -17,13 +17,13 @@ export class ResetPasswordComponent implements OnInit {
   token: string;
   constructor(private router: Router, private route: ActivatedRoute,
   private registerService: RegisterService,
-  private resetPasswordService: ResetPasswordService) { 
+  private resetPasswordService: ResetPasswordService) {
   console.log('Called Constructor');
   this.route.queryParams.subscribe(params => {
       this.token = params['token'];
   });
   this.resetPasswordService.getResetUser(this.token).subscribe(
-      (res : User) => {
+      (res: User) => {
          console.log(res.username);
          this.signupUser.username = res.username;
         },
@@ -37,13 +37,11 @@ export class ResetPasswordComponent implements OnInit {
   }
   resetPassword() {
   this.resetPasswordService.updateUserPassword(this.signupUser).subscribe(
-      (res : User) => {
+      (res: User) => {
          console.log('User password updated successfully');
-         
         },
         err => console.error(err),
         () => console.log('getResetUser successful')
     );
-  
   }
 }

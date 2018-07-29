@@ -39,7 +39,7 @@ registrationId: string;
       (res: any) => {
        console.log(res);
        },
-      err => console.error(err),
+     err => console.error(err),
       () => console.log('loaded Exam successful')
     );
   this.examStarted = true;
