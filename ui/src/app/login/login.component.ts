@@ -62,7 +62,7 @@ export class LoginComponent implements OnInit {
                 // this.error = 'Username or password is incorrect';
                 this.loading = false;
             },
-            () => console.log('getResetUser successful')
+            () => console.log('login successful')
             );
     }
     gotoRegister() {
@@ -81,7 +81,12 @@ export class LoginComponent implements OnInit {
             } else {
                 this.alertService.error('RegistarationId doesn`t exist (or) Some thing went wrong, try again');
             }
-        });
+        },
+        (err) => {
+        console.error(err);
+        this.alertService.error('Some thing went wrong, try again');
+        },
+        );
     }
     }
 }

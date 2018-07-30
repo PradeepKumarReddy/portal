@@ -14,6 +14,5 @@ public interface ApplicationUserRepository extends JpaRepository<ApplicationUser
 
     @Query("select au from ApplicationUser au where au.enabled=true and au.username=:username")
 	ApplicationUser findByName(@Param("username") String username);
-    Optional<ApplicationUser> findByEmail(String email);
 	Optional<ApplicationUser> findByResetToken(String resetToken);
 }

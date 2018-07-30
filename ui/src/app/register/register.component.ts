@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { UserRegister, User } from '../_models/index';
-import { RegisterService } from '../_services/index';
+import { RegisterService, AlertService } from '../_services/index';
 
 
 import 'rxjs/add/operator/toPromise';
@@ -24,7 +24,9 @@ export class RegisterComponent implements OnInit {
   loading = false;
   error = '';
 
-  constructor (private router: Router, private route: ActivatedRoute, private registerService: RegisterService) {
+  constructor (private router: Router, private route: ActivatedRoute,
+  private registerService: RegisterService,
+  private alertService: AlertService) {
     this.route.params.subscribe( params => console.log(params) );
   }
   ngOnInit() {
@@ -40,7 +42,10 @@ export class RegisterComponent implements OnInit {
        console.log(userRegister);
        this.registerModel = userRegister;
       },
-      err => console.error(err),
+      (err) => {
+        console.error(err);
+        this.alertService.error('Some thing went wrong, try again');
+      },
       () => console.log('registeration successful')
     );
     setTimeout( () => {

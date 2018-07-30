@@ -40,14 +40,11 @@ public class ApplicationUser {
 	@Column(name = "reset_token")
 	private String resetToken;
 	
-	@Column(name = "email", nullable = false, unique = true)
-	private String email;
-	
 	@OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="USER_REGISTER_ID")
     private UserRegister userRegister;
 	
-	@ManyToMany
+	@ManyToMany (fetch = FetchType.EAGER)
     @JoinTable( 
         name = "users_roles", 
         joinColumns = @JoinColumn(
@@ -113,12 +110,5 @@ public class ApplicationUser {
 		this.resetToken = resetToken;
 	}
 
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
 	
 }

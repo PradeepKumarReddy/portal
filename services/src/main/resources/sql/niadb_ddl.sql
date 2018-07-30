@@ -144,6 +144,9 @@ insert into roles_privileges (role_id, privilege_id) values (2, 0);
 ALTER TABLE application_user
 ADD reset_token varchar(255) DEFAULT NULL;
 
+ALTER TABLE user_register 
+ADD CONSTRAINT constr_email UNIQUE (email);
+
 --SET SQL_SAFE_UPDATES = 0;
 
 --Delete script

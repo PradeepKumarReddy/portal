@@ -3,6 +3,7 @@ package com.nia.services.entity;
 import java.util.Collection;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -34,7 +35,7 @@ public class Role {
     //@JsonManagedReference
     private Collection<ApplicationUser> users;
  
-    @ManyToMany
+    @ManyToMany (fetch = FetchType.EAGER)
     @JoinTable(
         name = "roles_privileges", 
         joinColumns = @JoinColumn(

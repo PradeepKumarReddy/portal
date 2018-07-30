@@ -1,29 +1,30 @@
-<div>
+<div class="container">
   <ul class="nav nav-tabs nav-justified">
-  	<li class="nav-item" role="presentation"
-        routerLinkActive="active"
+  	<li class="nav-item active" role="presentation"
+        routerLinkActive="active" data-toggle="tab"
         [routerLinkActiveOptions]="{exact: true}">
       <a class="nav-link" routerLink="/">Home</a>
     </li>
-    <li class="nav-item" role="presentation"
+    <li class="nav-item" role="presentation" data-toggle="tab"
         routerLinkActive="active" *ngIf="(app.localStorageItem('currentUser') == '')">
       <a class="nav-link" [routerLink]="['register']">Register</a>
     </li>
-    <div class="dropdown">
+    <div class="dropdown" *ngIf="isAdminUserLoggedIn$ | async as isAdminUserLoggedIn">
       <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         Admin
       </button>
+
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
         <a class="dropdown-item" [routerLink]="['admin']">Add Questions</a>
         <a class="dropdown-item" [routerLink]="['addexam']">Add Exam</a>
         <a class="dropdown-item" [routerLink]="['user-managment']">UserManagment</a>
       </div>
     </div>
-    <li class="nav-item" role="presentation"
-        routerLinkActive="active">
+    <li class="nav-item" role="presentation" data-toggle="tab"
+        routerLinkActive="active" *ngIf="(app.localStorageItem('currentUser') != '')">
       <a class="nav-link" routerLink="exam">Exam</a>
     </li>
-    <li class="nav-item" role="presentation"
+    <li class="nav-item" role="presentation" data-toggle="tab"
         routerLinkActive="active">
       <div class="dropdown" *ngIf="(app.localStorageItem('currentUser') != '')">
         <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -43,7 +44,5 @@
 	</ul>
     
   </ul>
-  <!-- <ul class="nav navbar-nav navbar-right ml-auto">
-  	
-  </ul> -->
+
 </div>

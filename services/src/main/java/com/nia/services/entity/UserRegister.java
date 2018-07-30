@@ -35,7 +35,7 @@ public class UserRegister {
 	@Column(name = "DOB")
 	private String dob;
 	
-	@Column(name = "EMAIL")
+	@Column(name = "EMAIL", nullable = false, unique = true)
 	private String email;
 	
 	@Column(name = "RESIDENTIAL_ADDR")

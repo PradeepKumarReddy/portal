@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.nia.services.entity.ApplicationUser;
+import com.nia.services.entity.Role;
 import com.nia.services.entity.UserRegister;
 import com.nia.services.mail.EmailServiceImpl;
 import com.nia.services.mail.Mail;
@@ -50,7 +51,30 @@ public class ApplicationUserController {
 	public List<ApplicationUser> getAllApplicationUsers() {
 		return userRepository.findAll();
 	}
+	
+	@GetMapping("/getUser/{regId}")
+	public ApplicationUser getUserByUsername(@PathVariable String regId) {
+		ApplicationUser applicationUser = userRepository.findByUsername(regId);
+		return applicationUser;
+	}
 
+	@GetMapping("/isUserAdmin/{regId}")
+	public boolean isUserAdmin(@PathVariable String regId) {
+		System.out.println("isUserAdmin");
+		ApplicationUser applicationUser = userRepository.findByUsername(regId);
+		boolean isUserAdmin = false;
+		if (applicationUser != null) {
+			for (Role role : applicationUser.getRoles()) {
+				if ("ROLE_ADMIN".equalsIgnoreCase(role.getName())) {
+					isUserAdmin = true;
+					System.out.println(isUserAdmin);
+					break;
+				}
+			}
+		}
+		return isUserAdmin;
+	}
+	
 	@PostMapping("/disableUser/{regId}")
 	public ApplicationUser disableUser(@PathVariable String regId) {
 		System.out.println("service regId " + regId);
@@ -78,8 +102,6 @@ public class ApplicationUserController {
 
 			// Save token to database
 			userRepository.save(applicationUser);
-			
-			
 
 			String appUrl = env.getProperty("resetPassword.url") + applicationUser.getResetToken();
 
