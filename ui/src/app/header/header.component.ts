@@ -19,8 +19,8 @@ public app: GlobalService,
 public authService: AuthService,
 public registerService: RegisterService) { }
 ngOnInit() {
-	this.isAdminUserLoggedIn$ = this.authService.isAdminUserLoggedIn;
-	this.isLoggedIn$ = this.authService.isLoggedIn;
+this.isAdminUserLoggedIn$ = this.authService.isAdminUserLoggedIn;
+this.isLoggedIn$ = this.authService.isLoggedIn;
 }
 logout() {
 // console.log("logout");

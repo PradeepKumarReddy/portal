@@ -76,13 +76,13 @@ export class AuthService {
     return this.loggedIn.asObservable();
     }
     findUserByUsername() {
-    console.log("findUserByUsername");
-    let registrationId = this.globalService.localStorageItem('currentUser');
+    console.log('findUserByUsername');
+    const registrationId = this.globalService.localStorageItem('currentUser');
     console.log(registrationId);
     this.isUserAdmin(registrationId).subscribe(
     (res: boolean) => {
       console.log(res);
-           if(res) {
+           if (res) {
            console.log(res);
            this.adminUserLoggedIn.next(true);
            } else {

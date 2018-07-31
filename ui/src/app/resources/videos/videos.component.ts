@@ -22,8 +22,8 @@ viewResourceLink: string;
   public sanitizer: DomSanitizer) { }
 
   ngOnInit() {
-  this.name='History';
-  this.type='Video';
+  this.name = 'History';
+  this.type = 'Video';
   this.getSubjectByNameAndType();
   this.getAllSubjectByType();
   }
@@ -60,10 +60,10 @@ viewResourceLink: string;
   gotoVideo(res: SubResource) {
   this.isLoadResource = true;
   this.viewResource = res;
-  var strLink = this.viewResource.resourceLink;
-  this.viewResourceLink = strLink.replace("watch?v=", "embed/");
+  const strLink = this.viewResource.resourceLink;
+  this.viewResourceLink = strLink.replace('watch?v=', 'embed/');
   console.log(this.viewResourceLink);
-  console.log("gotoVideo link");
+  console.log('gotoVideo link');
   }
 
 }
