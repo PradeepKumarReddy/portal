@@ -1,0 +1,62 @@
+<div class="container">
+	<div class="row">
+		<div class="col-4">
+			<div id="accordion" *ngFor="let sub of subjects; let i = index">
+				<div class="card">
+			    <div class="card-header" id="{{'heading' + i}}">
+			      <h5 class="mb-0">
+			        <button class="btn btn-primary" data-toggle="collapse" 
+					[attr.data-target] = "'#collapse' + i"
+			        aria-expanded="true" 
+			        [attr.aria-controls] = "'collapse' + i">
+			          {{sub.name}}
+			        </button>
+			      </h5>
+			    </div>
+			    <div >
+			    <div id="{{'collapse' + i}}" class="collapse show" 
+			    [attr.aria-labelledby] ="'heading' + i" 
+			    data-parent="#accordion">
+			      <div class="card-body" *ngFor="let res of sub.subResource; let iS = index">
+			        <a (click)="gotoVideo(res)" style="cursor: pointer">{{res.name}}</a>
+			      </div>
+
+			    </div>
+				</div>
+			  </div>
+			</div>
+		</div>
+		<div class="col-8" *ngIf="isLoadResource">
+			<div class="row">
+				<span class="badge badge-info">{{viewResource.name}}</span>
+			</div>
+			<iframe id="videoDiv" frameborder="0" allowfullscreen="1" allow="autoplay; encrypted-media" title="YouTube video player" width="100%" height="400px" 
+			[src]="sanitizer.bypassSecurityTrustResourceUrl(viewResourceLink)"
+			></iframe>
+			
+			<!--<iframe id="videoDiv" frameborder="0" allowfullscreen="1" allow="autoplay; encrypted-media" title="YouTube video player" width="100%" height="400px" src="https://www.youtube.com/embed/mzPoUjQC4WU?enablejsapi=1&amp;origin=https%3A%2F%2Fonlinecourses.nptel.ac.in&amp;widgetid=1"></iframe>
+			-->
+		</div>
+	</div>
+</div>
+
+
+<!--<div>
+	<script src="//www.youtube.com/iframe_api" type="text/javascript"></script>
+</div>
+
+<div class="container">
+	<div class="row">
+		<div class="col-4">
+			<div class="list-group" id="list-tab" role="tablist"
+			*ngFor="let sub of subjects; let i = index">
+				<a class="list-group-item list-group-item-action" id="list" data-toggle="list" [routerLink]="['videos']" role="tab" aria-controls="home">{{sub.name}}</a>
+			</div>
+		</div>
+		<div class="col-8">
+			<iframe id="videoDiv" frameborder="0" allowfullscreen="1" allow="autoplay; encrypted-media" title="YouTube video player" width="100%" height="400px" src="https://www.youtube.com/embed/mzPoUjQC4WU?enablejsapi=1&amp;origin=https%3A%2F%2Fonlinecourses.nptel.ac.in&amp;widgetid=1"></iframe>
+		</div>
+	</div>
+</div>
+
+-->

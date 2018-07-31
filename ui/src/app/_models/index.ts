@@ -8,3 +8,5 @@ export * from './userResponse';
 export * from './role';
 export * from './privilege';
 export * from './alert';
+export * from './subject';
+export * from './subResource';

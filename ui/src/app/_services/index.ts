@@ -9,3 +9,4 @@ export * from './add-exam.service';
 export * from './user-managment.service';
 export * from './reset-password.service';
 export * from './alert.service';
+export * from './subject.service';

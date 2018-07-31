@@ -1,0 +1,6 @@
+.curriculum-item--title {
+    flex: 1;
+    min-width: 1px;
+    order: 2;
+    margin-right: 5px;
+}

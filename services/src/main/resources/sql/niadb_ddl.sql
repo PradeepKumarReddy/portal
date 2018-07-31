@@ -147,6 +147,37 @@ ADD reset_token varchar(255) DEFAULT NULL;
 ALTER TABLE user_register 
 ADD CONSTRAINT constr_email UNIQUE (email);
 
+CREATE TABLE `subject` (
+  `subject_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`subject_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+CREATE TABLE `sub_resource` (
+  `resource_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  `res_link` varchar(255) DEFAULT NULL,
+  `res_type` varchar(255) DEFAULT NULL,
+  `subject_id` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`resource_id`),
+  KEY `FKj1v70oougyh05j8g7jylh1w4y` (`subject_id`),
+  CONSTRAINT `FKj1v70oougyh05j8g7jylh1w4y` FOREIGN KEY (`subject_id`) REFERENCES `subject` (`subject_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+insert into subject (name) values ('History');
+insert into subject (name) values ('Polytics');
+
+INSERT INTO sub_resource (`name`,`res_link`,`res_type`,`subject_id`)
+VALUES ('history engilsh part1', 'https://www.youtube.com/watch?v=RZ_SHapQOTA', 'Video', 1);
+
+
+INSERT INTO sub_resource (`name`,`res_link`,`res_type`,`subject_id`)
+VALUES ('history engilsh part2', 'https://www.youtube.com/watch?v=h3lTJ73dohc', 'Video', 1);
+
+
+INSERT INTO sub_resource (`name`,`res_link`,`res_type`,`subject_id`)
+VALUES ('test2', 'https://www.youtube.com/watch?v=Yc7W965HcPE', 'Video', 3);
+
 --SET SQL_SAFE_UPDATES = 0;
 
 --Delete script

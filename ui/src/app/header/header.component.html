@@ -9,6 +9,16 @@
         routerLinkActive="active" *ngIf="(app.localStorageItem('currentUser') == '')">
       <a class="nav-link" [routerLink]="['register']">Register</a>
     </li>
+    <div class="dropdown">
+      <button class="btn dropdown-toggle" type="button" id="dropdownResourcesButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Resources
+      </button>
+
+      <div class="dropdown-menu" aria-labelledby="dropdownResourcesButton">
+        <a class="dropdown-item" [routerLink]="['videos']">Group2 Classes</a>
+        <a class="dropdown-item" [routerLink]="['documents']">Documents</a>
+      </div>
+    </div>
     <div class="dropdown" *ngIf="isAdminUserLoggedIn$ | async as isAdminUserLoggedIn">
       <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         Admin

@@ -17,7 +17,8 @@ import { AdminComponent } from './admin/admin.component';
 import { AuthGuard } from './_guards/index';
 import { AuthenticationService, UserService, AuthService, RegisterService,
     AddQuestionService, ExamService, GlobalService, AddExamService,
-    UserManagmentService, ResetPasswordService, AlertService } from './_services/index';
+    UserManagmentService, ResetPasswordService, AlertService,
+    SubjectService } from './_services/index';
 import { HomeComponent } from './home/index';
 import { ExamComponent } from './exam/exam.component';
 import { TimerComponent } from './timer/timer.component';
@@ -33,6 +34,9 @@ import { AddexamComponent } from './exam/addexam/addexam.component';
 import { UserManagementComponent } from './admin/user-management/user-management.component';
 import { ResetPasswordComponent } from './login/reset-password/reset-password.component';
 import { AlertComponent } from './_directives/alert/alert.component';
+import { ResourcesComponent } from './resources/resources.component';
+import { VideosComponent } from './resources/videos/videos.component';
+import { DocumentsComponent } from './resources/documents/documents.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +57,10 @@ import { AlertComponent } from './_directives/alert/alert.component';
     AddexamComponent,
     UserManagementComponent,
     ResetPasswordComponent,
-    AlertComponent
+    AlertComponent,
+    ResourcesComponent,
+    VideosComponent,
+    DocumentsComponent
   ],
   imports: [
     BrowserModule,
@@ -76,6 +83,7 @@ import { AlertComponent } from './_directives/alert/alert.component';
     UserManagmentService,
     ResetPasswordService,
     AlertService,
+    SubjectService,
     // providers used to create fake backend
     fakeBackendProvider,
     MockBackend,

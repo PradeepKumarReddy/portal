@@ -14,6 +14,9 @@ import { AddexamComponent } from './exam/addexam/addexam.component';
 import { UserManagementComponent } from './admin/user-management/user-management.component';
 import { AuthGuard } from './_guards/index';
 import { ResetPasswordComponent } from './login/reset-password/reset-password.component';
+import { ResourcesComponent } from './resources/resources.component';
+import { VideosComponent } from './resources/videos/videos.component';
+import { DocumentsComponent } from './resources/documents/documents.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -21,6 +24,9 @@ const appRoutes: Routes = [
   { path: 'resetPassword', component: ResetPasswordComponent },
   { path: 'reset', component: ResetPasswordComponent },
   { path: 'admin', component: AdminComponent, canActivate: [AuthGuard] },
+  { path: 'resources', component: ResourcesComponent },
+  { path: 'videos', component: VideosComponent },
+  { path: 'documents', component: DocumentsComponent },
   { path: 'addexam', component: AddexamComponent },
   { path: 'user-managment', component: UserManagementComponent, canActivate: [AuthGuard] },
   { path: 'exam', component: ExamComponent, canActivate: [AuthGuard],
