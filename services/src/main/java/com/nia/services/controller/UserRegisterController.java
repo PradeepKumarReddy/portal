@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,6 +21,9 @@ import com.nia.services.repository.UserRegisterRepository;
 @RestController
 @RequestMapping("/api/user")
 public class UserRegisterController {
+	
+	@Autowired
+	private Environment env;
 	
 	private UserRegisterRepository registerRepository;
 	
@@ -64,7 +68,7 @@ public class UserRegisterController {
         //log.info("Sending Email with Thymeleaf HTML Template Example");
 
         Mail mail = new Mail();
-        mail.setFrom("narreddyp@gmail.com");
+        mail.setFrom(env.getProperty("spring.mail.username"));
         mail.setTo(savedUser.getEmail());
         mail.setSubject("Registration Successfully with Nakshatra Academy");
         System.out.println("sendSimpleMessage " + savedUser.getRegistrationId());

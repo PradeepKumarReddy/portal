@@ -37,6 +37,8 @@ import { AlertComponent } from './_directives/alert/alert.component';
 import { ResourcesComponent } from './resources/resources.component';
 import { VideosComponent } from './resources/videos/videos.component';
 import { DocumentsComponent } from './resources/documents/documents.component';
+import { AboutUsComponent } from './about-us/about-us.component';
+import { SampleComponent } from './resources/sample/sample.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +62,9 @@ import { DocumentsComponent } from './resources/documents/documents.component';
     AlertComponent,
     ResourcesComponent,
     VideosComponent,
-    DocumentsComponent
+    DocumentsComponent,
+    AboutUsComponent,
+    SampleComponent
   ],
   imports: [
     BrowserModule,

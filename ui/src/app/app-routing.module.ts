@@ -17,6 +17,8 @@ import { ResetPasswordComponent } from './login/reset-password/reset-password.co
 import { ResourcesComponent } from './resources/resources.component';
 import { VideosComponent } from './resources/videos/videos.component';
 import { DocumentsComponent } from './resources/documents/documents.component';
+import { AboutUsComponent } from './about-us/about-us.component';
+import { SampleComponent } from './resources/sample/sample.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -25,9 +27,11 @@ const appRoutes: Routes = [
   { path: 'reset', component: ResetPasswordComponent },
   { path: 'admin', component: AdminComponent, canActivate: [AuthGuard] },
   { path: 'resources', component: ResourcesComponent },
-  { path: 'videos', component: VideosComponent },
-  { path: 'documents', component: DocumentsComponent },
+  { path: 'sample', component: SampleComponent },
+  { path: 'videos', component: VideosComponent, canActivate: [AuthGuard] },
+  { path: 'documents', component: DocumentsComponent, canActivate: [AuthGuard] },
   { path: 'addexam', component: AddexamComponent },
+  { path: 'contactUs', component: AboutUsComponent },
   { path: 'user-managment', component: UserManagementComponent, canActivate: [AuthGuard] },
   { path: 'exam', component: ExamComponent, canActivate: [AuthGuard],
      children : [

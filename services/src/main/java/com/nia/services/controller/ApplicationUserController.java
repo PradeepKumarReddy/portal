@@ -120,7 +120,7 @@ public class ApplicationUserController {
 		// log.info("Sending Email with Thymeleaf HTML Template Example");
 
 		Mail mail = new Mail();
-		mail.setFrom("narreddyp@gmail.com");
+		mail.setFrom(env.getProperty("spring.mail.username"));
 		mail.setTo(savedUser.getEmail());
 		mail.setSubject("Password Reset Request with Nakshatra Academy");
 		System.out.println("sendSimpleMessage " + savedUser.getRegistrationId());
