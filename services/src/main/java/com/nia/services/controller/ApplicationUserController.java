@@ -6,6 +6,8 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.nia.services.Application;
 import com.nia.services.entity.ApplicationUser;
 import com.nia.services.entity.Role;
 import com.nia.services.entity.UserRegister;
@@ -28,6 +31,7 @@ import com.nia.services.repository.UserRegisterRepository;
 @RestController
 @RequestMapping("/api")
 public class ApplicationUserController {
+	private static final Logger logger = LogManager.getLogger(Application.class);
 	
 	@Autowired
 	private Environment env;
@@ -49,6 +53,7 @@ public class ApplicationUserController {
 
 	@GetMapping("/get/allUsers")
 	public List<ApplicationUser> getAllApplicationUsers() {
+		logger.info("getAllApplicationUsers");
 		return userRepository.findAll();
 	}
 	
