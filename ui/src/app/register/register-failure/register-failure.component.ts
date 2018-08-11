@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-register-failure',
@@ -6,8 +7,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./register-failure.component.css']
 })
 export class RegisterFailureComponent implements OnInit {
-
-  constructor() { }
+  constructor(private router: Router) {
+    // override the route reuse strategy
+    this.router.routeReuseStrategy.shouldReuseRoute = function() {
+        return false;
+    };
+  }
 
   ngOnInit() {
   }

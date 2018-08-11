@@ -12,16 +12,54 @@ const httpOptions = {
 
 @Injectable()
 export class RegisterService {
+registerModel: UserRegister;
   constructor(private http: HttpClient) {}
-  createRegisterUser(userRegister: UserRegister) {
+  createRegisterUser_old(userRegister: UserRegister) {
   return this.http.post(API_URL + '/api/user/register', userRegister, httpOptions);
   }
 
-  getRegisterUser(id: number): Observable<UserRegister> {
+  getRegisterUser_old(id: number): Observable<UserRegister> {
   return this.http.get<UserRegister>(API_URL + '/api/user/get/' + id, httpOptions);
   }
 
   signup(signupUser: User) {
   return this.http.post<User>(API_URL + '/users/sign-up', signupUser, httpOptions);
+  }
+
+  createRegisterUser(userRegister: UserRegister) {
+  const promise = new Promise((resolve, reject) => {
+
+   this.http.post(API_URL + '/api/user/register', userRegister, httpOptions)
+        .toPromise()
+        .then(
+            (res: UserRegister) => { // Success
+              this.registerModel = res;
+              resolve(this.registerModel);
+              console.log(  this.registerModel);
+            },
+            msg => { // Error
+              reject(msg);
+            }
+        );
+  });
+  return promise;
+  }
+  getRegisterUser(id: number) {
+  const promise = new Promise((resolve, reject) => {
+
+   this.http.get<UserRegister>(API_URL + '/api/user/get/' + id, httpOptions)
+        .toPromise()
+        .then(
+            (res: UserRegister) => { // Success
+              this.registerModel = res;
+              resolve(this.registerModel);
+              console.log(  this.registerModel);
+            },
+            msg => { // Error
+              reject(msg);
+            }
+        );
+  });
+  return promise;
   }
 }

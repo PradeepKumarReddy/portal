@@ -23,6 +23,10 @@ export class RegisterSuccessComponent implements OnInit {
   confirm_password: string;
 
   constructor(private router: Router, private route: ActivatedRoute, private registerService: RegisterService) {
+    // override the route reuse strategy
+    this.router.routeReuseStrategy.shouldReuseRoute = function() {
+        return false;
+    };
   }
 
   ngOnInit() {

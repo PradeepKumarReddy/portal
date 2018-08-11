@@ -189,3 +189,8 @@ delete from question_option;
 delete from question;
 delete from exam where exam_id != 1
 
+-- cleaning up users
+delete from users_roles;
+delete from application_user;
+delete from user_register;
+

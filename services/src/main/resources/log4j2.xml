@@ -5,7 +5,7 @@
 			%d{yyyy-MM-dd HH:mm:ss.SSS} %5p ${hostName}	--- [%15.15t] %-40.40c{1.} : %m%n%ex
 		</Property>
 		<Property name="LOG_PATH">
-			/var/log/nia
+			/opt/logs/nia
 		</Property>
 	</Properties>
 	<Appenders>
