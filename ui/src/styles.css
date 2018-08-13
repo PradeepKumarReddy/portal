@@ -44,3 +44,34 @@
     -ms-flex-direction: row!important;
     flex-direction: row!important;
 }
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #0069d9;
+    color: white;
+    text-align: center;
+}
+
+.img {
+    max-width: 100%;
+    height: 150px;
+}
+
+* {
+   font-size: 14px;
+   line-height: 1.428;
+}
+
+.nav-pills .nav-link.active
+,.nav-pills .nav-item.active
+/*,.nav-pills .show>.nav-link*/ 
+{
+    color: #fff;
+    background-color: #007bff;
+}
+
+
+.nav-item.active .nav-link { color: #fff }

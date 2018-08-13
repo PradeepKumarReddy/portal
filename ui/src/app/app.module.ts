@@ -39,6 +39,7 @@ import { VideosComponent } from './resources/videos/videos.component';
 import { DocumentsComponent } from './resources/documents/documents.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { SampleComponent } from './resources/sample/sample.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import { SampleComponent } from './resources/sample/sample.component';
     VideosComponent,
     DocumentsComponent,
     AboutUsComponent,
-    SampleComponent
+    SampleComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

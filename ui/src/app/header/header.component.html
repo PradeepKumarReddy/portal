@@ -1,64 +1,87 @@
 <div class="container">
-  <ul class="nav nav-tabs nav-justified">
-  	<li class="nav-item active" role="presentation"
-        routerLinkActive="active" data-toggle="tab"
-        [routerLinkActiveOptions]="{exact: true}">
+  <ul class="nav nav-pills nav-justified">
+    <li class="nav-item" 
+      routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+      data-toggle="tab">
       <a class="nav-link" routerLink="/">Home</a>
     </li>
-    <li class="nav-item" role="presentation" data-toggle="tab"
-        routerLinkActive="active" *ngIf="(app.localStorageItem('currentUser') == '')">
-      <a class="nav-link" [routerLink]="['register']">Register</a>
+    <li class="nav-item" data-toggle="tab"
+        routerLinkActive="active"
+        *ngIf="(app.localStorageItem('currentUser') == '')">
+      <a class="nav-link" routerLink="register">Register</a>
     </li>
-    <div class="dropdown">
-      <button class="btn dropdown-toggle" type="button" id="dropdownResourcesButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <li class="nav-item dropdown"
+    routerLinkActive="active">
+      <a class="nav-link dropdown-toggle" id="dropdownResourcesButton" 
+        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         Resources
-      </button>
+      </a>
 
       <div class="dropdown-menu" aria-labelledby="dropdownResourcesButton">
-        <a class="dropdown-item" [routerLink]="['sample']">Demo Class</a>
-        <a class="dropdown-item" [routerLink]="['videos']">Group2 Classes</a>
-        <a class="dropdown-item" [routerLink]="['documents']">Documents</a>
+        <a class="dropdown-item" routerLink="sample">Demo Class</a>
+        <a class="dropdown-item" routerLink="videos">Group2 Classes</a>
+        <a class="dropdown-item" routerLink="documents">Documents</a>
       </div>
-    </div>
-    <div class="dropdown" *ngIf="isAdminUserLoggedIn$ | async as isAdminUserLoggedIn">
-      <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    </li>
+    <li class="nav-item dropdown" *ngIf="isAdminUserLoggedIn$ | async as isAdminUserLoggedIn"
+      routerLinkActive="active">
+      <a class="nav-link dropdown-toggle" id="dropdownMenuButton" 
+      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         Admin
-      </button>
+      </a>
 
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <a class="dropdown-item" [routerLink]="['admin']">Add Questions</a>
-        <a class="dropdown-item" [routerLink]="['addexam']">Add Exam</a>
-        <a class="dropdown-item" [routerLink]="['user-managment']">UserManagment</a>
+        <a class="dropdown-item" routerLink="admin">Add Questions</a>
+        <a class="dropdown-item" routerLink="addexam">Add Exam</a>
+        <a class="dropdown-item" routerLink="user-managment">UserManagment</a>
       </div>
-    </div>
-    <li class="nav-item" role="presentation" data-toggle="tab"
-        routerLinkActive="active" *ngIf="(app.localStorageItem('currentUser') != '')">
-      <a class="nav-link" routerLink="exam">Exam</a>
     </li>
-    <li class="nav-item active" role="presentation"
-        routerLinkActive="active" data-toggle="tab"
-        [routerLinkActiveOptions]="{exact: true}">
-      <a class="nav-link" [routerLink]="['contactUs']">Contact Us</a>
+    <li class="nav-item" data-toggle="tab"
+        routerLinkActive="active"
+        *ngIf="(app.localStorageItem('currentUser') != '')">
+      <a class="nav-link"
+      routerLink="exam">Exam</a>
     </li>
-    <li class="nav-item" role="presentation" data-toggle="tab"
-        routerLinkActive="active">
-      <div class="dropdown" *ngIf="(app.localStorageItem('currentUser') != '')">
-        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          {{app.localStorageItem("currentUser")}}
-        </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <li class="nav-item"
+        routerLinkActive="active"
+        data-toggle="tab">
+      <a class="nav-link" 
+        routerLink="contactUs">Contact Us</a>
+    </li>
+    <li class="nav-item"
+        data-toggle="tab"
+        routerLinkActive="active"
+        *ngIf="(app.localStorageItem('currentUser') != '')">
+
+      <a class="nav-link dropdown-toggle" id="dropdownUserButton" 
+        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        {{app.localStorageItem("currentUser")}}
+      </a>
+      <div class="dropdown-menu" aria-labelledby="dropdownUserButton">
           <button class="dropdown-item" (click)="logout()">Logout</button>
-          
-        </div>
       </div>
     </li>
-    <ul class="nav navbar-nav navbar-right ml-auto" *ngIf="(app.localStorageItem('currentUser') == '')">
-    <li role="presentation"  routerLinkActive="active">
-          <a class="nav-link" routerLink="login">Login</a>
-    </li>
-
-	</ul>
-    
+    <li class="nav-item navbar-right ml-auto" 
+        routerLinkActive="active"
+        *ngIf="(app.localStorageItem('currentUser') == '')"
+        data-toggle="tab">
+      <a class="nav-link"
+      routerLink="login">Login</a>
+    </li>       
   </ul>
-
 </div>
+
+<!--<div class="container">
+  <ul class="nav nav-pills nav-justified">
+  <li class="nav-item" data-toggle="tab"
+   routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+    <a class="nav-link" routerLink="/">Home</a></li>
+  <li class="nav-item"  data-toggle="tab"
+  routerLinkActive="active" >
+    <a class="nav-link" routerLink="/register" >Register</a></li>
+  <li class="nav-item"  data-toggle="tab"
+  routerLinkActive="active">
+    <a class="nav-link" routerLink="/contactUs"  >Contact Us</a></li>
+</ul>
+</div>
+-->
