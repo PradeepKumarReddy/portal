@@ -53,6 +53,11 @@
     background-color: #0069d9;
     color: white;
     text-align: center;
+    height: 60px;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
 }
 
 .img {
