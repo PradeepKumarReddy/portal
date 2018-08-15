@@ -49,6 +49,8 @@ public class EmailServiceImpl {
         helper.setSubject(mail.getSubject());
         helper.setFrom(mail.getFrom());
 
+        helper.addAttachment("instructions.pdf", new ClassPathResource("/docs/instructions.pdf"));
+        
         emailSender.send(message);
     }
     

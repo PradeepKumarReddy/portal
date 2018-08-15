@@ -55,6 +55,18 @@ public class UserRegister {
 	
 	@Column(name = "PERMANENT_PINCODE")
 	private String permanentPincode;
+	
+	@Column (name = "PHONE")
+	private String phoneNumber;
+	
+	@Column (name = "GROUP1")
+	private boolean group1;
+	
+	@Column (name = "GROUP2")
+	private boolean group2;
+	
+	@Column (name = "GROUP3")
+	private boolean group3;
 
 	public Long getId() {
 		return id;
@@ -173,6 +185,38 @@ public class UserRegister {
 	public void setRegistrationId(String registrationId) {
 		this.registrationId = registrationId;
 	}
+	
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+
+	public boolean isGroup1() {
+		return group1;
+	}
+
+	public void setGroup1(boolean group1) {
+		this.group1 = group1;
+	}
+
+	public boolean isGroup2() {
+		return group2;
+	}
+
+	public void setGroup2(boolean group2) {
+		this.group2 = group2;
+	}
+
+	public boolean isGroup3() {
+		return group3;
+	}
+
+	public void setGroup3(boolean group3) {
+		this.group3 = group3;
+	}
 
 	@Override
 	public String toString() {
@@ -181,8 +225,9 @@ public class UserRegister {
 				+ ", email=" + email + ", residentialAddress=" + residentialAddress + ", residentialPincode="
 				+ residentialPincode + ", residentialState=" + residentialState + ", permanentAddress="
 				+ permanentAddress + ", permanentState=" + permanentState + ", permanentPincode=" + permanentPincode
+				+ ", phoneNumber=" + phoneNumber + ", group1=" + group1 + ", group2=" + group2 + ", group3=" + group3
 				+ "]";
 	}
-	
+
 	
 }

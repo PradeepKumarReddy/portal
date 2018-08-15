@@ -66,11 +66,35 @@
 		<small class="form-text text-muted">We'll never share your email with anyone else.</small>
 	</div>
 	<div class="form-group">
+		<label>Mobile Number</label>
+		<input type="text" class="form-control" placeholder=""
+		[(ngModel)]="registerModel.phoneNumber" #phoneNumber="ngModel"
+		name="phoneNumber" required>
+		<div *ngIf="f.submitted && !phoneNumber.valid" class="help-block">
+		Phone Number is required</div>
+	</div>
+	<div class="form-group">
+		<h4><span class="badge badge-warning" style="width:100%">Exams You are preparing for</span></h4>
+		<div class="form-inline">
+		<input type="checkbox" class="form-control" 
+		[(ngModel)]="registerModel.group1"
+		name="group1"> <label class="col-sm-3 control-label" 
+		for="group1">Group 1</label>
+		<input type="checkbox" class="form-control" 
+		[(ngModel)]="registerModel.group2"
+		name="group2"> <label class="col-sm-3 control-label"
+		for="group2">Group 2</label>
+		<input type="checkbox" class="form-control" 
+		[(ngModel)]="registerModel.group3"
+		name="group3"><label class="col-sm-3 control-label"
+		for="group3">Group 3</label>
+		</div>
+	</div>
+	<div class="form-group">
 		<label>Residential address</label>
 		<input type="text" class="form-control" placeholder=""
 		[(ngModel)]="registerModel.residentialAddress"
 		name="residentialAddress">
-		
 	</div>
 	<div class="form-row">
 		<div class="form-group col-md-6">

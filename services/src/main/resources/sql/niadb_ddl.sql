@@ -18,21 +18,26 @@ CREATE TABLE `hibernate_sequence` (
 INSERT INTO hibernate_sequence(next_val) VALUES (0);
 
 CREATE TABLE `user_register` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `dob` varchar(255) DEFAULT NULL,
-  `email` varchar(255) DEFAULT NULL,
+  `email` varchar(255) NOT NULL,
   `father_name` varchar(255) DEFAULT NULL,
   `first_name` varchar(255) DEFAULT NULL,
   `gender` varchar(255) DEFAULT NULL,
+  `group1` bit(1) DEFAULT NULL,
+  `group2` bit(1) DEFAULT NULL,
+  `group3` bit(1) DEFAULT NULL,
   `last_name` varchar(255) DEFAULT NULL,
   `permanent_addr` varchar(255) DEFAULT NULL,
   `permanent_pincode` varchar(255) DEFAULT NULL,
   `permanent_state` varchar(255) DEFAULT NULL,
+  `phone` varchar(255) DEFAULT NULL,
   `registration_id` varchar(255) DEFAULT NULL,
   `residential_addr` varchar(255) DEFAULT NULL,
   `residential_pincode` varchar(255) DEFAULT NULL,
   `residential_state` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `constr_email` (`email`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 
@@ -144,8 +149,8 @@ insert into roles_privileges (role_id, privilege_id) values (2, 0);
 ALTER TABLE application_user
 ADD reset_token varchar(255) DEFAULT NULL;
 
-ALTER TABLE user_register 
-ADD CONSTRAINT constr_email UNIQUE (email);
+--ALTER TABLE user_register 
+--ADD CONSTRAINT constr_email UNIQUE (email);
 
 CREATE TABLE `subject` (
   `subject_id` bigint(20) NOT NULL AUTO_INCREMENT,
@@ -177,6 +182,10 @@ VALUES ('history engilsh part2', 'https://www.youtube.com/watch?v=h3lTJ73dohc', 
 
 INSERT INTO sub_resource (`name`,`res_link`,`res_type`,`subject_id`)
 VALUES ('test2', 'https://www.youtube.com/watch?v=Yc7W965HcPE', 'Video', 3);
+
+update application_user set enabled= where username='';
+
+insert into users_roles (user_id, role_id) values (1, 3);
 
 --SET SQL_SAFE_UPDATES = 0;
 

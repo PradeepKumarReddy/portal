@@ -9,9 +9,9 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 export class RegisterFailureComponent implements OnInit {
   constructor(private router: Router) {
     // override the route reuse strategy
-    this.router.routeReuseStrategy.shouldReuseRoute = function() {
-        return false;
-    };
+    // this.router.routeReuseStrategy.shouldReuseRoute = function() {
+    //    return false;
+    // };
   }
 
   ngOnInit() {

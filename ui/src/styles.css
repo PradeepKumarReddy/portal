@@ -78,5 +78,13 @@ body {
     background-color: #007bff;
 }
 
-
 .nav-item.active .nav-link { color: #fff }
+
+.form-inline label {
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-pack: center;
+    justify-content: left;
+    margin-bottom: 0;
+}

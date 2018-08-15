@@ -13,4 +13,8 @@ export class UserRegister {
     permanentAddress: string;
     permanentState: string;
     permanentPincode: string;
+    phoneNumber: string;
+    group1: boolean;
+    group2: boolean;
+    group3: boolean;
 }
