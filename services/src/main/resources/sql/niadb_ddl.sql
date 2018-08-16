@@ -189,6 +189,7 @@ insert into users_roles (user_id, role_id) values (1, 3);
 
 --SET SQL_SAFE_UPDATES = 0;
 
+ALTER TABLE `table_name` AUTO_INCREMENT=1
 --Delete script
 
 delete from user_response;

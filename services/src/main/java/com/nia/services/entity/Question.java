@@ -84,11 +84,11 @@ public class Question {
 		this.isActive = isActive;
 	}
 
-	@Override
+	/*@Override
 	public String toString() {
 		return "Question [id=" + id + ", questionDesc=" + questionDesc + ", options=" + options + ", getId()=" + getId()
 				+ ", getQuestionDesc()=" + getQuestionDesc() + ", getOptions()=" + getOptions() + "]";
-	}
+	}*/
 
 	public Exam getExam() {
 		return exam;

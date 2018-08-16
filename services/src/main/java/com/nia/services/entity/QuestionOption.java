@@ -69,10 +69,10 @@ public class QuestionOption {
 		this.answer = answer;
 	}
 
-	@Override
+	/*@Override
 	public String toString() {
 		return "QuestionOption [id=" + id + ", optionDesc=" + optionDesc + ", question=" + question + "]";
-	}
+	}*/
 	
 
 	@Transient

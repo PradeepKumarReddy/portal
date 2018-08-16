@@ -28,3 +28,5 @@ mvn eclipse:clean
 
 reinstall
 mvn eclipse:eclipse
+
+java -jar -Dspring.profiles.active=PROD nia-portal.jar

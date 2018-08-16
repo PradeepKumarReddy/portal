@@ -66,7 +66,7 @@ export class RegisterComponent implements OnInit {
         console.error(err.error.message);
         this.registerFailure = true;
         this.router.navigate(['register-failure'], {relativeTo : this.route});
-        this.alertService.error(err.message);
+        this.alertService.error(err.error.message);
       }
     );
   }
