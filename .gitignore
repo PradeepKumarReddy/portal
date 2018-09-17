@@ -3,9 +3,9 @@
 
 ### STS ###
 .apt_generated
-.classpath
+#.classpath
 .factorypath
-.project
+#.project
 .settings
 .springBeans
 .sts4-cache
@@ -38,8 +38,8 @@ target/
 
 # IDEs and editors
 /.idea
-.project
-.classpath
+#.project
+#.classpath
 .c9/
 *.launch
 .settings/

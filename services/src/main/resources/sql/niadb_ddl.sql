@@ -45,9 +45,8 @@ CREATE TABLE `application_user` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `password` varchar(255) DEFAULT NULL,
   `username` varchar(255) DEFAULT NULL,
-  `user_register_id` int(11) DEFAULT NULL,
+  `user_register_id` bigint DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `FK1` (`user_register_id`),
   CONSTRAINT `FK1` FOREIGN KEY (`user_register_id`) REFERENCES `user_register` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
@@ -169,19 +168,12 @@ CREATE TABLE `sub_resource` (
   CONSTRAINT `FKj1v70oougyh05j8g7jylh1w4y` FOREIGN KEY (`subject_id`) REFERENCES `subject` (`subject_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
-insert into subject (name) values ('History');
-insert into subject (name) values ('Polytics');
+--insert into subject (name) values ('History');
+--insert into subject (name) values ('Polytics');
 
-INSERT INTO sub_resource (`name`,`res_link`,`res_type`,`subject_id`)
-VALUES ('history engilsh part1', 'https://www.youtube.com/watch?v=RZ_SHapQOTA', 'Video', 1);
-
-
-INSERT INTO sub_resource (`name`,`res_link`,`res_type`,`subject_id`)
-VALUES ('history engilsh part2', 'https://www.youtube.com/watch?v=h3lTJ73dohc', 'Video', 1);
-
-
-INSERT INTO sub_resource (`name`,`res_link`,`res_type`,`subject_id`)
-VALUES ('test2', 'https://www.youtube.com/watch?v=Yc7W965HcPE', 'Video', 3);
+--INSERT INTO sub_resource (`name`,`res_link`,`res_type`,`subject_id`) VALUES ('history engilsh part1', 'https://www.youtube.com/watch?v=RZ_SHapQOTA', 'Video', 1);
+--INSERT INTO sub_resource (`name`,`res_link`,`res_type`,`subject_id`) VALUES ('history engilsh part2', 'https://www.youtube.com/watch?v=h3lTJ73dohc', 'Video', 1);
+--INSERT INTO sub_resource (`name`,`res_link`,`res_type`,`subject_id`) VALUES ('test2', 'https://www.youtube.com/watch?v=Yc7W965HcPE', 'Video', 3);
 
 update application_user set enabled= where username='';
 

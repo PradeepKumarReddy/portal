@@ -36,11 +36,16 @@
         <a class="dropdown-item" routerLink="user-managment">UserManagment</a>
       </div>
     </li>
-    <li class="nav-item" data-toggle="tab"
+    <li class="nav-item dropdown" data-toggle="tab"
         routerLinkActive="active"
         *ngIf="(app.localStorageItem('currentUser') != '')">
-      <a class="nav-link"
-      routerLink="exam">Exam</a>
+      <a class="nav-link dropdown-toggle" id="dropdownExamsButton" 
+      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+      >Exams</a>
+      <div class="dropdown-menu" aria-labelledby="dropdownExamsButton">
+        <a class="dropdown-item" routerLink="exam">Exam</a>
+        <a class="dropdown-item" routerLink="review-exam">Review Exams</a>
+      </div>
     </li>
     <li class="nav-item"
         routerLinkActive="active"

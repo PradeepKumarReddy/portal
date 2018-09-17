@@ -874,6 +874,12 @@ boom@2.x.x:
   dependencies:
     hoek "2.x.x"
 
+bootstrap-tree-view@^1.8.0:
+  version "1.8.0"
+  resolved "https://registry.yarnpkg.com/bootstrap-tree-view/-/bootstrap-tree-view-1.8.0.tgz#b13b1a30e4966fa9ed0dcfcd917d3da7cbd38add"
+  dependencies:
+    jquery ">=1.9.1"
+
 bootstrap@^4.1.1:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-4.1.1.tgz#3aec85000fa619085da8d2e4983dfd67cf2114cb"
@@ -3368,7 +3374,7 @@ jasminewd2@^2.1.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/jasminewd2/-/jasminewd2-2.2.0.tgz#e37cf0b17f199cce23bea71b2039395246b4ec4e"
 
-jquery@^3.3.1:
+jquery@>=1.9.1, jquery@^3.3.1:
   version "3.3.1"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.3.1.tgz#958ce29e81c9790f31be7792df5d4d95fc57fbca"
 
