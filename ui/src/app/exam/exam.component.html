@@ -7,26 +7,19 @@
     </tr>
   </thead>
   <tbody>
-  	<tr *ngFor="let exam of exams; let i = index">
+  	<tr *ngFor="let exam of exams | paginate: { itemsPerPage: 5, currentPage: p }; let i = index">
       <th>{{exam.examName}}</th>
       <th scope="row">
       <button class="btn btn-primary" (click)="startExam(exam.id,registrationId)">Start Exam
       </button>
       </th>
     </tr>
+    <tr><pagination-controls (pageChange)="p = $event"></pagination-controls></tr>
 	</tbody>
 </table>
 </div>
 
 <div class="container">
-    <!--
-    <div class="row">
-    	<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-    		<button *ngIf="!examStarted" class="btn btn-primary" (click)="startExam(1,'NA0002')">Start Exam</button>
-    	</div>
-    	
-    </div>
-	-->
     <div>
     	<router-outlet></router-outlet>
     </div>

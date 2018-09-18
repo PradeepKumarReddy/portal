@@ -1,7 +1,7 @@
 <div class="container" *ngIf="!examSubmit">
 	<div class="row">
 		<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-			Registration Id: {{app.localStorageItem("currentUser")}}
+			Registration Id: {{globalService.localStorageItem("currentUser")}}
 		</div>
 		<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
 			{{exam.examName}}

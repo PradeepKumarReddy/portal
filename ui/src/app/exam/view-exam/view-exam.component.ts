@@ -16,7 +16,6 @@ const httpOptions = {
   styleUrls: ['./view-exam.component.css']
 })
 export class ViewExamComponent implements OnInit {
-
   p = 1;
   exam: Exam ;
   examId: number;
@@ -27,14 +26,15 @@ export class ViewExamComponent implements OnInit {
   resultExam: Exam;
   resultQuestions: Question[] = [];
 
-  constructor(private router: Router, private route: ActivatedRoute, private examService: ExamService, public app: GlobalService) { }
+  constructor(private router: Router,
+  private route: ActivatedRoute, private examService: ExamService,
+  public globalService: GlobalService) { }
   ngOnInit() {
-  // this.examId = this.route.snapshot.params['examId'];
   this.examSubmit = false;
   this.route.params.subscribe((params: Params) => {
   this.examId = params['examId'];
   this.loadExam(this.examId);
-  // this.loadUserExam(this.examId);
+  this.loadUserExam(this.examId);
   });
   this.exam = new Exam();
   }
@@ -65,10 +65,7 @@ export class ViewExamComponent implements OnInit {
     );
   }
   endExam() {
-    this.userExam = {};
-    this.userExam.examId = this.examId;
-    this.userExam.username = 'NA0001';
-    this.userExam.userResponses = [];
+    const registrationId = this.globalService.localStorageItem('currentUser');
     this.questions.forEach((question) => {
         this.userResponse = new UserResponse();
         this.userResponse.questionId = question.id;
@@ -82,20 +79,6 @@ export class ViewExamComponent implements OnInit {
         this.userExam.userResponses.push(this.userResponse);
     });
     console.log(this.userExam);
-   /*
-    setTimeout( () => {
-      this.examService.endUserExam(this.userExam).subscribe(
-        (res : UserExam) => {
-         console.log(res.username);
-         this.resultExam = res;
-         this.resultExam.userResponses = [...res.userResponses];
-         },
-        err => console.error(err),
-        () => console.log('endExam successful')
-      );
-    }, 200);
-   */
-
    setTimeout( () => {
       this.examService.endUserExam(this.userExam).subscribe(
         (res: Exam) => {
@@ -110,7 +93,6 @@ export class ViewExamComponent implements OnInit {
     console.log('questions' + this.questions);
     console.log('Exam Completed');
     this.examSubmit = true;
-    // this.router.navigate(['exam/result-exam', this.examId]);
   }
 
  getStyle(option: QuestionOption) {
@@ -124,5 +106,15 @@ export class ViewExamComponent implements OnInit {
     } else {
       return 'badge badge-light';
     }
+ }
+ loadUserExam(examId: number) {
+ const registrationId = this.globalService.localStorageItem('currentUser');
+ this.examService.getUserExamByExamIdAndUsername(examId, registrationId).subscribe(
+  (res: UserExam) => {
+  this.userExam = res;
+  },
+  err => console.error(err),
+  () => console.log('loadUserExam successful')
+ );
  }
 }

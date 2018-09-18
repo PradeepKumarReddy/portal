@@ -1,3 +1,34 @@
-<p>
-  result-exam works!
-</p>
+<div class="container-fluid">
+	<h3><span>Review Exam: {{resultExam.examName}}</span></h3>
+		<div *ngFor="let question of resultQuestions; let i = index ">
+			<div class="row" *ngIf="question.correctAnswered">
+				
+					<div class="col-md-12 badge badge-dark">
+						<h5><span class="">{{question.questionDesc}}</span></h5>
+					</div>
+				
+					<div class="col-md-12 text-left options badge badge-light" *ngFor="let option of question.options"> 
+							<h6><span [ngClass]="(option.userSelect && option.answer) ? 'text-success' : ((option.answer) ? 'text-success' : ((option.userSelect) ? 'text-warning' : 'text-muted'))">{{option.optionDesc}}</span>
+							</h6>
+					</div>
+					<div class="col-md-12">
+						<span class="badge badge-pill badge-success">Your Answer is Correct</span>
+					</div>
+			</div>
+			<div class="row" *ngIf="!question.correctAnswered">
+					<div class="col-md-12 badge badge-dark">
+						<h5><span class="">{{question.questionDesc}}</span></h5>
+					</div>
+					<div class="col-md-12 text-left options badge badge-light" *ngFor="let option of question.options">
+						<h6><span [ngClass]="(option.userSelect && option.answer) ? 'text-success' : ((option.answer) ? 'text-success' : ((option.userSelect) ? 'text-warning' : 'text-muted'))">{{option.optionDesc}}</span>
+						</h6>
+						
+					</div>
+				
+					<div class="col-md-12">
+						<span class="badge badge-pill badge-danger">Your Answer is Wrong/ Not Answered</span>
+					</div>
+				
+			</div>
+		</div>
+</div>

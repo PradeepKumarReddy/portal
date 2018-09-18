@@ -1,0 +1,48 @@
+<div>
+	<h3><label>Add Resource</label></h3>
+</div>
+<div>
+	<form name="resourceForm" (submit)="f.form.valid && addResource()"  #f="ngForm" novalidate>
+		<div class="form-row">
+			<div class="col form-group" [ngClass]="{ 'has-error': f.submitted && !resName.valid }">
+			<label>Resource name </label>   
+		  	<input type="text" class="form-control" placeholder="Resource Name"
+		  	[(ngModel)]="addSubResources.name" #resName="ngModel"
+		  	name="resName" required > 
+		  	<div *ngIf="f.submitted && !resName.valid" class="help-block">Resource Name is required</div>
+			</div>
+		</div>
+		<div class="form-row">
+			<div class="col form-group" [ngClass]="{ 'has-error': f.submitted && !resLink.valid }">
+			<label>Resource Link </label>   
+		  	<input type="text" class="form-control" placeholder="Resource Link"
+		  	[(ngModel)]="addSubResources.resourceLink" #resLink="ngModel"
+		  	name="resLink" required > 
+		  	<div *ngIf="f.submitted && !resLink.valid" class="help-block">Resource Link is required</div>
+			</div>
+		</div>
+		<div class="form-row">
+			<div class="form-group">
+			    <label for="resourceType">Resource Type</label>
+			    <select name="resType" class="form-control" id="resourceType" [(ngModel)]="addSubResources.resourceType">
+			      <option>Video</option>
+			      <option>Document</option>
+			    </select>
+			</div>
+		</div>
+		<div class="form-row">
+			<div class="form-group">
+			    <label for="subject">Subject</label>
+			    <select  name="resSubject" class="form-control" id="subject" [ngModel]="addSubResources.subject"
+			    (ngModelChange)="addSubjectToResource($event)">
+				  <option *ngFor="let sub of subjects" [value]="sub.name">
+				    {{sub.name}}
+				  </option>
+				</select>
+			</div>
+		</div>
+		<div class="form-group">
+        	<button class="btn btn-primary btn-block">Add Resource</button>
+    	</div>
+	</form>
+</div>

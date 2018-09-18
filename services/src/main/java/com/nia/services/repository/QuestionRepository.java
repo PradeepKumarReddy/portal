@@ -11,7 +11,7 @@ import com.nia.services.entity.UserExam;
 
 public interface QuestionRepository extends JpaRepository<Question, Long> {
 
-	@Query("SELECT q FROM Question q WHERE q.exam is null")
+	@Query("SELECT q FROM Question q WHERE q.exam is null order by q.id")
 	public List<Question> getAllQuestionsNotMappedToExam();
 	
 }

@@ -40,6 +40,8 @@ import { DocumentsComponent } from './resources/documents/documents.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { SampleComponent } from './resources/sample/sample.component';
 import { FooterComponent } from './footer/footer.component';
+import { CompletedExamsComponent } from './exam/completed-exams/completed-exams.component';
+import { AddResourceComponent } from './resources/add-resource/add-resource.component';
 
 @NgModule({
   declarations: [
@@ -66,7 +68,9 @@ import { FooterComponent } from './footer/footer.component';
     DocumentsComponent,
     AboutUsComponent,
     SampleComponent,
-    FooterComponent
+    FooterComponent,
+    CompletedExamsComponent,
+    AddResourceComponent
   ],
   imports: [
     BrowserModule,

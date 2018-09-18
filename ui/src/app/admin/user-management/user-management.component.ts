@@ -11,7 +11,8 @@ import { UserManagmentService } from '../../_services/index';
   styleUrls: ['./user-management.component.css']
 })
 export class UserManagementComponent implements OnInit {
-users: User[];
+  p = 1;
+  users: User[];
   constructor(private router: Router, private route: ActivatedRoute,
   private userManagmentService: UserManagmentService) { }
 

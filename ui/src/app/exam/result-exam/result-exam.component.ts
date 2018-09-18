@@ -10,7 +10,32 @@ import { ExamService } from '../../_services/index';
   styleUrls: ['./result-exam.component.css']
 })
 export class ResultExamComponent implements OnInit {
-  constructor (private router: Router, private route: ActivatedRoute, private examService: ExamService) { }
-  ngOnInit() { }
-getUserExamByExamIdAndUsername() { }
+  userExamId: number;
+  username: string;
+  resultExam: Exam;
+  resultQuestions: Question[] = [];
+  constructor (private router: Router, private route: ActivatedRoute, private examService: ExamService) {
+  this.route.params.subscribe( params => {
+  // console.log(params);
+  this.userExamId = params['userExamId'];
+  this.username = params['username'];
+  });
+  this.viewExam(this.userExamId, this.username);
+  }
+  ngOnInit() {
+  this.resultExam = new Exam();
+  }
+
+  viewExam(userExamId: number, username: string) {
+  this.examService.getCompletedExamDetails(userExamId, username).subscribe(
+      (res: Exam) => {
+         this.resultExam = res;
+         // this.resultExam.examName = res.examName;
+         this.resultQuestions = [...res.questions];
+         console.log(res);
+       },
+       err => console.error(err),
+      () => console.log('loaded Exam successful')
+    );
+  }
 }

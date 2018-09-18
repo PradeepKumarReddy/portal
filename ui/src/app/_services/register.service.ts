@@ -35,7 +35,7 @@ registerModel: UserRegister;
             (res: UserRegister) => { // Success
               this.registerModel = res;
               resolve(this.registerModel);
-              console.log(  this.registerModel);
+              console.log(this.registerModel);
             },
             msg => { // Error
               reject(msg);

@@ -1,0 +1,20 @@
+<div>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Exam Id</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+  	<tr *ngFor="let userExam of completedExams | paginate: { itemsPerPage: 5, currentPage: p }; let i = index">
+      <th>{{userExam.examId}}</th>
+      <th scope="row">
+      <button class="btn btn-primary" (click)="viewExam(userExam.id,registrationId)">View
+      </button>
+      </th>
+    </tr>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+	</tbody>
+</table>
+</div>

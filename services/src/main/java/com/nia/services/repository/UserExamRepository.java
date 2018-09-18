@@ -13,4 +13,7 @@ public interface UserExamRepository extends JpaRepository<UserExam, Long> {
     @Query("SELECT ue FROM UserExam ue WHERE ue.examId=:examId and ue.username=:username")
 	public List<UserExam> getByIdAndUserName(@Param("examId") Long examId, @Param("username") String username);
     
+    @Query("SELECT ue FROM UserExam ue WHERE ue.username=:username order by ue.id")
+    public List<UserExam> getCompletedExams(@Param("username") String username);
+    
 }

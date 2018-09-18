@@ -21,4 +21,12 @@ export class SubjectService {
   getAllSubjectByType(type: string): Observable<Subject[]> {
   return this.http.get<Subject[]>(API_URL + '/api/get/allSubjects/' + type, httpOptions);
   }
+
+  getAllSubjects(): Observable<Subject[]> {
+  return this.http.get<Subject[]>(API_URL + '/api/get/subjects', httpOptions);
+  }
+
+  addSubResource(subResource: SubResource): Observable<SubResource> {
+  return this.http.post<SubResource>(API_URL + '/api/subResource/add', subResource, httpOptions);
+  }
 }

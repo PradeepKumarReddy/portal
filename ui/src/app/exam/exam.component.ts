@@ -12,7 +12,7 @@ import { TimerComponent } from '../timer/timer.component';
   styleUrls: ['./exam.component.css']
 })
 export class ExamComponent implements OnInit {
-
+p = 1;
 examStarted = false;
 exams: Exam[];
 registrationId: string;
@@ -26,8 +26,7 @@ registrationId: string;
   this.registrationId = this.globalService.localStorageItem('currentUser');
   this.addExamService.getActiveExams(this.registrationId).subscribe(
     (res: Exam[]) => {
-       console.log(res);
-       this.exams = [...res];
+        this.exams = [...res];
        },
       err => console.error(err),
       () => console.log('loaded Exams successful')

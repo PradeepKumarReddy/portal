@@ -29,4 +29,12 @@ export class ExamService {
   getUserExamByExamIdAndUsername(examId: number , username: string): Observable<UserExam> {
   return this.http.get<UserExam>(API_URL + '/api/userExam/' + examId + '/' + username, httpOptions);
   }
+
+  getCompletedExams(userId: string): Observable<UserExam[]> {
+  return this.http.get<UserExam[]>(API_URL + '/api/userExam/completed/' + userId, httpOptions);
+  }
+
+  getCompletedExamDetails(userExamId: number, username: string): Observable<Exam> {
+  return this.http.get<Exam>(API_URL + '/api/userExam/completedDetails/' + userExamId + '/' + username, httpOptions);
+  }
 }

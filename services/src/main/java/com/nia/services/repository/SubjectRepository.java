@@ -10,12 +10,12 @@ import com.nia.services.entity.Subject;
 
 public interface SubjectRepository extends JpaRepository<Subject, Long> {
 
-	@Query("select s from Subject s, SubResource sr where s.id = sr.subject and s.name=:name and sr.resourceType=:type")
+	@Query("select s from Subject s, SubResource sr where s.id = sr.subject and s.name=:name and sr.resourceType=:type order by s.id")
 	public Subject findByNameAndType(@Param("name") String name, @Param("type") String type);
 	
 	public Subject findByName(String name);
 	
-	@Query("select s from Subject s, SubResource sr where s.id = sr.subject and sr.resourceType=:type")
+	@Query("select s from Subject s, SubResource sr where s.id = sr.subject and sr.resourceType=:type order by s.id")
 	public Set<Subject> findAllByType(@Param("type") String type);
 	
 }

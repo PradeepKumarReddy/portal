@@ -10,7 +10,7 @@ import com.nia.services.entity.Exam;
 
 public interface ExamRepository extends JpaRepository<Exam, Long> {
 	
-	@Query("SELECT e FROM Exam e WHERE e.isActive=true and e.id not in (SELECT ue.examId FROM UserExam ue where ue.username=:username)")
+	@Query("SELECT e FROM Exam e WHERE e.isActive=true and e.id not in (SELECT ue.examId FROM UserExam ue where ue.username=:username) order by e.id")
 	public List<Exam> getActiveExams(@Param("username") String username);
 
 }

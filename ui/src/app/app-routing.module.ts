@@ -19,6 +19,8 @@ import { VideosComponent } from './resources/videos/videos.component';
 import { DocumentsComponent } from './resources/documents/documents.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { SampleComponent } from './resources/sample/sample.component';
+import { CompletedExamsComponent } from './exam/completed-exams/completed-exams.component';
+import { AddResourceComponent } from './resources/add-resource/add-resource.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -33,12 +35,14 @@ const appRoutes: Routes = [
   { path: 'addexam', component: AddexamComponent },
   { path: 'contactUs', component: AboutUsComponent },
   { path: 'user-managment', component: UserManagementComponent, canActivate: [AuthGuard] },
+  { path: 'add-resource', component: AddResourceComponent, canActivate: [AuthGuard] },
   { path: 'exam', component: ExamComponent, canActivate: [AuthGuard],
      children : [
-        {path: 'view-exam/:examId', component: ViewExamComponent, canActivateChild: [ AuthGuard ]},
-        {path: 'result-exam/:examId', component: ResultExamComponent, canActivateChild: [ AuthGuard ]}
+        {path: 'view-exam/:examId', component: ViewExamComponent, canActivateChild: [ AuthGuard ]}
       ]
   },
+  { path: 'completed-exams', component: CompletedExamsComponent, canActivate: [AuthGuard] },
+  {path: 'result-exam/:userExamId/:username', component: ResultExamComponent, canActivateChild: [ AuthGuard ]},
   { path: 'register', component: RegisterComponent,
     children : [
         {path: 'register-success/:registrationId/:email', component: RegisterSuccessComponent},
