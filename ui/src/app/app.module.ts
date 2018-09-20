@@ -42,6 +42,7 @@ import { SampleComponent } from './resources/sample/sample.component';
 import { FooterComponent } from './footer/footer.component';
 import { CompletedExamsComponent } from './exam/completed-exams/completed-exams.component';
 import { AddResourceComponent } from './resources/add-resource/add-resource.component';
+import { QuestionsUploadComponent } from './admin/questions-upload/questions-upload.component';
 
 @NgModule({
   declarations: [
@@ -70,7 +71,8 @@ import { AddResourceComponent } from './resources/add-resource/add-resource.comp
     SampleComponent,
     FooterComponent,
     CompletedExamsComponent,
-    AddResourceComponent
+    AddResourceComponent,
+    QuestionsUploadComponent
   ],
   imports: [
     BrowserModule,
