@@ -65,6 +65,8 @@
         {{app.localStorageItem("currentUser")}}
       </a>
       <div class="dropdown-menu" aria-labelledby="dropdownUserButton">
+          <a class="dropdown-item" 
+          routerLink="my-profile">My Profile</a>
           <button class="dropdown-item" (click)="logout()">Logout</button>
       </div>
     </li>

@@ -22,6 +22,7 @@ import { SampleComponent } from './resources/sample/sample.component';
 import { CompletedExamsComponent } from './exam/completed-exams/completed-exams.component';
 import { AddResourceComponent } from './resources/add-resource/add-resource.component';
 import { QuestionsUploadComponent } from './admin/questions-upload/questions-upload.component';
+import { MyProfileComponent } from './register/my-profile/my-profile.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -51,6 +52,7 @@ const appRoutes: Routes = [
         {path: 'register-failure', component: RegisterFailureComponent}
      ]
   },
+  { path: 'my-profile', component: MyProfileComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({

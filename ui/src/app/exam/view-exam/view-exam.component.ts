@@ -39,6 +39,20 @@ export class ViewExamComponent implements OnInit {
   this.exam = new Exam();
   }
   onSelect(question , option) {
+  let anyOptionSelected = false;
+  question.options.forEach (function(element) {
+    if (element.selected) {
+      anyOptionSelected = true;
+    } 
+  });
+  if(anyOptionSelected) {
+    question.isAnswered = true;
+  } else {
+    question.isAnswered = false;
+  }
+  
+  }
+  onSelect_old(question , option) {
   question.isAnswered = false;
   question.options.forEach (function(element, index, array) {
   if (element.id !== option.id) {
@@ -67,16 +81,18 @@ export class ViewExamComponent implements OnInit {
   endExam() {
     const registrationId = this.globalService.localStorageItem('currentUser');
     this.questions.forEach((question) => {
-        this.userResponse = new UserResponse();
-        this.userResponse.questionId = question.id;
+        
         question.options.forEach(
           (option) => {
             if (option.selected) {
-              this.userResponse.optionId = option.id;
+            this.userResponse = new UserResponse();
+            this.userResponse.questionId = question.id;
+            this.userResponse.optionId = option.id;
+            this.userExam.userResponses.push(this.userResponse);
             }
           }
         );
-        this.userExam.userResponses.push(this.userResponse);
+        
     });
     console.log(this.userExam);
    setTimeout( () => {
@@ -89,7 +105,7 @@ export class ViewExamComponent implements OnInit {
         err => console.error(err),
         () => console.log('endExam successful')
       );
-    }, 200);
+    }, 1000);
     console.log('questions' + this.questions);
     console.log('Exam Completed');
     this.examSubmit = true;

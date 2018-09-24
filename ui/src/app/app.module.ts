@@ -43,6 +43,7 @@ import { FooterComponent } from './footer/footer.component';
 import { CompletedExamsComponent } from './exam/completed-exams/completed-exams.component';
 import { AddResourceComponent } from './resources/add-resource/add-resource.component';
 import { QuestionsUploadComponent } from './admin/questions-upload/questions-upload.component';
+import { MyProfileComponent } from './register/my-profile/my-profile.component';
 
 @NgModule({
   declarations: [
@@ -72,7 +73,8 @@ import { QuestionsUploadComponent } from './admin/questions-upload/questions-upl
     FooterComponent,
     CompletedExamsComponent,
     AddResourceComponent,
-    QuestionsUploadComponent
+    QuestionsUploadComponent,
+    MyProfileComponent
   ],
   imports: [
     BrowserModule,
