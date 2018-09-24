@@ -62,4 +62,23 @@ registerModel: UserRegister;
   });
   return promise;
   }
+
+  getRegisterUserByRegId(id: string) {
+  const promise = new Promise((resolve, reject) => {
+
+   this.http.get<UserRegister>(API_URL + '/api/user/get/regId/' + id, httpOptions)
+        .toPromise()
+        .then(
+            (res: UserRegister) => { // Success
+              this.registerModel = res;
+              resolve(this.registerModel);
+              console.log(  this.registerModel);
+            },
+            msg => { // Error
+              reject(msg);
+            }
+        );
+  });
+  return promise;
+  }
 }

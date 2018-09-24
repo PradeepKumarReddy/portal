@@ -62,6 +62,11 @@ public class UserRegisterController {
 		}
     	return registerRepository.getOne(savedUser.getId());
     }
+	
+	@GetMapping("/get/regId/{regId}")
+	public UserRegister getRegisterUserByRegId(@PathVariable String regId) {
+		return registerRepository.findByRegistrationId(regId);
+	}
     
     
     public void sendSimpleMessage(UserRegister savedUser) throws Exception {
