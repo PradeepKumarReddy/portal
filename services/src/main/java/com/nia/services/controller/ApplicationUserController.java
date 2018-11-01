@@ -1,5 +1,7 @@
 package com.nia.services.controller;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,6 +28,7 @@ import com.nia.services.entity.UserRegister;
 import com.nia.services.mail.EmailServiceImpl;
 import com.nia.services.mail.Mail;
 import com.nia.services.repository.ApplicationUserRepository;
+import com.nia.services.repository.RoleRepository;
 import com.nia.services.repository.UserRegisterRepository;
 
 @RestController
@@ -41,6 +44,9 @@ public class ApplicationUserController {
 
 	@Autowired
 	private UserRegisterRepository registerRepository;
+	
+	@Autowired
+    private RoleRepository roleRepository;
 
 	@Autowired
 	EmailServiceImpl emailServiceImpl;
@@ -85,20 +91,47 @@ public class ApplicationUserController {
 		System.out.println("service regId " + regId);
 		ApplicationUser applicationUser = userRepository.findByUsername(regId);
 		applicationUser.setEnabled(false);
-		return userRepository.save(applicationUser);
+		applicationUser = userRepository.save(applicationUser);
+		return applicationUser;
 	}
 
 	@PostMapping("/enableUser/{regId}")
 	public ApplicationUser enableUser(@PathVariable String regId) {
 		ApplicationUser applicationUser = userRepository.findByUsername(regId);
 		applicationUser.setEnabled(true);
-		return userRepository.save(applicationUser);
+		applicationUser = userRepository.save(applicationUser);
+		try {
+			sendUserActivateEmail(applicationUser);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return applicationUser;
+	}
+	
+	private ApplicationUser saveAppUser(UserRegister userRegister) {
+		ApplicationUser user = new ApplicationUser();
+		user.setUsername(userRegister.getRegistrationId());
+        Role adminRole = roleRepository.findByName("ROLE_USER");
+        List<Role> list = new ArrayList<Role>();
+        list.add(adminRole); 
+        user.setRoles(list);
+        user.setEnabled(false);
+        user.setUserRegister(userRegister);
+        user = userRepository.saveAndFlush(user);
+        return user;
 	}
 
 	@PostMapping("/resetPasswordEmail/{regId}")
 	public boolean resetPasswordEmail(@PathVariable String regId) {
 		UserRegister userRegister = registerRepository.findByRegistrationId(regId);
-		ApplicationUser applicationUser = userRepository.findByUsername(regId);
+		ApplicationUser applicationUser = null;
+		if(userRegister != null) {
+			applicationUser = userRepository.findByUsername(regId);
+			if (applicationUser == null) {
+				applicationUser = saveAppUser(userRegister);
+				// applicationUser = userRepository.findByUsername(regId);
+			}
+		}
 		if (applicationUser == null) {
 			return false;
 		} else {
@@ -120,6 +153,18 @@ public class ApplicationUserController {
 
 		return true;
 	}
+	
+	private void sendUserActivateEmail(ApplicationUser applicationUser) throws Exception {
+		Mail mail = new Mail();
+		mail.setFrom(env.getProperty("spring.mail.username"));
+		mail.setTo(applicationUser.getUserRegister().getEmail());
+		mail.setSubject("Nakshatra Academy - Your Registration Id is activated now");
+		System.out.println("sendUserActivateEmail " + applicationUser.getUsername());
+		Map<String, Object> model = new HashMap<>();
+		model.put("regId", applicationUser.getUsername());
+		mail.setModel(model);
+		emailServiceImpl.sendUserActivatedEmail(mail);
+	}
 
 	public void sendResetPasswordEmail(UserRegister savedUser, String appUrl) throws Exception {
 		// log.info("Sending Email with Thymeleaf HTML Template Example");
@@ -138,7 +183,7 @@ public class ApplicationUserController {
 
 		emailServiceImpl.sendResetPasswordEmail(mail);
 	}
-
+	
 	@PostMapping("/reset")
     public ApplicationUser getResetUser (
         @RequestParam(required = true) String token) {

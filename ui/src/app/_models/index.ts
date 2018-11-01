@@ -10,3 +10,4 @@ export * from './privilege';
 export * from './alert';
 export * from './subject';
 export * from './subResource';
+export * from './contactus';

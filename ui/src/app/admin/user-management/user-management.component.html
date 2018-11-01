@@ -3,6 +3,8 @@
     <tr>
       <th scope="col">Username</th>
       <th scope="col">Registration Id</th>
+      <th scope="col">Email</th>
+      <th scope="col">Phone</th>
       <th scope="col">Enable/Disable</th>
     </tr>
   </thead>
@@ -10,6 +12,8 @@
    <tr *ngFor="let user of users | paginate: { itemsPerPage: 10, currentPage: p }; let i = index ">
 	  <td>{{user.username}}</td>
 	  <td>{{user.userRegister.firstName}} {{user.userRegister.lastName}} </td>
+    <td>{{user.userRegister.email}}</td>
+    <td>{{user.userRegister.phoneNumber}}</td>
     <td scope="row">
       <button class="btn btn-primary" *ngIf="!user.enabled" (click)="enableUser(user.username, i)">Enable User</button>
       <button class="btn btn-primary" *ngIf="user.enabled" (click)="disableUser(user.username, i)">Disable User</button>

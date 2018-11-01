@@ -23,6 +23,7 @@ import { CompletedExamsComponent } from './exam/completed-exams/completed-exams.
 import { AddResourceComponent } from './resources/add-resource/add-resource.component';
 import { QuestionsUploadComponent } from './admin/questions-upload/questions-upload.component';
 import { MyProfileComponent } from './register/my-profile/my-profile.component';
+import { ResetPasswordAdminComponent } from './admin/reset-password-admin/reset-password-admin.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -53,6 +54,7 @@ const appRoutes: Routes = [
      ]
   },
   { path: 'my-profile', component: MyProfileComponent, canActivate: [AuthGuard] },
+  { path: 'reset-password-admin', component: ResetPasswordAdminComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({

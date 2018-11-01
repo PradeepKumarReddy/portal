@@ -11,24 +11,11 @@
 	</div>
 	<div class="row">
 		<h6>Email us at:</h6> 
-		<label class="text-muted">admin@nakshatraacademy.in</label>
+		<label class="text-muted">{{contactUs.email1}}</label>
 	</div>
 	<div class="row">
 		<h6>Phone us at:</h6>
-		<label class="text-muted">+91-8217037454</label>
+		<label class="text-muted">{{contactUs.phone2}} / {{contactUs.phone1}}</label>
 	</div>
 	</div>
 </div>
-
-<article>
-    <h1>Angular Get Selected Option Value</h1>
-    <h2><span>Select a day:</span></h2>
-    <select (change)="selectChangeHandler($event)">
-        <option value="Monday">Monday</option>
-        <option value="Tuesday">Tuesday</option>
-        <option value="Wednesday">Wednesday</option>
-        <option value="Thursday">Thursday</option>
-        <option value="Friday">Friday</option>
-    </select>
-    <p><span>You selected: </span><b>{{selectedDay}}</b></p>
-</article>

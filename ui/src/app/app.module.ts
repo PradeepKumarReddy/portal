@@ -18,7 +18,7 @@ import { AuthGuard } from './_guards/index';
 import { AuthenticationService, UserService, AuthService, RegisterService,
     AddQuestionService, ExamService, GlobalService, AddExamService,
     UserManagmentService, ResetPasswordService, AlertService,
-    SubjectService } from './_services/index';
+    SubjectService, ContactUsService } from './_services/index';
 import { HomeComponent } from './home/index';
 import { ExamComponent } from './exam/exam.component';
 import { TimerComponent } from './timer/timer.component';
@@ -44,6 +44,7 @@ import { CompletedExamsComponent } from './exam/completed-exams/completed-exams.
 import { AddResourceComponent } from './resources/add-resource/add-resource.component';
 import { QuestionsUploadComponent } from './admin/questions-upload/questions-upload.component';
 import { MyProfileComponent } from './register/my-profile/my-profile.component';
+import { ResetPasswordAdminComponent } from './admin/reset-password-admin/reset-password-admin.component';
 
 @NgModule({
   declarations: [
@@ -74,7 +75,8 @@ import { MyProfileComponent } from './register/my-profile/my-profile.component';
     CompletedExamsComponent,
     AddResourceComponent,
     QuestionsUploadComponent,
-    MyProfileComponent
+    MyProfileComponent,
+    ResetPasswordAdminComponent
   ],
   imports: [
     BrowserModule,
@@ -98,6 +100,7 @@ import { MyProfileComponent } from './register/my-profile/my-profile.component';
     ResetPasswordService,
     AlertService,
     SubjectService,
+    ContactUsService,
     // providers used to create fake backend
     fakeBackendProvider,
     MockBackend,

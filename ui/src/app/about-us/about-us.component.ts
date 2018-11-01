@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Contactus } from '../_models/index';
+import { Router, ActivatedRoute, Params } from '@angular/router';
+import { ContactUsService } from '../_services/index';
 
 @Component({
   selector: 'app-about-us',
@@ -6,18 +9,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./about-us.component.css']
 })
 export class AboutUsComponent implements OnInit {
-selectedDay: string = '';
-  constructor() { }
 
+  constructor(private contactUsService: ContactUsService) {
+    this.contactUs = {};
+  }
+  contactUs: Contactus;
   ngOnInit() {
+  this.contactUsService.getContactUs().subscribe(
+    (res: Contactus) => {
+        this.contactUs = res;
+        // console.log(this.contactUs);
+       },
+      err => console.error(err),
+      () => console.log('loaded ContactUs successful')
+  );
   }
-
-  
-
-  //event handler for the select element's change event
-  selectChangeHandler (event: any) {
-    //update the ui
-    this.selectedDay = event.target.value;
-  }
-
 }

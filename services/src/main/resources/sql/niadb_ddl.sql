@@ -179,6 +179,25 @@ update application_user set enabled= where username='';
 
 insert into users_roles (user_id, role_id) values (1, 3);
 
+
+-- Create ContactUs Table
+
+
+CREATE TABLE `CONTACTUS` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `email1` varchar(255) DEFAULT NULL,
+  `email2` varchar(255) DEFAULT NULL,
+  `phone1` varchar(255) DEFAULT NULL,
+  `phone2` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+
+INSERT INTO `contactus` (`email1`,`email2`,`phone1`,`phone2`)
+VALUES
+('admin@nakshatraacademy.in','','08217037454','080-43741208');
+
+
 --SET SQL_SAFE_UPDATES = 0;
 
 ALTER TABLE `table_name` AUTO_INCREMENT=1

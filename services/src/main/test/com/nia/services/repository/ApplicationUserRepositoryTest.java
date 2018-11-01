@@ -3,6 +3,10 @@ package com.nia.services.repository;
 import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.assertThat;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import org.junit.Test;
 
 import static org.junit.Assert.assertNotNull;
@@ -56,5 +60,20 @@ public class ApplicationUserRepositoryTest {
         userRegister = userRegisterRepo.save(userRegister);
         System.out.println(userRegister.toString());
     	assertNotNull(userRegister.getRegistrationId());
+    }
+    
+    @Test
+	public void getAllActiveEmails() {
+		List<String> emails = userRepo.getAllActiveEmails();
+		System.out.println(Arrays.toString(emails.toArray()));
+	}
+    
+    @Test
+    public void testJava8() {
+    	List<String> ids = new ArrayList<>();
+    	ids.add("1");
+    	ids.add("2");
+    	String csv = String.join(",", ids);
+    	System.out.println(csv);
     }
 }

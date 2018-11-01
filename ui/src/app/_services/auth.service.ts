@@ -35,6 +35,7 @@ export class AuthService {
         // console.log(response.headers.keys());
         // console.log('authorization', response.headers.get('authorization'));
         // login successful if there's a jwt token in the response
+        console.log("login");
         console.log(response);
         const token = response.headers.get('authorization');
         if (token) {
@@ -55,8 +56,11 @@ export class AuthService {
         }
         })
         .catch((err: HttpErrorResponse) => {
+            console.log("login error");
             this.adminUserLoggedIn.next(false);
             this.loggedIn.next(false);
+            console.log(err);
+            console.log(err.statusText);
             return Observable.throw(err.statusText);
         });
     }

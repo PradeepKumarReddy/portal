@@ -1,6 +1,8 @@
 package com.nia.services.mail;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Mail {
@@ -9,6 +11,7 @@ public class Mail {
     private String to;
     private String subject;
     private String content;
+    private List<String> multipleRecipients = new ArrayList<>();
     private  Map<String, Object> model = new HashMap<>();
 
     public Mail() {
@@ -59,6 +62,15 @@ public class Mail {
 
 	public void setModel(Map<String, Object> model) {
 		this.model = model;
+	}
+	
+
+	public List<String> getMultipleRecipients() {
+		return multipleRecipients;
+	}
+
+	public void setMultipleRecipients(List<String> multipleRecipients) {
+		this.multipleRecipients = multipleRecipients;
 	}
 
 	@Override
