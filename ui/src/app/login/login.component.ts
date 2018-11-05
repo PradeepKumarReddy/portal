@@ -58,7 +58,7 @@ export class LoginComponent implements OnInit {
             },
             (err) => {
                 console.error(err);
-                this.alertService.error('Username or password is incorrect.              If first time login, Please goto Register');
+                this.alertService.error('Username or password is incorrect (or) Your account is not yet activate.');
                 // this.error = 'Username or password is incorrect';
                 this.loading = false;
             },

@@ -32,6 +32,7 @@ import { RegisterSuccessComponent } from './register/register-success/register-s
 import { RegisterFailureComponent } from './register/register-failure/register-failure.component';
 import { AddexamComponent } from './exam/addexam/addexam.component';
 import { UserManagementComponent } from './admin/user-management/user-management.component';
+import { EnabledUsersPipe } from './admin/user-management/user-management.pipe';
 import { ResetPasswordComponent } from './login/reset-password/reset-password.component';
 import { AlertComponent } from './_directives/alert/alert.component';
 import { ResourcesComponent } from './resources/resources.component';
@@ -76,7 +77,8 @@ import { ResetPasswordAdminComponent } from './admin/reset-password-admin/reset-
     AddResourceComponent,
     QuestionsUploadComponent,
     MyProfileComponent,
-    ResetPasswordAdminComponent
+    ResetPasswordAdminComponent,
+    EnabledUsersPipe
   ],
   imports: [
     BrowserModule,

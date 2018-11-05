@@ -13,10 +13,12 @@ import { UserManagmentService } from '../../_services/index';
 export class UserManagementComponent implements OnInit {
   p = 1;
   users: User[];
+  userEnabled = true;
   constructor(private router: Router, private route: ActivatedRoute,
   private userManagmentService: UserManagmentService) { }
 
   ngOnInit() {
+  this.userEnabled = true;
   this.userManagmentService.getAllApplicationUsers().subscribe(
       (res: User[]) => {
        console.log(res);
