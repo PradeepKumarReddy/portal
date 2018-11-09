@@ -1,6 +1,8 @@
 package com.nia.services.repository;
 import static org.junit.Assert.assertNotNull;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.junit.Test;
@@ -61,4 +63,46 @@ public class UserExamRepositoryTest {
 		assertNotNull(userExams);
 	}
 
+	@Test
+	public void testGetAllExamsWithUserAttended() {
+		List<Exam> exams = userExamRepository.getAllExamsWithUserAttended("NAC20180001");
+
+		System.out.println(exams.size());
+	} 
+	
+	@Test
+	public void testExamsIdSorted() {
+		List<Exam> exams = new ArrayList<>();
+		
+		Exam ex1 = new Exam();
+		ex1.setId(10L);
+		exams.add(ex1);
+		
+		Exam ex2 = new Exam();
+		ex2.setId(11L);
+		exams.add(ex2);
+		
+		Exam ex3 = new Exam();
+		ex3.setId(2L);
+		exams.add(ex3);
+		
+		Exam ex4 = new Exam();
+		ex4.setId(1L);
+		exams.add(ex4);
+		
+		for (Exam e : exams) {
+			System.out.println(e.getId());
+		}
+		
+		Exam ex5 = new Exam();
+		ex5.setId(-1L);
+		exams.add(ex5);
+		
+		Collections.sort(exams);
+		
+		for (Exam e : exams) {
+			System.out.println(e.getId());
+		}
+		
+	}
 }

@@ -14,11 +14,11 @@ import { BaseRequestOptions } from '@angular/http';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { AdminComponent } from './admin/admin.component';
-import { AuthGuard } from './_guards/index';
+import { AuthGuard, DeactivateGuard } from './_guards/index';
 import { AuthenticationService, UserService, AuthService, RegisterService,
     AddQuestionService, ExamService, GlobalService, AddExamService,
     UserManagmentService, ResetPasswordService, AlertService,
-    SubjectService, ContactUsService } from './_services/index';
+    SubjectService, ContactUsService, ReportsService } from './_services/index';
 import { HomeComponent } from './home/index';
 import { ExamComponent } from './exam/exam.component';
 import { TimerComponent } from './timer/timer.component';
@@ -46,6 +46,10 @@ import { AddResourceComponent } from './resources/add-resource/add-resource.comp
 import { QuestionsUploadComponent } from './admin/questions-upload/questions-upload.component';
 import { MyProfileComponent } from './register/my-profile/my-profile.component';
 import { ResetPasswordAdminComponent } from './admin/reset-password-admin/reset-password-admin.component';
+import { UserExamReportComponent } from './reports/user-exam-report/user-exam-report.component';
+import { ExamReportDetailsComponent } from './reports/exam-report-details/exam-report-details.component';
+import { ConfirmationComponent } from './confirmation/confirmation.component';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 @NgModule({
   declarations: [
@@ -78,7 +82,10 @@ import { ResetPasswordAdminComponent } from './admin/reset-password-admin/reset-
     QuestionsUploadComponent,
     MyProfileComponent,
     ResetPasswordAdminComponent,
-    EnabledUsersPipe
+    EnabledUsersPipe,
+    UserExamReportComponent,
+    ExamReportDetailsComponent,
+    ConfirmationComponent
   ],
   imports: [
     BrowserModule,
@@ -86,10 +93,12 @@ import { ResetPasswordAdminComponent } from './admin/reset-password-admin/reset-
     HttpModule,
     AppRoutingModule,
     NgxPaginationModule,
-    HttpClientModule
+    HttpClientModule,
+    ModalModule.forRoot()
   ],
   providers: [
     AuthGuard,
+    DeactivateGuard,
     AuthenticationService,
     AuthService,
     UserService,
@@ -103,12 +112,16 @@ import { ResetPasswordAdminComponent } from './admin/reset-password-admin/reset-
     AlertService,
     SubjectService,
     ContactUsService,
+    ReportsService,
     // providers used to create fake backend
     fakeBackendProvider,
     MockBackend,
     BaseRequestOptions,
     SimpleTimer,
     SecondsToDateTimePipe
+  ],
+  entryComponents: [
+    ConfirmationComponent
   ],
   bootstrap: [AppComponent]
 })

@@ -132,13 +132,10 @@ public class ExcelReader {
             		question.getOptions().add(questionOption);
             	}
             	i++;
-                // System.out.print(cellValue + "\t");
             }
-            /*System.out.println(question.getQuestionDesc());
-            for(QuestionOption option : question.getOptions()) {
-            	System.out.println(option.getOptionDesc());
-            	System.out.println(option.isAnswer());
-            }*/
+            
+            if (question.getOptions().stream().filter(opt -> opt.isAnswer()).count() > 1)
+            	question.setMultipleAns(Boolean.TRUE);
             questions.add(question);
         }
         

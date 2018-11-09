@@ -19,4 +19,7 @@ public interface ApplicationUserRepository extends JpaRepository<ApplicationUser
 	
 	@Query("SELECT au.userRegister.email FROM ApplicationUser au WHERE au.enabled=1")
 	List<String> getAllActiveEmails();
+	
+	@Query("SELECT au FROM ApplicationUser au WHERE au.enabled=1")
+	List<ApplicationUser> getAllEnabledApplicationUsers();
 }

@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,6 +24,7 @@ import com.nia.services.entity.UserExam;
 import com.nia.services.entity.UserResponse;
 import com.nia.services.repository.ExamRepository;
 import com.nia.services.repository.UserExamRepository;
+import com.sun.corba.se.spi.servicecontext.UEInfoServiceContext;
 
 @RestController
 @RequestMapping("/api")
@@ -35,9 +38,16 @@ public class UserExamController {
 	
 	@GetMapping("/userExam/{examId}/{username}")
 	public UserExam getUserExam(@PathVariable Long examId, @PathVariable String username) {
+		UserExam ret = null;
+		try {
 		List<UserExam> listExams = userExamRepository.getByIdAndUserName(examId, username);
+		ret = listExams.get(0);
+		} catch(Exception e) {
+			System.out.println(" getUserExam examId " + examId + "username " + username);
+			e.printStackTrace();
+		}
 		
-		return listExams.get(0);
+		return ret;
 	}
 	
 	@GetMapping("/userExam/completed/{username}")
@@ -49,6 +59,11 @@ public class UserExamController {
 	public UserExam addUserExam(@RequestBody UserExam userExam)
 	{
 		return userExamRepository.save(userExam);
+	}
+	
+	@GetMapping("/examsList/completed/{username}")
+	public List<Exam> getAllExamsWithUserAttended(@PathVariable String username) {
+		return userExamRepository.getAllExamsWithUserAttended(username);
 	}
 	
 	// @GetMapping("/userExam/completedDetails/{userExamId}/{username}")
@@ -83,7 +98,7 @@ public class UserExamController {
 		UserExam resultExam = userExamRepository.getOne(userExamId);
 
 		Exam exam = repo.getOne(resultExam.getExamId());
-		prepareResultExam(resultExam, exam);
+		prepareResultExam(resultExam, exam, false);
 		
 		return exam;
 	}
@@ -122,12 +137,12 @@ public class UserExamController {
 		UserExam resultExam = userExamRepository.save(userExam);
 		
 		Exam exam = repo.getOne(userExam.getExamId());
-		prepareResultExam(resultExam, exam);
+		prepareResultExam(resultExam, exam, true);
 		
 		return exam;
 	}
 
-	private void prepareResultExam(UserExam resultExam, Exam exam) {
+	private void prepareResultExam_old(UserExam resultExam, Exam exam) {
 		// Map<Long, List<QuestionOption>> questionAnswers = new HashMap<Long, List<QuestionOption>>();
 		Map<Long, List<Long>> questionAnswers = new HashMap<Long, List<Long>>();
 		
@@ -178,15 +193,59 @@ public class UserExamController {
 		
 		}
 	}
-	private Question getQestionById(Long quesId, Set<Question> questions) {
-		for (Question ques : questions) {
+	
+	private Question getQestionById(Long quesId, List<Question> list) {
+		for (Question ques : list) {
 			if(ques.getId().equals(quesId)) 
 				return ques;
 		}
 		
 		return null;
 	}
-	
-	
+
+	private void prepareResultExam(UserExam resultExam, Exam exam, boolean update) {
+
+		Map<Long, List<Long>> questionAnswers = new HashMap<Long, List<Long>>();
+		
+		for(Question question : exam.getQuestions()) {
+			questionAnswers.put(question.getId(), question.getOptions().stream().filter(opt -> opt.isAnswer()).map(opt -> opt.getId()).collect(Collectors.toList()));
+		}
+		
+		// Prepare Question Responses by User
+		
+		Map<Long, List<UserResponse>> userAnswers = resultExam.getUserResponses().stream()
+	       .collect(Collectors.groupingBy(
+	    		UserResponse :: getQuestionId,
+	            Collectors.toCollection(ArrayList::new)));
+		int correctAnswers = 0;
+			
+		for(Question question : exam.getQuestions()) {
+			
+			List<Long> answers = questionAnswers.get(question.getId());
+			List<Long> responses = userAnswers.get(question.getId()).stream().map( res -> res.getOptionId()).collect(Collectors.toList());
+			for(QuestionOption opt: question.getOptions()) {
+				if(responses != null && responses.contains(opt.getId())) {
+					opt.setUserSelect(true);
+				}
+			}
+			
+			boolean allAnswered = answers.stream().allMatch(num -> responses.contains(num));
+
+			 if(allAnswered) {
+				 question.setCorrectAnswered(true);
+				 correctAnswers++;
+			 }
+		
+		}
+		
+		if(update) {
+			resultExam.setTotalNoOfQuestions(exam.getQuestions().size());
+			resultExam.setNoOfAnsweredQuestions(correctAnswers);
+			userExamRepository.save(resultExam);
+		}
+		
+		exam.setNoOfAnsweredQuestions(resultExam.getNoOfAnsweredQuestions());
+		exam.setTotalNoOfQuestions(resultExam.getTotalNoOfQuestions());
+	}
 
 }

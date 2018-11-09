@@ -23,7 +23,7 @@
         <a class="dropdown-item" routerLink="documents">Documents</a>
       </div>
     </li>
-    <li class="nav-item dropdown" *ngIf="isAdminUserLoggedIn$ | async as isAdminUserLoggedIn"
+    <li class="nav-item dropdown" *ngIf="isAdmin"
       routerLinkActive="active">
       <a class="nav-link dropdown-toggle" id="dropdownMenuButton" 
       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -37,6 +37,17 @@
         <a class="dropdown-item" routerLink="add-resource">Add Resources</a>
         <a class="dropdown-item" routerLink="user-managment">UserManagment</a>
         <a class="dropdown-item" routerLink="reset-password-admin">ResetPasswordAdmin</a>
+      </div>
+    </li>
+    <li class="nav-item dropdown" *ngIf="isAdmin"
+      routerLinkActive="active">
+      <a class="nav-link dropdown-toggle" id="reportsDropdownMenuButton" 
+      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Reports
+      </a>
+
+      <div class="dropdown-menu" aria-labelledby="reportsDropdownMenuButton">
+        <a class="dropdown-item" routerLink="user-exam-report">User Exams</a>
       </div>
     </li>
     <li class="nav-item dropdown" data-toggle="tab"

@@ -12,7 +12,7 @@ import { ViewExamComponent } from './exam/view-exam/view-exam.component';
 import { ResultExamComponent } from './exam/result-exam/result-exam.component';
 import { AddexamComponent } from './exam/addexam/addexam.component';
 import { UserManagementComponent } from './admin/user-management/user-management.component';
-import { AuthGuard } from './_guards/index';
+import { AuthGuard, DeactivateGuard } from './_guards/index';
 import { ResetPasswordComponent } from './login/reset-password/reset-password.component';
 import { ResourcesComponent } from './resources/resources.component';
 import { VideosComponent } from './resources/videos/videos.component';
@@ -24,6 +24,8 @@ import { AddResourceComponent } from './resources/add-resource/add-resource.comp
 import { QuestionsUploadComponent } from './admin/questions-upload/questions-upload.component';
 import { MyProfileComponent } from './register/my-profile/my-profile.component';
 import { ResetPasswordAdminComponent } from './admin/reset-password-admin/reset-password-admin.component';
+import { UserExamReportComponent } from './reports/user-exam-report/user-exam-report.component';
+import { ExamReportDetailsComponent } from './reports/exam-report-details/exam-report-details.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -41,7 +43,8 @@ const appRoutes: Routes = [
   { path: 'add-resource', component: AddResourceComponent, canActivate: [AuthGuard] },
   { path: 'exam', component: ExamComponent, canActivate: [AuthGuard],
      children : [
-        {path: 'view-exam/:examId', component: ViewExamComponent, canActivateChild: [ AuthGuard ]}
+        {path: 'view-exam/:examId', component: ViewExamComponent,
+         canActivateChild: [ AuthGuard ], canDeactivate: [DeactivateGuard] }
       ]
   },
   { path: 'completed-exams', component: CompletedExamsComponent, canActivate: [AuthGuard] },
@@ -54,7 +57,10 @@ const appRoutes: Routes = [
      ]
   },
   { path: 'my-profile', component: MyProfileComponent, canActivate: [AuthGuard] },
-  { path: 'reset-password-admin', component: ResetPasswordAdminComponent, canActivate: [AuthGuard] }
+  { path: 'reset-password-admin', component: ResetPasswordAdminComponent, canActivate: [AuthGuard] },
+  { path: 'user-exam-report', component: UserExamReportComponent, canActivate: [AuthGuard] },
+  { path: 'exam-report-detials/:registrationId', component: ExamReportDetailsComponent, canActivate: [AuthGuard] }
+
 ];
 
 @NgModule({

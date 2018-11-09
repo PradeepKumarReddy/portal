@@ -31,9 +31,7 @@ export class AddexamComponent implements OnInit {
       },
       () => console.log('loaded Questions successful')
     );
-  // this.questions = [{"id" : 1, "questionDesc": "Test", 'isAnswered': false},
-  // {"id" : 2, "questionDesc": "Test2", 'isAnswered': false}];
-  }
+   }
   createExam() {
   this.addExamService.addExam(this.exam).subscribe(
       (res: Exam) => {

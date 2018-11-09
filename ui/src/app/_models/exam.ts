@@ -6,4 +6,7 @@ examDescription?: string;
 examDate?: Date;
 active?: boolean;
 questions?: Question[];
+totalNoOfQuestions?: number;
+noOfAnsweredQuestions?: number;
+attended?: boolean;
 }

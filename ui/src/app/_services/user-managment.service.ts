@@ -17,6 +17,9 @@ export class UserManagmentService {
   getAllApplicationUsers(): Observable<User[]> {
   return this.http.get<User[]>(API_URL + '/api/get/allUsers', httpOptions);
   }
+  getAllEnabledApplicationUsers(): Observable<User[]> {
+  return this.http.get<User[]>(API_URL + '/api/get/allEnabledUsers', httpOptions);
+  }
   disableUser(regId: string): Observable<User> {
   console.log(' regId ' + regId);
   return this.http.post<User>(API_URL + '/api/disableUser/' + regId, httpOptions);

@@ -37,7 +37,7 @@
 							<h5>{{p}}. <span>{{question.questionDesc}}</span></h5>
 						</div>
 					</div>
-					<div class="row">
+					<div class="row" *ngIf="question.multipleAns">
 						<div class="col-md-6 text-left options" *ngFor="let option of question.options">
 							<div class="option">
 								<label class="" for="{{option.id}}"></label>
@@ -46,6 +46,16 @@
 								(change)="onSelect(question, option)" />
 								{{option.optionDesc}}
 							</div>
+						</div>
+					</div>
+					<div class="row" *ngIf="!question.multipleAns">
+						<div class="col-md-6 text-left options" *ngFor="let option of question.options">
+							
+								<input type="radio" name="question.id" 
+								(click)="onRadio(question, option)" 
+								[checked]="option.selected"/>
+								{{option.optionDesc}}
+							
 						</div>
 					</div>
 				</div>
@@ -59,8 +69,13 @@
     	</div>
     </div>
 </div>
-`	<div class="container-fluid" *ngIf="examSubmit">
-	<h3><span>Exam Submitted</span></h3>
+`
+<!--
+<div class="container-fluid" *ngIf="examSubmit">
+	<h3><span>Exam Results: {{resultExam.noOfAnsweredQuestions}} / {{resultExam.totalNoOfQuestions}} </span>
+		<br>
+		
+	</h3>
 
 	
 		<div *ngFor="let question of resultQuestions; let i = index ">
@@ -76,7 +91,6 @@
 							</h6>
 							
 					</div>
-				
 				
 					<div class="col-md-12">
 						<span class="badge badge-pill badge-success">Your Answer is Correct</span>
@@ -104,3 +118,4 @@
 			</div>
 		</div>
 </div>
+-->

@@ -63,6 +63,12 @@ public class ApplicationUserController {
 		return userRepository.findAll();
 	}
 	
+	@GetMapping("/get/allEnabledUsers")
+	public List<ApplicationUser> getAllEnabledApplicationUsers() {
+		logger.info("getAllEnabledApplicationUsers");
+		return userRepository.getAllEnabledApplicationUsers();
+	}
+	
 	@GetMapping("/getUser/{regId}")
 	public ApplicationUser getUserByUsername(@PathVariable String regId) {
 		ApplicationUser applicationUser = userRepository.findByUsername(regId);

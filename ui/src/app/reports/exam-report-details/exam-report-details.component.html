@@ -1,0 +1,35 @@
+<div class="row">
+    <div class="col-md-6">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Exam Id</th>
+            <th scope="col">Exam Name</th>
+            <th scope="col">Date</th>
+            <th scope="col">Attended</th>
+            <th scope="col">Total Answered Questions</th>
+            <th scope="col">Total Questions</th>
+          </tr>
+        </thead>
+        <tbody>
+         <tr *ngFor="let exam of exams | paginate: { itemsPerPage: 10, currentPage: p }
+         ; let i = index ">
+          <td>{{exam.id}}</td>
+      	  <td>{{exam.examName}}</td>
+      	  <td>{{exam.examDate | date: 'dd/MM/yyyy' }}</td>
+          <td>{{exam.attended}}</td>
+          <td>{{exam.noOfAnsweredQuestions}}</td>
+          <td>{{exam.totalNoOfQuestions}}</td>
+          </tr>
+          <tr><pagination-controls (pageChange)="p = $event"></pagination-controls></tr>
+      	
+        </tbody>
+      </table>
+    </div>
+</div>
+<div class="row">
+  <div class="col-md-1">
+  <button type="button" class="btn btn-info btn-sm" 
+  data-toggle="modal" (click)="goBack()">GoBack</button>
+  </div>
+</div>

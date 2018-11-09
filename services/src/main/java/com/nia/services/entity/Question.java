@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -25,6 +26,18 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Question {
 	
+	
+	
+	public Question() {
+		super();
+	}
+	
+
+	public Question(Long id) {
+		super();
+		this.id = id;
+	}
+
 	@Id
 	@Column(name = "question_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,11 +51,15 @@ public class Question {
 			orphanRemoval = true,
 			mappedBy="question"
     )
+	@OrderBy("id asc")
 	@JsonManagedReference
 	private Set<QuestionOption> options = new HashSet<>();
 	
 	@Column(name="is_active")
 	private boolean isActive;
+	
+	@Column(name="multiple_ans")
+	private boolean multipleAns;
 	
 	@ManyToOne(fetch = FetchType.LAZY,
 			cascade = CascadeType.ALL)
@@ -129,6 +146,39 @@ public class Question {
 
 	public void setAnswered(boolean answered) {
 		this.answered = answered;
+	}
+
+	public boolean isMultipleAns() {
+		return multipleAns;
+	}
+
+	public void setMultipleAns(boolean multipleAns) {
+		this.multipleAns = multipleAns;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Question other = (Question) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
 	}
 
 	

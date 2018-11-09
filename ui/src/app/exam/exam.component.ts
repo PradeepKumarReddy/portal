@@ -37,12 +37,12 @@ registrationId: string;
   this.examService.saveUserExam(examId, username).subscribe(
       (res: any) => {
        console.log(res);
+       this.examStarted = true;
+       this.router.navigate(['view-exam', examId], {relativeTo : this.route});
        },
      err => console.error(err),
       () => console.log('loaded Exam successful')
     );
-  this.examStarted = true;
-  this.router.navigate(['view-exam', examId], {relativeTo : this.route});
   }
 
   endExam() {

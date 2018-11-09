@@ -4,6 +4,9 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import {Observable} from 'rxjs/Observable';
 import { Exam, Question, UserExam, UserResponse, QuestionOption } from '../../_models/index';
 import { ExamService, GlobalService } from '../../_services/index';
+import { BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalRef } from 'ngx-bootstrap/modal';
+import { ConfirmationComponent } from '../../confirmation/confirmation.component';
 
 const httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json; charset=utf-8',
@@ -25,10 +28,10 @@ export class ViewExamComponent implements OnInit {
   examSubmit: boolean;
   resultExam: Exam;
   resultQuestions: Question[] = [];
-
   constructor(private router: Router,
   private route: ActivatedRoute, private examService: ExamService,
-  public globalService: GlobalService) { }
+  public globalService: GlobalService,
+  private modalService: BsModalService) { }
   ngOnInit() {
   this.examSubmit = false;
   this.route.params.subscribe((params: Params) => {
@@ -50,20 +53,25 @@ export class ViewExamComponent implements OnInit {
   } else {
     question.isAnswered = false;
   }
-  
+  console.log(question);
   }
-  onSelect_old(question , option) {
-  question.isAnswered = false;
-  question.options.forEach (function(element, index, array) {
-  if (element.id !== option.id) {
-        element.selected = false;
-      }
-  });
+
+  onRadio(question , option) {
+  let anyOptionSelected = false;
   question.options.forEach (function(element) {
-  if (element.selected) {
-      question.isAnswered = true;
+    if (element.id === option.id) {
+      element.selected = true;
+      anyOptionSelected = true;
+    } else {
+      element.selected = false;
     }
   });
+  if(anyOptionSelected) {
+    question.isAnswered = true;
+  } else {
+    question.isAnswered = false;
+  }
+  console.log(question);
   }
   gotoQuestion(i) {
   this.p = i + 1;
@@ -80,6 +88,7 @@ export class ViewExamComponent implements OnInit {
   }
   endExam() {
     const registrationId = this.globalService.localStorageItem('currentUser');
+    this.userExam.userResponses = [];
     this.questions.forEach((question) => {
         
         question.options.forEach(
@@ -100,15 +109,20 @@ export class ViewExamComponent implements OnInit {
         (res: Exam) => {
          this.resultExam = res;
          this.resultQuestions = [...res.questions];
-         console.log(res);
+         console.log('Exam Completed');
+         //this.examSubmit = true;
+         this.viewExam(this.userExam.id, registrationId);
          },
         err => console.error(err),
         () => console.log('endExam successful')
       );
     }, 1000);
-    console.log('questions' + this.questions);
-    console.log('Exam Completed');
-    this.examSubmit = true;
+    
+    /*setTimeout( () => {
+    
+    }, 1000);
+    */
+    
   }
 
  getStyle(option: QuestionOption) {
@@ -128,9 +142,26 @@ export class ViewExamComponent implements OnInit {
  this.examService.getUserExamByExamIdAndUsername(examId, registrationId).subscribe(
   (res: UserExam) => {
   this.userExam = res;
+  console.log('loadUserExam');
+  console.log(this.userExam);
   },
   err => console.error(err),
   () => console.log('loadUserExam successful')
  );
  }
+
+ canDeactivate(): Observable<boolean> | boolean {
+  return this.openConfirmDialog();
+ }
+ modalRef: BsModalRef;
+ openConfirmDialog() {
+    this.modalRef = this.modalService.show(ConfirmationComponent);
+    return this.modalRef.content.onClose.map(result => {
+        return result;
+    })
+  }
+
+  viewExam(userExamId: number, username: string) {
+  this.router.navigate(['result-exam', userExamId, username]);
+  }
 }

@@ -13,6 +13,7 @@ export class HeaderComponent implements OnInit {
 user: User;
 regId: string;
 isAdminUserLoggedIn$: Observable<boolean>;
+isAdmin: boolean;
 isLoggedIn$: Observable<boolean>;
 constructor(private router: Router, private route: ActivatedRoute,
 public app: GlobalService,
@@ -20,6 +21,13 @@ public authService: AuthService,
 public registerService: RegisterService) { }
 ngOnInit() {
 this.isAdminUserLoggedIn$ = this.authService.isAdminUserLoggedIn;
+this.isAdminUserLoggedIn$.subscribe(
+	(res: boolean) => {
+		this.isAdmin = res;
+	},
+	(err) =>  console.log(err),
+	() => console.log('fetch isadmin')
+);
 this.isLoggedIn$ = this.authService.isLoggedIn;
 }
 logout() {

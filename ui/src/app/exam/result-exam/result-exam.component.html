@@ -1,10 +1,24 @@
 <div class="container-fluid">
-	<h3><span>Review Exam: {{resultExam.examName}}</span></h3>
+	<div class="bg-primary text-white">
+	<span>Review Exam: {{resultExam.examName}}</span>
+	</div>
+	<br>
+	<span>Exam Results: {{resultExam.noOfAnsweredQuestions}} / {{resultExam.totalNoOfQuestions}}  (Correct Answers/ Total No Of Questions)</span>
+	
+
+	<div class="text-success">Correct Option Colour</div>
+	<div class="text-warning">Your Option Colour</div>
+				
+	
 		<div *ngFor="let question of resultQuestions; let i = index ">
 			<div class="row" *ngIf="question.correctAnswered">
 				
 					<div class="col-md-12 badge badge-dark">
-						<h5><span class="">{{question.questionDesc}}</span></h5>
+						<h5><span class="">{{question.questionDesc}}</span></h5> 
+						<div *ngIf="question.multipleAns">
+							Multiple Answer Question
+						</div>
+						
 					</div>
 				
 					<div class="col-md-12 text-left options badge badge-light" *ngFor="let option of question.options"> 
@@ -18,6 +32,9 @@
 			<div class="row" *ngIf="!question.correctAnswered">
 					<div class="col-md-12 badge badge-dark">
 						<h5><span class="">{{question.questionDesc}}</span></h5>
+						<div *ngIf="question.multipleAns">
+							Multiple Answer Question
+						</div>
 					</div>
 					<div class="col-md-12 text-left options badge badge-light" *ngFor="let option of question.options">
 						<h6><span [ngClass]="(option.userSelect && option.answer) ? 'text-success' : ((option.answer) ? 'text-success' : ((option.userSelect) ? 'text-warning' : 'text-muted'))">{{option.optionDesc}}</span>

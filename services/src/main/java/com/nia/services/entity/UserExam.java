@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -38,6 +39,12 @@ public class UserExam {
 	
 	@Column(name = "EXAM_ID")
 	private Long examId;
+	
+	@Column(name="TOTAL_QUESTIONS")
+	private int totalNoOfQuestions;
+	
+	@Column(name="ANSWERED_QUESTIONS")
+	private int noOfAnsweredQuestions;
 
 	public Long getId() {
 		return id;
@@ -69,6 +76,22 @@ public class UserExam {
 
 	public void setExamId(Long examId) {
 		this.examId = examId;
+	}
+
+	public int getTotalNoOfQuestions() {
+		return totalNoOfQuestions;
+	}
+
+	public void setTotalNoOfQuestions(int totalNoOfQuestions) {
+		this.totalNoOfQuestions = totalNoOfQuestions;
+	}
+
+	public int getNoOfAnsweredQuestions() {
+		return noOfAnsweredQuestions;
+	}
+
+	public void setNoOfAnsweredQuestions(int noOfAnsweredQuestions) {
+		this.noOfAnsweredQuestions = noOfAnsweredQuestions;
 	}
 
 }

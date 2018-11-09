@@ -11,3 +11,4 @@ export * from './reset-password.service';
 export * from './alert.service';
 export * from './subject.service';
 export * from './contact-us.service';
+export * from './reports.service';

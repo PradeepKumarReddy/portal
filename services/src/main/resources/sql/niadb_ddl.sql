@@ -71,8 +71,14 @@ CREATE TABLE `exam` (
 CREATE TABLE `question` (
   `question_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `question_desc` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`question_id`)
-) ENGINE=InnoDB  AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+  `is_active` bit(1) DEFAULT NULL,
+  `exam_id` bigint(20) DEFAULT NULL,
+  `multiple_ans` bit(1) DEFAULT NULL,
+  PRIMARY KEY (`question_id`),
+  KEY `FKhupso6ldavcx993tfnrjsdl1p` (`exam_id`),
+  CONSTRAINT `FKhupso6ldavcx993tfnrjsdl1p` FOREIGN KEY (`exam_id`) REFERENCES `exam` (`exam_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
 
 CREATE TABLE `question_option` (
   `option_id` bigint(20) NOT NULL AUTO_INCREMENT,
@@ -196,6 +202,15 @@ CREATE TABLE `CONTACTUS` (
 INSERT INTO `contactus` (`email1`,`email2`,`phone1`,`phone2`)
 VALUES
 ('admin@nakshatraacademy.in','','08217037454','080-43741208');
+
+--
+
+ALTER TABLE USER_EXAM
+ADD TOTAL_QUESTIONS int DEFAULT 0;
+
+
+ALTER TABLE USER_EXAM
+ADD ANSWERED_QUESTIONS int DEFAULT 0;
 
 
 --SET SQL_SAFE_UPDATES = 0;

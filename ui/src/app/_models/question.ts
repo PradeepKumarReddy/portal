@@ -9,4 +9,5 @@ userResponse?: UserResponse;
 resultDesc?: string;
 correctAnswered?: boolean;
 answered?: boolean;
+multipleAns?:boolean;
 }
