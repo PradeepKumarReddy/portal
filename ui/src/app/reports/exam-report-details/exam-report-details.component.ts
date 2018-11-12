@@ -15,25 +15,23 @@ export class ExamReportDetailsComponent implements OnInit {
   exams: Exam[];
   registrationId: string;
   constructor(private router: Router, private route: ActivatedRoute,
-  private reportsService: ReportsService) { 
+  private reportsService: ReportsService) {
   }
-
   ngOnInit() {
-  this.route.params.subscribe((params: Params) => {	
+  this.route.params.subscribe((params: Params) => {
   this.registrationId = params['registrationId'];
   });
   this.getCompletedExams(this.registrationId);
   }
-
   getCompletedExams(regId: string) {
-  	this.reportsService.getCompletedExamsByUser(regId).subscribe(
-      (res: Exam[]) => {
-       console.log(res);
-       this.exams = [...res];
-       },
-      err => console.error(err),
-      () => console.log('loaded completed exams successful')
-    );
+ this.reportsService.getCompletedExamsByUser(regId).subscribe(
+  (res: Exam[]) => {
+   console.log(res);
+   this.exams = [...res];
+   },
+  err => console.error(err),
+  () => console.log('loaded completed exams successful')
+  );
   }
 
   goBack() {

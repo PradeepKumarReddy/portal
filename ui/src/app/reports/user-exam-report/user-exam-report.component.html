@@ -9,8 +9,7 @@
           </tr>
         </thead>
         <tbody>
-         <tr *ngFor="let user of users | paginate: { itemsPerPage: 10, currentPage: p }
-         | enabledUsers : userEnabled ; let i = index ">
+         <tr *ngFor="let user of users | paginate: { itemsPerPage: 10, currentPage: p } ; let i = index ">
       	  <td>{{user.username}}</td>
       	  <td>{{user.userRegister.firstName}} {{user.userRegister.lastName}} </td>
           <td><a [routerLink]="'/exam-report-detials/'+user.username">Completed Exams</a></td>

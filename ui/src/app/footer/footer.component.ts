@@ -11,7 +11,7 @@ import { ContactUsService } from '../_services/index';
 export class FooterComponent implements OnInit {
 
   constructor(private contactUsService: ContactUsService) {
-  	this.contactUs = {};
+  this.contactUs = {};
   }
   contactUs: Contactus;
   ngOnInit() {

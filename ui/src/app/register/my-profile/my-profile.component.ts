@@ -26,11 +26,10 @@ export class MyProfileComponent implements OnInit {
   }
 
   getUserDetails() {
-  var regId = this.globalService.localStorageItem('currentUser');
+  const regId = this.globalService.localStorageItem('currentUser');
   this.registerService.getRegisterUserByRegId(regId)
   .then(
     (userRegister: UserRegister) => {
-   // this.registerSuccess = true;
     this.registerModel = userRegister;
     })
   .catch(

@@ -16,7 +16,7 @@ export class DeactivateGuard implements CanDeactivate<ComponentCanDeactivate> {
 
   modalRef: BsModalRef;
 
-  constructor(private modalService: BsModalService) {};
+  constructor(private modalService: BsModalService) {}
 
   canDeactivate(component: ComponentCanDeactivate): boolean | Observable<boolean> {
   return component.canDeactivate ? component.canDeactivate() : true;

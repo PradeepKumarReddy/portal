@@ -17,7 +17,6 @@ import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.mysql.jdbc.StringUtils;
 
 @Entity
 @Table(name="EXAM")
@@ -177,7 +176,7 @@ public class Exam implements Comparable<Exam>{
 		this.totalNoOfQuestions = totalNoOfQuestions;
 		this.noOfAnsweredQuestions = noOfAnsweredQuestions;
 		this.marks = marks;
-		if(StringUtils.isNullOrEmpty(username)) {
+		if(username == null || (username != null && username.length() == 0)) {
 			setAttended(false);
 		} else {
 			setAttended(true);

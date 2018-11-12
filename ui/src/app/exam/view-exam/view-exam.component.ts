@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
@@ -18,16 +18,17 @@ const httpOptions = {
   templateUrl: './view-exam.component.html',
   styleUrls: ['./view-exam.component.css']
 })
-export class ViewExamComponent implements OnInit {
+export class ViewExamComponent implements OnInit, OnDestroy {
   p = 1;
   exam: Exam ;
   examId: number;
   questions: Question[] = [];
   userExam: UserExam;
   userResponse?: UserResponse;
-  examSubmit: boolean = false;
+  examSubmit = false;
   resultExam: Exam;
   resultQuestions: Question[] = [];
+  modalRef: BsModalRef;
   constructor(private router: Router,
   private route: ActivatedRoute, private examService: ExamService,
   public globalService: GlobalService,
@@ -46,9 +47,9 @@ export class ViewExamComponent implements OnInit {
   question.options.forEach (function(element) {
     if (element.selected) {
       anyOptionSelected = true;
-    } 
+    }
   });
-  if(anyOptionSelected) {
+  if (anyOptionSelected) {
     question.isAnswered = true;
   } else {
     question.isAnswered = false;
@@ -66,7 +67,7 @@ export class ViewExamComponent implements OnInit {
       element.selected = false;
     }
   });
-  if(anyOptionSelected) {
+  if (anyOptionSelected) {
     question.isAnswered = true;
   } else {
     question.isAnswered = false;
@@ -90,8 +91,7 @@ export class ViewExamComponent implements OnInit {
     const registrationId = this.globalService.localStorageItem('currentUser');
     this.userExam.userResponses = [];
     this.questions.forEach((question) => {
-        
-        question.options.forEach(
+      question.options.forEach(
           (option) => {
             if (option.selected) {
             this.userResponse = new UserResponse();
@@ -101,7 +101,6 @@ export class ViewExamComponent implements OnInit {
             }
           }
         );
-        
     });
     console.log(this.userExam);
    setTimeout( () => {
@@ -117,10 +116,7 @@ export class ViewExamComponent implements OnInit {
         () => console.log('endExam successful')
       );
     }, 1000);
-    
-   
-  }
-
+ }
  getStyle(option: QuestionOption) {
     console.log('getStyle');
     if (option.userSelect && option.answer) {
@@ -149,12 +145,11 @@ export class ViewExamComponent implements OnInit {
  /*canDeactivate(): Observable<boolean> | boolean {
   return this.openConfirmDialog();
  }*/
- modalRef: BsModalRef;
  openConfirmDialog() {
     this.modalRef = this.modalService.show(ConfirmationComponent);
     return this.modalRef.content.onClose.map(result => {
         return result;
-    })
+    });
   }
 
   viewExam(userExamId: number, username: string) {
@@ -162,8 +157,8 @@ export class ViewExamComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    console.log("ngOnDestroy");
-    if(!this.examSubmit) {
+    console.log('ngOnDestroy');
+    if (!this.examSubmit) {
       console.log(this.examSubmit);
       this.endExam();
     }

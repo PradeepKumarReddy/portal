@@ -14,7 +14,7 @@ const API_URL = environment.apiUrl;
 export class ContactUsService {
 
   constructor(private http: HttpClient) { }
-  getContactUs():Observable<Contactus> {
+  getContactUs(): Observable<Contactus> {
   return this.http.get<Contactus>(API_URL + '/api/get/contactUs', httpOptions);
   }
 }

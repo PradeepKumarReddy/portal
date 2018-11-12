@@ -62,9 +62,7 @@ const appRoutes: Routes = [
   { path: 'user-exam-report', component: UserExamReportComponent, canActivate: [AuthGuard] },
   { path: 'exam-report-detials/:registrationId', component: ExamReportDetailsComponent, canActivate: [AuthGuard] },
   { path: 'schedule', component: ScheduleComponent }
-  
-
-];
+  ];
 
 @NgModule({
   imports: [
