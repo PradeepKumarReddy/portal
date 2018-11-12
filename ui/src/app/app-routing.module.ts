@@ -26,6 +26,7 @@ import { MyProfileComponent } from './register/my-profile/my-profile.component';
 import { ResetPasswordAdminComponent } from './admin/reset-password-admin/reset-password-admin.component';
 import { UserExamReportComponent } from './reports/user-exam-report/user-exam-report.component';
 import { ExamReportDetailsComponent } from './reports/exam-report-details/exam-report-details.component';
+import { ScheduleComponent } from './admin/schedule/schedule.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -59,7 +60,9 @@ const appRoutes: Routes = [
   { path: 'my-profile', component: MyProfileComponent, canActivate: [AuthGuard] },
   { path: 'reset-password-admin', component: ResetPasswordAdminComponent, canActivate: [AuthGuard] },
   { path: 'user-exam-report', component: UserExamReportComponent, canActivate: [AuthGuard] },
-  { path: 'exam-report-detials/:registrationId', component: ExamReportDetailsComponent, canActivate: [AuthGuard] }
+  { path: 'exam-report-detials/:registrationId', component: ExamReportDetailsComponent, canActivate: [AuthGuard] },
+  { path: 'schedule', component: ScheduleComponent }
+  
 
 ];
 

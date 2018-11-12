@@ -44,6 +44,9 @@ registerModel: UserRegister;
   });
   return promise;
   }
+  sendRegisterEmail(regId: string): Observable<boolean> {
+  return this.http.get<boolean>(API_URL + '/api/user/sendRegisterEmail/' + regId, httpOptions);
+  }
   getRegisterUser(id: number) {
   const promise = new Promise((resolve, reject) => {
 

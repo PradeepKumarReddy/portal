@@ -25,7 +25,7 @@ export class ViewExamComponent implements OnInit {
   questions: Question[] = [];
   userExam: UserExam;
   userResponse?: UserResponse;
-  examSubmit: boolean;
+  examSubmit: boolean = false;
   resultExam: Exam;
   resultQuestions: Question[] = [];
   constructor(private router: Router,
@@ -110,7 +110,7 @@ export class ViewExamComponent implements OnInit {
          this.resultExam = res;
          this.resultQuestions = [...res.questions];
          console.log('Exam Completed');
-         //this.examSubmit = true;
+         this.examSubmit = true;
          this.viewExam(this.userExam.id, registrationId);
          },
         err => console.error(err),
@@ -118,11 +118,7 @@ export class ViewExamComponent implements OnInit {
       );
     }, 1000);
     
-    /*setTimeout( () => {
-    
-    }, 1000);
-    */
-    
+   
   }
 
  getStyle(option: QuestionOption) {
@@ -150,9 +146,9 @@ export class ViewExamComponent implements OnInit {
  );
  }
 
- canDeactivate(): Observable<boolean> | boolean {
+ /*canDeactivate(): Observable<boolean> | boolean {
   return this.openConfirmDialog();
- }
+ }*/
  modalRef: BsModalRef;
  openConfirmDialog() {
     this.modalRef = this.modalService.show(ConfirmationComponent);
@@ -163,5 +159,13 @@ export class ViewExamComponent implements OnInit {
 
   viewExam(userExamId: number, username: string) {
   this.router.navigate(['result-exam', userExamId, username]);
+  }
+
+  ngOnDestroy() {
+    console.log("ngOnDestroy");
+    if(!this.examSubmit) {
+      console.log(this.examSubmit);
+      this.endExam();
+    }
   }
 }

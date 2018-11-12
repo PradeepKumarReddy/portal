@@ -45,6 +45,9 @@ public class UserExam {
 	
 	@Column(name="ANSWERED_QUESTIONS")
 	private int noOfAnsweredQuestions;
+	
+	@Column(name="TOTAL_MARKS")
+	private double totalMarks;
 
 	public Long getId() {
 		return id;
@@ -93,5 +96,14 @@ public class UserExam {
 	public void setNoOfAnsweredQuestions(int noOfAnsweredQuestions) {
 		this.noOfAnsweredQuestions = noOfAnsweredQuestions;
 	}
+
+	public double getTotalMarks() {
+		return totalMarks;
+	}
+
+	public void setTotalMarks(double totalMarks) {
+		this.totalMarks = totalMarks;
+	}
+	
 
 }

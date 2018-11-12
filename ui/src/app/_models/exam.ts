@@ -9,4 +9,5 @@ questions?: Question[];
 totalNoOfQuestions?: number;
 noOfAnsweredQuestions?: number;
 attended?: boolean;
+totalMarks?: number;
 }

@@ -123,40 +123,51 @@ public class Exam implements Comparable<Exam>{
 	}
 	
 	@Transient
-	private int totalNoOfQuestions;
+	private Integer totalNoOfQuestions;
 	
 	@Transient
-	private int noOfAnsweredQuestions;
+	private Integer noOfAnsweredQuestions;
 	
 	@Transient
-	private boolean attended;
+	private Boolean attended;
+	
+	@Transient
+	private Double marks;
 
-	public int getTotalNoOfQuestions() {
+	public Integer getTotalNoOfQuestions() {
 		return totalNoOfQuestions;
 	}
 
-	public void setTotalNoOfQuestions(int totalNoOfQuestions) {
+	public void setTotalNoOfQuestions(Integer totalNoOfQuestions) {
 		this.totalNoOfQuestions = totalNoOfQuestions;
 	}
 
-	public int getNoOfAnsweredQuestions() {
+	public Integer getNoOfAnsweredQuestions() {
 		return noOfAnsweredQuestions;
 	}
 
-	public void setNoOfAnsweredQuestions(int noOfAnsweredQuestions) {
+	public void setNoOfAnsweredQuestions(Integer noOfAnsweredQuestions) {
 		this.noOfAnsweredQuestions = noOfAnsweredQuestions;
 	}
 
-	public boolean isAttended() {
+	public Boolean getAttended() {
 		return attended;
 	}
 
-	public void setAttended(boolean attended) {
+	public void setAttended(Boolean attended) {
 		this.attended = attended;
 	}
 
+	public Double getMarks() {
+		return marks;
+	}
+
+	public void setMarks(Double marks) {
+		this.marks = marks;
+	}
+	
 	public Exam(Long id, String examDescription, Date examDate, String examName, boolean isActive,
-			int totalNoOfQuestions, int noOfAnsweredQuestions, String username) {
+			Integer totalNoOfQuestions, Integer noOfAnsweredQuestions, Double marks, String username) {
 		super();
 		this.id = id;
 		this.examDescription = examDescription;
@@ -165,12 +176,14 @@ public class Exam implements Comparable<Exam>{
 		this.isActive = isActive;
 		this.totalNoOfQuestions = totalNoOfQuestions;
 		this.noOfAnsweredQuestions = noOfAnsweredQuestions;
+		this.marks = marks;
 		if(StringUtils.isNullOrEmpty(username)) {
 			setAttended(false);
 		} else {
 			setAttended(true);
 		}
 	}
+
 
 	public Exam() {
 		super();
@@ -181,10 +194,5 @@ public class Exam implements Comparable<Exam>{
 		return id.compareTo(o.getId());
 	}
 
-	/*@Override
-	public int compareTo(Long o) {
-		return o.compareTo(this.id);
-	}
-	*/
 	
 }

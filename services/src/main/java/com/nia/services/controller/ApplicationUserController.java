@@ -1,15 +1,17 @@
 package com.nia.services.controller;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 
+import javax.transaction.Transactional;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -23,11 +25,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.nia.services.Application;
 import com.nia.services.entity.ApplicationUser;
+import com.nia.services.entity.BackupUserRegister;
 import com.nia.services.entity.Role;
 import com.nia.services.entity.UserRegister;
 import com.nia.services.mail.EmailServiceImpl;
 import com.nia.services.mail.Mail;
 import com.nia.services.repository.ApplicationUserRepository;
+import com.nia.services.repository.BackupUserRegisterRepository;
 import com.nia.services.repository.RoleRepository;
 import com.nia.services.repository.UserRegisterRepository;
 
@@ -47,6 +51,9 @@ public class ApplicationUserController {
 	
 	@Autowired
     private RoleRepository roleRepository;
+	
+	@Autowired
+	private BackupUserRegisterRepository backupUserRegisterRepo;
 
 	@Autowired
 	EmailServiceImpl emailServiceImpl;
@@ -203,4 +210,32 @@ public class ApplicationUserController {
 		newUser.setPassword(bCryptPasswordEncoder.encode(applicationUser.getPassword()));
 		return userRepository.save(newUser);
 	}
+	
+	@PostMapping("/deleteUser/{regId}")
+	@Transactional
+    public boolean deleteUser(@PathVariable String regId) {
+    	boolean ret = false;
+    	try {
+    	// create backup user
+    	UserRegister userRegister = registerRepository.findByRegistrationId(regId);
+    	ApplicationUser application_user = userRepository.findByUsername(regId);
+    	BackupUserRegister backupUserRegister = new BackupUserRegister();
+    	BeanUtils.copyProperties(userRegister, backupUserRegister);
+    	backupUserRegisterRepo.save(backupUserRegister);
+    	
+    	/* cleaning up users
+    	delete from users_roles;
+    	delete from application_user;
+    	delete from user_register;
+    	*/
+    	
+    	userRepository.deleteById(application_user.getId());
+    	registerRepository.deleteById(userRegister.getId());
+    	ret = true;
+    	} catch (Exception e) {
+    		e.printStackTrace();
+    		ret = false;
+    	}
+    	return ret;
+    }
 }

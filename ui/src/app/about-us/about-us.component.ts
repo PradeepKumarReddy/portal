@@ -24,4 +24,4 @@ export class AboutUsComponent implements OnInit {
       () => console.log('loaded ContactUs successful')
   );
   }
-}
+ }

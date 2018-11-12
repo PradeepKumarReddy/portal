@@ -1,6 +1,8 @@
 package com.nia.services.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +27,7 @@ public class UserRegisterController {
 	@Autowired
 	private Environment env;
 	
+	@Autowired
 	private UserRegisterRepository registerRepository;
 	
 	@Autowired
@@ -63,6 +66,20 @@ public class UserRegisterController {
     	return registerRepository.getOne(savedUser.getId());
     }
 	
+	@GetMapping("/sendRegisterEmail/{regId}")
+    public boolean sendRegisterEmail(@PathVariable String regId) {
+    	UserRegister savedUser = registerRepository.findByRegistrationId(regId);
+    	boolean success = false;
+    	try {
+			sendSimpleMessage(savedUser);
+			success = true;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	return success;
+    }
+	
 	@GetMapping("/get/regId/{regId}")
 	public UserRegister getRegisterUserByRegId(@PathVariable String regId) {
 		return registerRepository.findByRegistrationId(regId);
@@ -82,8 +99,16 @@ public class UserRegisterController {
        // model.put("location", "Belgium");
        // model.put("signature", "https://memorynotfound.com");
         mail.setModel(model);
+        
+        List<String> mails = new ArrayList<>();
+        mails.add(savedUser.getEmail());
+        mails.add("admin@nakshatraacademy.in");
 
+        mail.setMultipleRecipients(mails);
+        
         emailServiceImpl.sendSimpleMessage(mail);
     }
+    
+    
 
 }

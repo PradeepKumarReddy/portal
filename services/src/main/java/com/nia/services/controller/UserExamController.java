@@ -98,7 +98,12 @@ public class UserExamController {
 		UserExam resultExam = userExamRepository.getOne(userExamId);
 
 		Exam exam = repo.getOne(resultExam.getExamId());
+		try {
 		prepareResultExam(resultExam, exam, false);
+		} catch(Exception e) {
+			
+			e.printStackTrace();
+		}
 		
 		return exam;
 	}
@@ -137,7 +142,11 @@ public class UserExamController {
 		UserExam resultExam = userExamRepository.save(userExam);
 		
 		Exam exam = repo.getOne(userExam.getExamId());
+		try {
 		prepareResultExam(resultExam, exam, true);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 		return exam;
 	}
@@ -216,12 +225,16 @@ public class UserExamController {
 		Map<Long, List<UserResponse>> userAnswers = resultExam.getUserResponses().stream()
 	       .collect(Collectors.groupingBy(
 	    		UserResponse :: getQuestionId,
-	            Collectors.toCollection(ArrayList::new)));
+	    		Collectors.toList()));
+	            // Collectors.toCollection(ArrayList::new)));
 		int correctAnswers = 0;
 			
 		for(Question question : exam.getQuestions()) {
 			
 			List<Long> answers = questionAnswers.get(question.getId());
+			boolean allAnswered = false;
+			System.out.println(userAnswers.get(question.getId()));
+			if (userAnswers.get(question.getId()) != null) {
 			List<Long> responses = userAnswers.get(question.getId()).stream().map( res -> res.getOptionId()).collect(Collectors.toList());
 			for(QuestionOption opt: question.getOptions()) {
 				if(responses != null && responses.contains(opt.getId())) {
@@ -229,12 +242,12 @@ public class UserExamController {
 				}
 			}
 			
-			boolean allAnswered = answers.stream().allMatch(num -> responses.contains(num));
-
-			 if(allAnswered) {
-				 question.setCorrectAnswered(true);
-				 correctAnswers++;
-			 }
+			allAnswered = answers.stream().allMatch(num -> responses.contains(num));
+			}
+			if(allAnswered) {
+			 question.setCorrectAnswered(true);
+			 correctAnswers++;
+			}
 		
 		}
 		

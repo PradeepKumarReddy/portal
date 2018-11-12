@@ -28,4 +28,8 @@ export class UserManagmentService {
   console.log(' regId ' + regId);
   return this.http.post<User>(API_URL + '/api/enableUser/' + regId, httpOptions);
   }
+  deleteUser(regId: string): Observable<boolean> {
+  console.log(' regId ' + regId);
+  return this.http.post<boolean>(API_URL + '/api/deleteUser/' + regId, httpOptions);
+  }
 }

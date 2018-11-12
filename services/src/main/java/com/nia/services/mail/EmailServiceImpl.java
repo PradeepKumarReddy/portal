@@ -47,7 +47,12 @@ public class EmailServiceImpl {
         context.setVariables(mail.getModel());
         String html = templateEngine.process("welcome", context);
 
-        helper.setTo(mail.getTo());
+        //helper.setTo(mail.getTo());
+        
+        List<String> emails = mail.getMultipleRecipients();
+    	String csvEmails = String.join(",", emails);
+    	message.setRecipients(Message.RecipientType.BCC, InternetAddress.parse(csvEmails));
+    	
         helper.setText(html, true);
         helper.setSubject(mail.getSubject());
         helper.setFrom(mail.getFrom());

@@ -9,6 +9,7 @@
             <th scope="col">Attended</th>
             <th scope="col">Total Answered Questions</th>
             <th scope="col">Total Questions</th>
+            <th scope="col">Total Marks</th>
           </tr>
         </thead>
         <tbody>
@@ -20,11 +21,13 @@
           <td>{{exam.attended}}</td>
           <td>{{exam.noOfAnsweredQuestions}}</td>
           <td>{{exam.totalNoOfQuestions}}</td>
+          <td>{{exam.totalMarks}} / {{exam.totalNoOfQuestions}}</td>
           </tr>
-          <tr><pagination-controls (pageChange)="p = $event"></pagination-controls></tr>
+          
       	
         </tbody>
       </table>
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
     </div>
 </div>
 <div class="row">

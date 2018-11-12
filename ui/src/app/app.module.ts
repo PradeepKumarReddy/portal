@@ -50,6 +50,7 @@ import { UserExamReportComponent } from './reports/user-exam-report/user-exam-re
 import { ExamReportDetailsComponent } from './reports/exam-report-details/exam-report-details.component';
 import { ConfirmationComponent } from './confirmation/confirmation.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { ScheduleComponent } from './admin/schedule/schedule.component';
 
 @NgModule({
   declarations: [
@@ -85,7 +86,8 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     EnabledUsersPipe,
     UserExamReportComponent,
     ExamReportDetailsComponent,
-    ConfirmationComponent
+    ConfirmationComponent,
+    ScheduleComponent
   ],
   imports: [
     BrowserModule,

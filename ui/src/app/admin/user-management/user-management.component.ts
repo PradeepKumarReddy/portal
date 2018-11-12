@@ -3,7 +3,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import { User } from '../../_models/index';
-import { UserManagmentService } from '../../_services/index';
+import { UserManagmentService, RegisterService } from '../../_services/index';
 
 @Component({
   selector: 'app-user-management',
@@ -15,11 +15,16 @@ export class UserManagementComponent implements OnInit {
   users: User[];
   userEnabled = true;
   constructor(private router: Router, private route: ActivatedRoute,
-  private userManagmentService: UserManagmentService) { }
+  private userManagmentService: UserManagmentService,
+  private registerService: RegisterService) { }
 
   ngOnInit() {
   this.userEnabled = true;
-  this.userManagmentService.getAllApplicationUsers().subscribe(
+  this.getAllApplicationUsers();
+  }
+
+  getAllApplicationUsers() {
+    this.userManagmentService.getAllApplicationUsers().subscribe(
       (res: User[]) => {
        console.log(res);
        this.users = [...res];
@@ -48,6 +53,28 @@ export class UserManagementComponent implements OnInit {
        },
       err => console.error(err),
       () => console.log('enabled user successful')
+  );
+  }
+
+  deleteUser(regId: string) {
+  this.userManagmentService.deleteUser(regId).subscribe(
+    (res: boolean) => {
+       console.log(res);
+       this.users = [];
+       this.getAllApplicationUsers();
+      },
+      err => console.error(err),
+      () => console.log('delete user successful')
+  );
+  }
+
+  sendRegisterEmail(regId: string) {
+    this.registerService.sendRegisterEmail(regId).subscribe(
+    (res: boolean) => {
+       console.log(res);
+      },
+      err => console.error(err),
+      () => console.log('register email send succesfully')
   );
   }
 }
