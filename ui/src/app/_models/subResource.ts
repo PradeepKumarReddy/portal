@@ -5,4 +5,5 @@ name?: string;
 resourceType?: string;
 resourceLink?: string;
 subject?: Subject;
+orderId?: number;
 }

@@ -36,6 +36,9 @@ public class SubResource {
 	
 	@Column(name="RES_LINK")
 	private String resourceLink;
+	
+	@Column(name="order_id")
+	private Long orderId;
 
 	public Long getId() {
 		return id;
@@ -76,6 +79,13 @@ public class SubResource {
 	public void setResourceLink(String resourceLink) {
 		this.resourceLink = resourceLink;
 	}
-	
+
+	public Long getOrderId() {
+		return orderId;
+	}
+
+	public void setOrderId(Long orderId) {
+		this.orderId = orderId;
+	}
 	
 }

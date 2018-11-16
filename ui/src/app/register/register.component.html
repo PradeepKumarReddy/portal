@@ -5,6 +5,7 @@
 	<a href="" class="float-right btn btn-outline-primary mt-1">Log in</a>
 	<h4 class="card-title mt-2">Sign up</h4>
 </header> -->
+<div *ngIf="displayRegister">
 <article class="card-body" *ngIf="!registerSuccess && !registerFailure">
 <form name="form" (submit)="f.form.valid && register()"  #f="ngForm" novalidate>
 	<div class="form-row">
@@ -150,6 +151,10 @@
 
 
 </article>
+</div>
+<div *ngIf="!displayRegister">
+	<label>Registrations are closed now.</label> 
+</div>
 
 </div>
 

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { UserRegister, User } from '../_models/index';
-import { RegisterService, AlertService } from '../_services/index';
+import { UserRegister, User, ShowRegister } from '../_models/index';
+import { RegisterService, AlertService, ContactUsService } from '../_services/index';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 
 import 'rxjs/add/operator/toPromise';
@@ -24,10 +24,12 @@ export class RegisterComponent implements OnInit {
   confirm_password: string;
   loading = false;
   error = '';
+  displayRegister = true;
 
   constructor (private router: Router, private route: ActivatedRoute,
   private registerService: RegisterService,
-  private alertService: AlertService) {
+  private alertService: AlertService,
+  private contactUsService: ContactUsService ) {
     this.route.params.subscribe( params =>
     console.log(params)
     );
@@ -35,6 +37,7 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
   this.registerModel = new UserRegister();
   this.signupUser = new User();
+  this.showRegister();
   }
 
   register() {
@@ -98,5 +101,16 @@ export class RegisterComponent implements OnInit {
       this.registerModel.permanentPincode = '';
       this.markReadonly = false;
     }
+  }
+
+  showRegister() {
+  this.contactUsService.getShowRegister().subscribe(
+      (res: ShowRegister) => {
+       console.log(res);
+       this.displayRegister = res.viewRegisterPage;
+      },
+      err => console.error(err),
+      () => console.log('get showRegister successful')
+    );
   }
 }

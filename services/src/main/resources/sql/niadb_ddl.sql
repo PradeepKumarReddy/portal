@@ -45,13 +45,13 @@ CREATE TABLE `application_user` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `password` varchar(255) DEFAULT NULL,
   `username` varchar(255) DEFAULT NULL,
-  `user_register_id` bigint DEFAULT NULL,
+  `user_register_id` bigint(20) DEFAULT NULL,
+  `reset_token` varchar(255) DEFAULT NULL,
+  `enabled` bit(1) DEFAULT NULL,
   PRIMARY KEY (`id`),
+  KEY `FK1` (`user_register_id`),
   CONSTRAINT `FK1` FOREIGN KEY (`user_register_id`) REFERENCES `user_register` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
-
-
-
 
 CREATE TRIGGER registration_auto_id BEFORE INSERT ON user_register
        FOR EACH ROW
@@ -65,6 +65,7 @@ CREATE TABLE `exam` (
   `exam_date` datetime DEFAULT NULL,
   `exam_description` varchar(255) DEFAULT NULL,
   `exam_name` varchar(255) DEFAULT NULL,
+  `is_active` bit(1) DEFAULT NULL,
   PRIMARY KEY (`exam_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
@@ -84,17 +85,23 @@ CREATE TABLE `question_option` (
   `option_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `option_desc` varchar(255) DEFAULT NULL,
   `question_id` bigint(20) DEFAULT NULL,
+  `is_answer` bit(1) DEFAULT NULL,
   PRIMARY KEY (`option_id`),
   KEY `FKmmdv54rmm5hkgxbn1008ix87n` (`question_id`),
   CONSTRAINT `FKmmdv54rmm5hkgxbn1008ix87n` FOREIGN KEY (`question_id`) REFERENCES `question` (`question_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
+
 CREATE TABLE `user_exam` (
   `user_exam_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `exam_id` bigint(20) DEFAULT NULL,
   `username` varchar(255) DEFAULT NULL,
+  `TOTAL_QUESTIONS` int(11) DEFAULT '0',
+  `ANSWERED_QUESTIONS` int(11) DEFAULT '0',
+  `TOTAL_MARKS` double(40,2) DEFAULT '0.00',
   PRIMARY KEY (`user_exam_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
 
 CREATE TABLE `user_response` (
   `user_response_id` bigint(20) NOT NULL AUTO_INCREMENT,
@@ -203,6 +210,12 @@ INSERT INTO `contactus` (`email1`,`email2`,`phone1`,`phone2`)
 VALUES
 ('admin@nakshatraacademy.in','','08217037454','080-43741208');
 
+INSERT INTO `SHOW_REGISTER` (`view_register_page`)
+VALUES
+(1);
+
+update SHOW_REGISTER set view_register_page =0 where id=1;
+
 --
 
 ALTER TABLE USER_EXAM
@@ -238,6 +251,11 @@ CREATE TABLE `backup_user_register` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
+CREATE TABLE `show_register` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `view_register_page` bit(1) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 
 --SET SQL_SAFE_UPDATES = 0;

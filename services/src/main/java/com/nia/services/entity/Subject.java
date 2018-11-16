@@ -36,7 +36,7 @@ public class Subject {
 			orphanRemoval = true,
 			mappedBy="subject"
     )
-	@OrderBy("id ASC")
+	@OrderBy("orderId ASC")
 	@JsonManagedReference
 	private Set<SubResource> subResource = new HashSet<>();
 

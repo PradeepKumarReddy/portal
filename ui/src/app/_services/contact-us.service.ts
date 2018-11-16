@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-import { Contactus } from '../_models/index';
+import { Contactus, ShowRegister } from '../_models/index';
 import { environment } from '../../environments/environment';
 
 const httpOptions = {
@@ -16,5 +16,8 @@ export class ContactUsService {
   constructor(private http: HttpClient) { }
   getContactUs(): Observable<Contactus> {
   return this.http.get<Contactus>(API_URL + '/api/get/contactUs', httpOptions);
+  }
+  getShowRegister(): Observable<ShowRegister> {
+  return this.http.get<ShowRegister>(API_URL + '/api/get/showRegister', httpOptions);
   }
 }
